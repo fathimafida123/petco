@@ -1,0 +1,158 @@
+{
+  "products": [
+       {
+      "id": "1",
+      "name": "Premium Dog Food",
+      "category": "dogs",
+      "price": 599,
+      "description": "Healthy and tasty food for dogs.",
+      "image": "/images/products/dog-acccess4.jpg",
+      "stock": 20,
+      "rating": 4.5
+    },
+    {
+      "id": "2",
+      "name": "Cat Dry Food",
+      "category": "cats",
+      "price": 449,
+      "description": "Nutritious dry food for cats.",
+      "image": "/images/products/dog-acces3.jpg",
+      "stock": 15,
+      "rating": 4.6
+    },
+    {
+      "id": "3",
+      "name": "Squeaky Dog Toy",
+      "category": "dogs",
+      "price": 299,
+      "description": "Fun and durable toy for dogs.",
+      "image": "/images/products/dog-access2.jpg",
+      "stock": 25,
+      "rating": 4.3
+    },
+    {
+      "id": "4",
+      "name": "Cat Feather Toy",
+      "category": "cats",
+      "price": 199,
+      "description": "Interactive feather toy for cats.",
+      "image": "/images/products/dog-aceess1.jpg",
+      "stock": 30,
+      "rating": 4.4
+    },
+    {
+      "id": "5",
+      "name": "Pet Food Bowl",
+      "category": "accessories",
+      "price": 249,
+      "description": "Simple and durable food bowl.",
+      "image": "/images/products/food-bowl.jpg",
+      "stock": 18,
+      "rating": 4.2
+    },
+    {
+      "id": "6",
+      "name": "Adjustable Dog Collar",
+      "category": "accessories",
+      "price": 349,
+      "description": "Comfortable adjustable collar for dogs.",
+      "image": "/images/products/dog-collar.jpg",
+      "stock": 12,
+      "rating": 4.5
+    },
+    {
+      "id": "7",
+      "name": "Cat Scratching Post",
+      "category": "cats",
+      "price": 799,
+      "description": "A fun scratching post for cats.",
+      "image": "/images/products/scratch-post.jpg",
+      "stock": 10,
+      "rating": 4.7
+    },
+    {
+      "id": "8",
+      "name": "Dog Chew Bone",
+      "category": "dogs",
+      "price": 179,
+      "description": "Durable chew toy for dogs.",
+      "image": "/images/products/chew-bone.jpg",
+      "stock": 22,
+      "rating": 4.3
+    },
+    {
+      "id": "9",
+      "name": "Pet Grooming Brush",
+      "category": "grooming",
+      "price": 299,
+      "description": "Soft grooming brush for pets.",
+      "image": "/images/products/cat-access1.jpg",
+      "stock": 14,
+      "rating": 4.4
+    },
+    {
+      "id": "10",
+      "name": "Pet Shampoo",
+      "category": "grooming",
+      "price": 399,
+      "description": "Gentle shampoo for regular pet grooming.",
+      "image": "/images/products/cat-access2.jpg",
+      "stock": 16,
+      "rating": 4.6
+    }
+  ],
+  "users": [
+    {
+      "name": "",
+      "email": "",
+      "password": "",
+      "id": "vTmVChF5Zao",
+      "role":"user"
+    },
+    {
+      "name": "dfggb",
+      "email": "dfvf@gmail.com",
+      "password": "gtrhtrhh",
+      "id": "IGF3NMyNPmQ"
+    },
+    {
+      "name": "dfggb",
+      "email": "dfvf@gmail.com",
+      "password": "gtrhtrhh",
+      "id": "bptFFc5Y-tk"
+    },
+    {
+      "name": "fida",
+      "email": "fida@gmail.com",
+      "password": "132456",
+      "cnfrmpass": "132456",
+      "id": "1NcIRAQ1CUc"
+    },
+    {
+      "name": "fgbbn",
+      "email": "fwsf@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "OhzNLD4mp8k"
+    },
+    {
+      "name": "fida",
+      "email": "fida@gmail.com",
+      "password": "fida123",
+      "cnfrmpass": "fida123",
+      "id": "OsNXhAcv2aQ"
+    }
+  ],
+  "orders": [],
+  "role": [
+    {
+      "id": "deAMsNhdnD8"
+    },
+    {
+      "name": "fida",
+      "password": "fida123",
+      "id": "f9OSz10CJGA"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
