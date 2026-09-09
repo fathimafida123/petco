@@ -7,6 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 function Product() {
 const[searchParams]=useSearchParams();
 const category=searchParams.get("category");
+console.log("category",category)
   const {data:products=[],isLoading,error}=useQuery({
     queryKey:["products"],
     queryFn:getProducts
@@ -21,8 +22,12 @@ const category=searchParams.get("category");
   return (
     <div className='p-8 bg-gray-500/50' >
      <div className='flex  gap-2'> <span className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#26332F]">PETCO</span><PawPrint size={35}/></div>
-     {/* {filteredProducts.length===0?<div} */}
-     <ProductGrid  products={products}/>
+
+
+     {filteredProducts.length===0?(<div className='text-center'>
+      <h2 className='text-2xl font-bold text-gray-600'>No products found </h2></div>):
+     (<ProductGrid  products={filteredProducts}/>
+)}
      </div>
   )
 }

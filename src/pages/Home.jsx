@@ -69,7 +69,7 @@ function Home() {
 
       <div className="w-60 h-70  bg-white/50 p-6 rounded-2xl transition-all duration-300 hover:-translate-y-3
     hover:shadow-2xl">
-      <Link to="/product?category=cat" >
+      <Link to="/product?category=cats" >
 <div className="w-[200px] h-[200px] overflow-hidden rounded-xl ">
 <img src="/images/cat2.jpg "className="w-full h-full object-cover transition-transform duration-500  hover:scale-110"  />
 </div><h1 className="text-xl font-bold text-gray-900 text-center">Cat</h1>
@@ -80,7 +80,7 @@ function Home() {
 <div className="w-60 h-70  bg-white/50 p-6 rounded-2xl  transition-all duration-300
     hover:-translate-y-3
     hover:shadow-2xl">
-<Link to="/product?category=dog"><div className="w-[200px] h-[200px] overflow-hidden rounded-2xl  ">
+<Link to="/product?category=dogs"><div className="w-[200px] h-[200px] overflow-hidden rounded-2xl  ">
 <img src="/images/dog.jpg" alt="dog" className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" />
 </div><h2 className="text-xl font-bold text-gray-900 text-center">Dog</h2>
 <p className="text-blue-950 font-serif text-center">for your furry friend</p>
@@ -93,7 +93,7 @@ function Home() {
 <Link to="/product?category=food">
 <div className="w-[200px] h-[200px] overflow-hidden rounded-2xl">
 <img src="/images/food2.jpg" alt="food" className="w-full h-full object-cover transition-transform duration-500 hover:scale-110" /></div>
-<Link to="/product"><h2 className="text-xl font-bold text-gray-900 text-center">Food</h2><p className="text-blue-950 font-serif text-center">Healthy meals for your pet</p></Link>
+<h2 className="text-xl font-bold text-gray-900 text-center">Food</h2><p className="text-blue-950 font-serif text-center">Healthy meals for your pet</p>
  </Link> </div>
 
   <div className="w-60 h-70  bg-white/50 p-6 rounded-2xl  transition-all duration-300
