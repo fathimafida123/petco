@@ -58,6 +58,9 @@ function Home() {
             </div>
             </section>
 
+
+
+
 <section className="bg-[#4e6070] min-h-[600px] py-16  sm:px-6">
   <div className="flex flex-col items-center justify-center pl-7">
     <h2 className="text-white font-bold text-5xl mt-7 ">Explore PETCO</h2><br/>
@@ -117,6 +120,7 @@ function Home() {
 </div>
 </section>
 
+
          <section className="bg-gray-500/50 py-16 px-4 sm:px-6">
           <div className="text-center">
             <h2 className="text-5xl sm:text-4xl md:text-6xl font-extrabold tracking-wide font-serif">Featured Products</h2>
@@ -134,7 +138,7 @@ function Home() {
 
             <div className="bg-gray-200/50  rounded-2xl overflow-hidden shadow-2xl">
             <div className="w-full h-72 overflow-hidden" >
-            <img src="/images/products/happycustomer.jpg" className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"/>
+            <img src="\images\products\happy customer.jpg" className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"/>
             </div>
             <p className="text-yellow-500 text-3xl">★★★★★</p>
             <p className="text-xl  font-semibold font-serif text-gray-600" >my pet absolutely loves the products!</p>
@@ -166,6 +170,7 @@ function Home() {
             </div> 
              </div>
          </section>
+
 </div>
 
   );
