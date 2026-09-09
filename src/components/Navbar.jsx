@@ -51,6 +51,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Heart,
   ShoppingCart,
@@ -64,14 +65,22 @@ import {
 
 function Navbar() {
   const [open, setOpen] = useState(false);
-
+  const[search,setSearch]=useState("")
+  const navigate=useNavigate()
   const links = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/product" },
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
-
+function handler(e){
+  setSearch(e.target.value)
+  if(e.target.value.trim()!==" "){
+  navigate(`/product?search=${e.target.value}`)
+  }else{
+    navigate("/product")
+  }
+}
   return (
     <nav className="bg-white sticky top-0 z-50">
 
@@ -100,7 +109,7 @@ function Navbar() {
 
   <input
     type="text"
-    placeholder="Search products..."
+    placeholder="Search products..." onChange={handler} value={search}
     className="w-40 lg:w-64 xl:w-80 outline-none"
   />
 </div>

@@ -7,7 +7,8 @@ import { useSearchParams } from 'react-router-dom';
 function Product() {
 const[searchParams]=useSearchParams();
 const category=searchParams.get("category");
-console.log("category",category)
+const search=searchParams.get("search")
+
   const {data:products=[],isLoading,error}=useQuery({
     queryKey:["products"],
     queryFn:getProducts
@@ -18,7 +19,14 @@ console.log("category",category)
   if(error){
     return<h2>failed to load products</h2>
   }
-  const filteredProducts=category?products.filter((product)=>product.category.toLowerCase()==category.toLowerCase()):products
+  const filteredProducts=products.filter((product)=>{const categoryMatch=
+    !category|| 
+    product.category.toLowerCase()===category.toLowerCase();
+    const searchMatch=
+     !search||
+     product.name.toLowerCase().includes(search.toLowerCase())
+    return categoryMatch && searchMatch
+  })
   return (
     <div className='p-8 bg-gray-500/50' >
      <div className='flex  gap-2'> <span className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#26332F]">PETCO</span><PawPrint size={35}/></div>
