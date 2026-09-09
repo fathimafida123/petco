@@ -6,7 +6,7 @@
       "category": "dogs",
       "price": 599,
       "description": "Healthy and tasty food for dogs.",
-      "image": "/images/products/dog-acccess4.jpg",
+      "image": "/images/products/dog-food.jpg",
       "stock": 20,
       "rating": 4.5
     },
@@ -16,27 +16,27 @@
       "category": "cats",
       "price": 449,
       "description": "Nutritious dry food for cats.",
-      "image": "/images/products/dog-acces3.jpg",
+      "image": "/images/products/cat-food.jpg",
       "stock": 15,
       "rating": 4.6
     },
     {
       "id": "3",
-      "name": "Squeaky Dog Toy",
+      "name": "Squeaky Dog food",
       "category": "dogs",
       "price": 299,
-      "description": "Fun and durable toy for dogs.",
-      "image": "/images/products/dog-access2.jpg",
+      "description": "good food for dog.",
+      "image": "/images/products/dog-food2.jpg",
       "stock": 25,
       "rating": 4.3
     },
     {
       "id": "4",
-      "name": "Cat Feather Toy",
+      "name": "Cats bed",
       "category": "cats",
       "price": 199,
-      "description": "Interactive feather toy for cats.",
-      "image": "/images/products/dog-aceess1.jpg",
+      "description": "cats bed.",
+      "image": "/images/products/cat-bed1.jpg",
       "stock": 30,
       "rating": 4.4
     },
@@ -46,7 +46,7 @@
       "category": "accessories",
       "price": 249,
       "description": "Simple and durable food bowl.",
-      "image": "/images/products/food-bowl.jpg",
+      "image": "/images/products/cat-bawl.jpg",
       "stock": 18,
       "rating": 4.2
     },
@@ -62,31 +62,31 @@
     },
     {
       "id": "7",
-      "name": "Cat Scratching Post",
+      "name": "accesseries for dog",
       "category": "cats",
       "price": 799,
-      "description": "A fun scratching post for cats.",
-      "image": "/images/products/scratch-post.jpg",
+      "description": "accessories for dogs",
+      "image": "/images/products/dog-access4.jpg",
       "stock": 10,
       "rating": 4.7
     },
     {
       "id": "8",
-      "name": "Dog Chew Bone",
+      "name": "accesseries for cat",
       "category": "dogs",
       "price": 179,
-      "description": "Durable chew toy for dogs.",
-      "image": "/images/products/chew-bone.jpg",
+      "description": "",
+      "image": "/images/products/cat-access4.jpg",
       "stock": 22,
       "rating": 4.3
     },
     {
       "id": "9",
-      "name": "Pet Grooming Brush",
+      "name": "cat Grooming products",
       "category": "grooming",
       "price": 299,
-      "description": "Soft grooming brush for pets.",
-      "image": "/images/products/cat-access1.jpg",
+      "description": "cat grooming",
+      "image": "/images/products/cat-grooming1.jpg",
       "stock": 14,
       "rating": 4.4
     },
@@ -96,9 +96,108 @@
       "category": "grooming",
       "price": 399,
       "description": "Gentle shampoo for regular pet grooming.",
-      "image": "/images/products/cat-access2.jpg",
+      "image": "/images/products/cat-grooming5.jpg",
       "stock": 16,
       "rating": 4.6
+    },{
+      "id": "11",
+      "name": "Premium Cat Food",
+      "category": "Cat",
+      "price": 599,
+      "description": "Healthy and tasty food for cats.",
+      "image": "/images/products/cat-food3.jpg",
+      "stock": 20,
+      "rating": 4.5
+    },
+    {
+      "id": "12",
+      "name": "Interactive Cat Toy",
+      "category": "Cat",
+      "price": 299,
+      "description": "Fun toy to keep your cat active.",
+      "image": "/images/cat-toy.jpg",
+      "stock": 15,
+      "rating": 4.3
+    },
+    {
+      "id": "13",
+      "name": "Soft Cat Bed",
+      "category": "Cat",
+      "price": 899,
+      "description": "Soft and comfortable bed for your cat.",
+      "image": "/images/cat-bed.jpg",
+      "stock": 10,
+      "rating": 4.7
+    },
+    {
+      "id": "14",
+      "name": "Healthy Dog Food",
+      "category": "Dog",
+      "price": 799,
+      "description": "Nutritious food for healthy and active dogs.",
+      "image": "/images/dog-food.jpg",
+      "stock": 25,
+      "rating": 4.6
+    },
+    {
+      "id": "15",
+      "name": "Dog Chew Toy",
+      "category": "Dog",
+      "price": 349,
+      "description": "Durable toy for your furry friend.",
+      "image": "/images/dog-toy.jpg",
+      "stock": 18,
+      "rating": 4.4
+    },
+    {
+      "id": "16",
+      "name": "Comfort Dog Bed",
+      "category": "Dog",
+      "price": 999,
+      "description": "A cozy bed for comfortable rest.",
+      "image": "/images/dog-bed.jpg",
+      "stock": 8,
+      "rating": 4.8
+    },
+    {
+      "id": "17",
+      "name": "Pet Grooming Brush",
+      "category": "Grooming",
+      "price": 249,
+      "description": "Gentle brush for keeping your pet's coat clean.",
+      "image": "/images/brush.jpg",
+      "stock": 30,
+      "rating": 4.2
+    },
+    {
+      "id": "18",
+      "name": "Pet Shampoo",
+      "category": "Grooming",
+      "price": 399,
+      "description": "Gentle shampoo for a clean and fresh pet.",
+      "image": "/images/shampoo.jpg",
+      "stock": 20,
+      "rating": 4.5
+    },
+    {
+      "id": "19",
+      "name": "Pet Collar",
+      "category": "Accessories",
+      "price": 199,
+      "description": "Comfortable and stylish collar for pets.",
+      "image": "/images/collar.jpg",
+      "stock": 35,
+      "rating": 4.1
+    },
+    {
+      "id": "20",
+      "name": "Pet Bowl",
+      "category": "Accessories",
+      "price": 299,
+      "description": "Durable food and water bowl for pets.",
+      "image": "/images/bowl.jpg",
+      "stock": 25,
+      "rating": 4.4
     }
   ],
   "users": [

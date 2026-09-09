@@ -24,7 +24,7 @@ function AppRoutes() {
          </Route>
             <Route path="/login" element={<Login/>}/>
             <Route path='/register' element={<Register/>}/>
-            <Route path='/productdetails' element={<ProductDetails/>}/>
+            <Route path='/product/:id' element={<ProductDetails/>}/>
             <Route path='*' element={<NotFound/>}/>
             <Route path='/checkout' element={<Checkout/>}/>
 
