@@ -107,10 +107,14 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/product services";
 import ProductCard from "../components/ProductCard";
+import {useDispatch,useSelector} from "react-redux";
+import { addToCart } from "../redux/slice/cartSlice";
 
 function ProductDetails() {
   const { id } = useParams();
-
+const dispatch=useDispatch()
+const cartitems=useSelector((state)=>state.cart.items)
+console.log(cartitems)
   const {
     data: products = [],
     isLoading,
@@ -148,7 +152,7 @@ function ProductDetails() {
     <div className="min-h-screen bg-olive-500/50 py-12 px-4 sm:px-6">
 
       {/* PRODUCT DETAILS */}
-      <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-lg p-6 md:p-10">
+      <div className="max-w-5xl mx-auto rounded-2xl shadow-lg p-6 md:p-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#4e6070]/50 p-6 rounded-xl">
 
@@ -161,7 +165,6 @@ function ProductDetails() {
             />
           </div>
 
-          {/* PRODUCT INFORMATION */}
           <div className="flex flex-col justify-center">
 
             <p className="text-sm uppercase tracking-widest text-[#2F5D50] font-semibold">
@@ -176,12 +179,10 @@ function ProductDetails() {
               ₹{product.price}
             </p>
 
-            {/* SHORT DESCRIPTION */}
             <p className="text-gray-600 mt-4 leading-relaxed line-clamp-3">
               {product.description}
             </p>
 
-            {/* RATING */}
             <div className="mt-4">
               <span className="text-yellow-500 text-xl">
                 ★★★★★
@@ -235,6 +236,7 @@ function ProductDetails() {
                 transition
                 disabled:bg-gray-400
               "
+              onClick={()=>dispatch(addToCart(product))}
             >
               Add to Cart
             </button>

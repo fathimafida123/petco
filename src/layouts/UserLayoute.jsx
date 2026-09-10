@@ -1,7 +1,6 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import { Outlet } from 'react-router-dom'
-import Footer from '../components/Footer'
 function UserLayoute() {
   return (
     <div>
@@ -9,7 +8,6 @@ function UserLayoute() {
 <main>
       <Outlet/>
       </main>
-     <Footer/>
     </div>
   )
 }

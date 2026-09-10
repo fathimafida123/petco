@@ -24,7 +24,11 @@ function ProductCard({product}) {
       <h2 className='text-xl font-bold mt-4'>{product.name}</h2> 
            <div>
         <p className='text-lg font-bold text-[#2F5D50]'>₹{product.price}</p>
-     
+<div className="flex justify-center mt-6">
+  <button className="bg-green-800 text-white h-10 px-8 rounded-2xl font-bold text-lg">
+    Add to Cart
+  </button>
+</div>     
       </div>
 
     </motion.div>

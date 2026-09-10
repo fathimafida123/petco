@@ -73,6 +73,12 @@ function Navbar() {
     { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
   ];
+  const icons=[
+    {name:"wishlist",path:"/wishlist",icon:<Heart size={20}/>},
+    {name:"cart" ,path:"/cart",icon:<ShoppingCart size={20}/>},
+    {name:"orders",path:"/orders",icon:<ClipboardList size={20}/>},
+    {name:"login",path:"/login",icon:<User size={20}/>}
+  ]
 function handler(e){
   setSearch(e.target.value)
   if(e.target.value.trim()!==" "){
@@ -86,7 +92,6 @@ function handler(e){
 
       <div className="h-20 px-4 flex items-center justify-between">
 
-        {/* Logo */}
         <Link
           to="/"
           className="text-2xl font-bold text-[#2F5D50] flex items-center gap-2"
@@ -95,7 +100,7 @@ function handler(e){
           <PawPrint />
         </Link>
 
-        {/* Desktop */}
+   
         <div className="hidden md:flex gap-6">
           {links.map((link) => (
             <Link key={link.name} to={link.path}>
@@ -103,7 +108,6 @@ function handler(e){
             </Link>
           ))}
         </div>
-        {/* Search */}
 <div className="flex items-center gap-2 border rounded-full px-4 py-2">
   <Search size={20} />
 
@@ -115,14 +119,20 @@ function handler(e){
 </div>
 
         {/* Icons */}
-        <div className="hidden md:flex gap-5">
+        {/* <div className="hidden md:flex gap-5">
           <Link to="/wishlist"><Heart /></Link>
           <Link to="/cart"><ShoppingCart /></Link>
           <Link to="/orders"><ClipboardList /></Link>
           <Link to="/login"><User /></Link>
+        </div> */} 
+        <div className="hidden md:flex gap-5">
+          {icons.map((item)=>(
+            <Link to={item.path} key={item.name}>
+              {item.icon}
+            </Link>
+          ))}
         </div>
 
-        {/* 3 lines */}
         <button
           className="md:hidden"
           onClick={() => setOpen(!open)}
@@ -131,7 +141,6 @@ function handler(e){
         </button>
       </div>
 
-      {/* Mobile */}
       {open && (
         <div className="md:hidden flex flex-col gap-5 px-6 pb-6">
           {links.map((link) => (
@@ -141,6 +150,14 @@ function handler(e){
               onClick={() => setOpen(false)}
             >
               {link.name}
+            </Link>
+          ))}
+          {icons.map((item)=>(
+            <Link to={item.path} 
+            key={item.name} onClick={()=>setOpen(false)}
+            className="flex item-center gap-3">
+              {item.icon}
+              {item.name}
             </Link>
           ))}
         </div>
