@@ -1,6 +1,6 @@
 {
   "products": [
-       {
+    {
       "id": "1",
       "name": "Premium Dog Food",
       "category": "dogs",
@@ -99,7 +99,8 @@
       "image": "/images/products/cat-grooming5.jpg",
       "stock": 16,
       "rating": 4.6
-    },{
+    },
+    {
       "id": "11",
       "name": "Premium Cat Food",
       "category": "Cat",
@@ -206,7 +207,7 @@
       "email": "",
       "password": "",
       "id": "vTmVChF5Zao",
-      "role":"user"
+      "role": "user"
     },
     {
       "name": "dfggb",
@@ -240,9 +241,217 @@
       "password": "fida123",
       "cnfrmpass": "fida123",
       "id": "OsNXhAcv2aQ"
+    },
+    {
+      "name": "fida",
+      "email": "fathimafidamayippayil@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "5o-PdACKRSw",
+      "role": "user"
     }
   ],
   "orders": [],
+  "carts": [
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "vSQNGmBK_KQ"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "iTB8dIgd1ZI"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "IkbSp-LnO6w"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "0bQQ1ONKXu8"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "FpHj35OVwtE"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "P0dL0_PlKZU"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "ZkduUY5hWlM"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "ZrysRbBCjds"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "rZs0Bh0zY1E"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "MBB_JBFbRxQ"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "bnf9o_awIis"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "ACdlmDJ1KHA"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "53eyJKvj81w"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "cHPpy8_Jj6Q"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "y8SfC4CjT60"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "ykRrLU4NfA0"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "p43Ht9cax6c"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "V_2_3tyiRmU"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "G1vt80sB_Oc"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "KUX5yJ93BJc"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "rBPbOBxnIbk"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "yg-oS-IyFjE"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "d7_mYjo1T2c"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "znjqz314VSg"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "1",
+      "quantity": 1,
+      "id": "P_b4kNSUEBk"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "1",
+      "quantity": 1,
+      "id": "kDoEzzq5a4g"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "1",
+      "quantity": 1,
+      "id": "tGHMHXOvDjY"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "h5hO8MxgA6w"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "2",
+      "quantity": 1,
+      "id": "6PYAcEGYCS8"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "6",
+      "quantity": 1,
+      "id": "SwJRmKNMbYw"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "3",
+      "quantity": 1,
+      "id": "E1GkDkpcYUY"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "8",
+      "quantity": 1,
+      "id": "WXAGrAk2-5c"
+    },
+    {
+      "userId": "5o-PdACKRSw",
+      "productId": "8",
+      "quantity": 6,
+      "id": "MJJ7Hmq7z6Q"
+    }
+  ],
   "role": [
     {
       "id": "deAMsNhdnD8"
@@ -251,6 +460,51 @@
       "name": "fida",
       "password": "fida123",
       "id": "f9OSz10CJGA"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "ae3jtuPZQQo"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "WWMR8KHEA6w"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "-bjuWS5M2Ak"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "ZV_S8f9S4_k"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "voDNtu2UGro"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "gJxETTv0pDo"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "h2htEV2Ht-E"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "0Or93AD5d2o"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "mKrrnvz5f9I"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

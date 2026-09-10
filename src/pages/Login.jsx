@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/slice/authSlices'
 import { Link, useNavigate } from 'react-router-dom'
 import { loginUser } from '../services/user services'
+import { saveUser } from '../utils/localStorege'
 function Login() {
     const[formData,setFormData]=useState({name:"",password:""})
     const dispatch=useDispatch()
@@ -24,6 +25,7 @@ const submitHandler=async(e)=>{
         setErrors("invalid username or email")
         return;
        }
+       saveUser(user)
        dispatch(loginSuccess(user))
        const login=await loginUser(formData)
        navigate("/")

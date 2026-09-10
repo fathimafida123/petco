@@ -102,19 +102,27 @@
 // }
 
 // export default ProductDetails
-import React from "react";
-import { useParams } from "react-router-dom";
+import React,{useState} from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProducts } from "../services/product services";
 import ProductCard from "../components/ProductCard";
 import {useDispatch,useSelector} from "react-redux";
 import { addToCart } from "../redux/slice/cartSlice";
+import { addCart } from "../services/cartService";
+
 
 function ProductDetails() {
+  const [count,setCount]=useState(1)
   const { id } = useParams();
 const dispatch=useDispatch()
 const cartitems=useSelector((state)=>state.cart.items)
 console.log(cartitems)
+const user=useSelector((state)=>state.auth.user)
+console.log("logged",user)
+
+const navigate = useNavigate();
+
   const {
     data: products = [],
     isLoading,
@@ -122,6 +130,8 @@ console.log(cartitems)
   } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
+    staleTime:5*60*1000,
+    refetchOnWindowFocus:false
   });
 
   if (isLoading) {
@@ -146,8 +156,30 @@ console.log(cartitems)
     (item) =>
       item.category === product.category &&
       String(item.id) !== String(product.id)
+
+      
   );
 
+const handletocart = async () => {
+
+  if (!user) {
+    navigate("/login");
+    return;
+  }
+
+  const cartData = {
+    userId: user.id,
+    productId: String(product.id),
+    quantity: count,
+  };
+
+  await addCart(cartData);
+
+  dispatch(addToCart({
+    ...product,
+    quantity: count
+  }));
+};
   return (
     <div className="min-h-screen bg-olive-500/50 py-12 px-4 sm:px-6">
 
@@ -207,15 +239,17 @@ console.log(cartitems)
             {/* QUANTITY */}
             <div className="mt-5 flex items-center gap-4">
 
-              <button className="w-9 h-9 border rounded-lg text-xl">
+              <button className="w-9 h-9 border rounded-lg text-xl " 
+              onClick={()=>setCount(count-1)} disabled={count===1}>
                 -
               </button>
 
               <span className="font-semibold">
-                1
+                {count}
               </span>
 
-              <button className="w-9 h-9 border rounded-lg text-xl">
+              <button className="w-9 h-9 border rounded-lg text-xl"
+               onClick={()=>setCount(count+1)} disabled={count===product.stock}>
                 +
               </button>
 
@@ -223,6 +257,7 @@ console.log(cartitems)
 
             {/* ADD TO CART */}
             <button
+            type="button"
               disabled={product.stock === 0}
               className="
                 mt-6
@@ -236,7 +271,7 @@ console.log(cartitems)
                 transition
                 disabled:bg-gray-400
               "
-              onClick={()=>dispatch(addToCart(product))}
+              onClick={handletocart} 
             >
               Add to Cart
             </button>

@@ -1,10 +1,10 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 import { getUser } from "../../utils/localStorege";
-
+const savedUser=getUser()
 const initialState = {
-    user: getUser(),
-    isLoggedIn: false,
+    user: savedUser,  //Put the saved user inside Redux
+    isLoggedIn: !!savedUser,
     isLoading: false,
     error: null
 };
