@@ -72,7 +72,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   decreaseQuantity,
-  icreaseQuantity,
+  increaseQuantity,
   setCart,
 } from "../redux/slice/cartSlice";
 
@@ -93,21 +93,26 @@ function Cart() {
     const products = await getProducts();
 
     const completeCart = cartData
-      .map((cartItem) => {
+      .forEach((cartItem) => {
         const product = products.find(
           (product) =>
             String(product.id) === String(cartItem.productId)
         );
 
-        if (!product) return null;
+        if (!product) return ;
 
-        return {
-          ...product,
-          quantity: cartItem.quantity,
-        };
+        const existingItem=completeCart.find((item)=>String(item.id)===String(product.id));
+        if(existingItem){
+          existingItem.quantity+=Number(cartItem.quantity);
+        }else{
+          completeCart.push({
+            ...product,
+            cartId:cartItem.id,
+            quantity:Numaber(cartItem.quantity),
+          })
+        }
       })
-      .filter(Boolean);
-
+     
     dispatch(setCart(completeCart));
   };
 
@@ -164,7 +169,7 @@ function Cart() {
                     type="button"
                     className="border px-3 py-1"
                     onClick={() =>
-                      dispatch(icreaseQuantity(item.id))
+                      dispatch(increaseQuantity(item.id))
                     }
                   >
                     +
