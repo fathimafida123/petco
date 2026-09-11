@@ -52,6 +52,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector,useDispatch } from "react-redux";
+import { logout } from "../redux/slice/authSlices";
 import {
   Heart,
   ShoppingCart,
@@ -64,9 +66,12 @@ import {
 } from "lucide-react";
 
 function Navbar() {
+const dispatch=useDispatch()
   const [open, setOpen] = useState(false);
   const[search,setSearch]=useState("")
   const navigate=useNavigate()
+ const [showProfile,setShowProfile]=useState(false)
+const user=useSelector((state)=>state.auth.user)
   const links = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/product" },
@@ -77,7 +82,6 @@ function Navbar() {
     {name:"wishlist",path:"/wishlist",icon:<Heart size={20}/>},
     {name:"cart" ,path:"/cart",icon:<ShoppingCart size={20}/>},
     {name:"orders",path:"/orders",icon:<ClipboardList size={20}/>},
-    {name:"login",path:"/login",icon:<User size={20}/>}
   ]
 function handler(e){
   setSearch(e.target.value)
@@ -86,6 +90,12 @@ function handler(e){
   }else{
     navigate("/product")
   }
+
+  }
+    const handleLogout=()=>{
+    dispatch(logout())
+    setShowProfile(false)
+    navigate("/login")
 }
   return (
     <nav className="bg-white sticky top-0 z-50">
@@ -127,12 +137,24 @@ function handler(e){
         </div> */} 
         <div className="hidden md:flex gap-5">
           {icons.map((item)=>(
-            <Link to={item.path} key={item.name}>
+            <Link to={item.path} key={item.name} className="hover:text-[#2F5D50]">
               {item.icon}
             </Link>
           ))}
         </div>
+        
+        <div className="relative">
+         <button type="button" onClick={()=>setShowProfile(!showProfile)}
+          className="hover:text-[#2F5D50]"><User size={20}/>
+         </button>
 
+         {showProfile && (<div className=" bg-white absolute right-0 top-8 w-44 border rounded-lg shadow-lg p-3"> 
+          {user&&(<p className="text-sm text-gray-600 px-2 py-2">
+            Hi,{user?.name}
+          </p>)}
+          <button type="button" onClick={handleLogout} className="w-full text-left px-2 py-2 rounded hover:bg-gray-100">Logout</button>
+         </div>)}
+        </div>
         <button
           className="md:hidden"
           onClick={() => setOpen(!open)}

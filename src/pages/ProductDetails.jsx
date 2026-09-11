@@ -130,8 +130,7 @@ const navigate = useNavigate();
   } = useQuery({
     queryKey: ["products"],
     queryFn: getProducts,
-    staleTime:5*60*1000,
-    refetchOnWindowFocus:false
+
   });
 
   if (isLoading) {

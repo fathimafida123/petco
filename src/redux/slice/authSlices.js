@@ -1,30 +1,95 @@
+// import { createSlice } from "@reduxjs/toolkit";
+
+// const savedUser = localStorage.getItem("user");
+
+// const initialState = {
+//   user: savedUser ? JSON.parse(savedUser) : null,
+//   isLoading: false,
+//   error: null,
+// };
+
+// const authSlice = createSlice({
+//   name: "auth",
+//   initialState,
+
+//   reducers: {
+//     loginSuccess: (state, action) => {
+//       state.user = action.payload;
+//     },
+
+//     logout: (state) => {
+//       state.user = null;
+//       localStorage.removeItem("user");
+//     },
+//   },
+// });
+
+// export const { loginSuccess, logout } = authSlice.actions;
+// export default authSlice.reducer;
+
+// import { createSlice } from "@reduxjs/toolkit";
+// import { getUser, removeUser } from "../../utils/localStorege";
+
+// const initialState = {
+//   user: getUser(),
+//   isLoading: false,
+//   error: null,
+// };
+
+// const authSlice = createSlice({
+//   name: "auth",
+//   initialState,
+
+//   reducers: {
+//     loginSuccess: (state, action) => {
+//       state.user = action.payload;
+//     },
+
+//     logout: (state) => {
+//       state.user = null;
+//       removeUser();
+//     },
+//   },
+// });
+
+// export const { loginSuccess, logout } = authSlice.actions;
+
+// export default authSlice.reducer;
 
 import { createSlice } from "@reduxjs/toolkit";
-import { getUser } from "../../utils/localStorege";
-const savedUser=getUser()
+
 const initialState = {
-    user: savedUser,  //Put the saved user inside Redux
-    isLoggedIn: !!savedUser,
-    isLoading: false,
-    error: null
+  user: null,
+  isLoading: true,
+  error: null,
 };
 
 const authSlice = createSlice({
-    name: "auth",
-    initialState,
-    reducers: {
-        loginSuccess: (state, action) => {
-            state.user = action.payload;
-            state.isLoggedIn = true;
-            state.error = null;
-        },
-        logout: (state) => {
-            state.user = null;
-            state.isLoggedIn = false;
-            state.error = null;
-        }
-    }
+  name: "auth",
+  initialState,
+
+  reducers: {
+    loginSuccess: (state, action) => {
+      state.user = action.payload;
+      state.isLoading = false;
+    },
+
+    restoreUser: (state, action) => {
+      state.user = action.payload;
+      state.isLoading = false;
+    },
+
+    logout: (state) => {
+      state.user = null;
+      state.isLoading = false;
+    },
+  },
 });
 
-export const { loginSuccess, logout } = authSlice.actions;
+export const {
+  loginSuccess,
+  restoreUser,
+  logout,
+} = authSlice.actions;
+
 export default authSlice.reducer;

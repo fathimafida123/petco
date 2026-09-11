@@ -1,5 +1,5 @@
-export const saveUser=(user)=>{
-    localStorage.setItem("user",JSON.stringify(user.id))
+export const saveUser=(userId)=>{
+    localStorage.setItem("user",JSON.stringify(userId))
 };
 
 export const getUser=()=>{

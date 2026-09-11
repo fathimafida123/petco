@@ -25,7 +25,7 @@ const submitHandler=async(e)=>{
         setErrors("invalid username or email")
         return;
        }
-       saveUser(user)
+       saveUser(user.id)
        dispatch(loginSuccess(user))
        const login=await loginUser(formData)
        navigate("/")
