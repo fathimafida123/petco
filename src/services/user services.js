@@ -6,9 +6,7 @@ export const registerUser=(user)=>{
 export const getUsers=()=>{
     return axios.get(`${API_URL}/users`)
 };
-export const loginUser=(user)=>{
-    return axios.post(`${API_URL}/role`,user)
-}
+
 export const getUserById = async (userId) => {
   const response = await axios.get(`${API_URL}/users/${userId}`);
   return response.data;

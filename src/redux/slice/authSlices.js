@@ -57,6 +57,7 @@
 // export default authSlice.reducer;
 
 import { createSlice } from "@reduxjs/toolkit";
+import { removeUser } from "../../utils/localStorege";
 
 const initialState = {
   user: null,
@@ -82,6 +83,7 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null;
       state.isLoading = false;
+      removeUser();
     },
   },
 });

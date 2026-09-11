@@ -3,7 +3,6 @@ import { getUsers } from '../services/user services'
 import { useDispatch } from 'react-redux'
 import { loginSuccess } from '../redux/slice/authSlices'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginUser } from '../services/user services'
 import { saveUser } from '../utils/localStorege'
 function Login() {
     const[formData,setFormData]=useState({name:"",password:""})
@@ -22,12 +21,14 @@ const submitHandler=async(e)=>{
        const user=data.find((user)=>user.password===formData.password && user.name===formData.name)
 
        if(!user){
-        setErrors("invalid username or email")
+        setErrors("invalid username or password")
         return;
        }
+       //save only ID in localStorage
        saveUser(user.id)
+       // save user in redux
        dispatch(loginSuccess(user))
-       const login=await loginUser(formData)
+      
        navigate("/")
     }catch(error){
         console.log("something went wrong")

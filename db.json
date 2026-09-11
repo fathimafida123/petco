@@ -207,6 +207,7 @@
       "email": "fathimafidamayippayil@gmail.com",
       "password": "123456",
       "cnfrmpass": "123456",
+      "role":"user",
       "id": "tWm6gSr-n1A"
     },
     {
@@ -214,6 +215,7 @@
       "email": "fathimafidamayippayil@gmail.com",
       "password": "123654",
       "cnfrmpass": "123654",
+      "role":"user",
       "id": "TuD_nBMXV6E"
     }
   ],
@@ -253,6 +255,11 @@
       "name": "fida",
       "password": "123456",
       "id": "2ZRuFyroWFw"
+    },
+    {
+      "name": "fida",
+      "password": "123456",
+      "id": "btka-Ldpywg"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

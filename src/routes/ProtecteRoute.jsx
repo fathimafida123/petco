@@ -4,7 +4,11 @@ import { useSelector } from "react-redux";
 import React from 'react'
 
 function ProtecteRoute() {
-    const user=useSelector((state)=>state.auth.user)
+    const{ user,isLoading}=useSelector((state)=>state.auth)
+console.log("Protected Route user:", user);
+    if(isLoading){
+      return <h2>Loading...</h2>
+    }
     if(!user){
         return <Navigate to="/login" replace/>
     }
