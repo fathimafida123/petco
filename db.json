@@ -239,6 +239,18 @@
       "productId": "3",
       "quantity": 1,
       "id": "xDub9dHOKfE"
+    },
+    {
+      "userId": "TuD_nBMXV6E",
+      "productId": "4",
+      "quantity": 4,
+      "id": "FZ58sAVpMps"
+    },
+    {
+      "userId": "TuD_nBMXV6E",
+      "productId": "2",
+      "quantity": 1,
+      "id": "OcBnNuv8i7o"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -72,6 +72,9 @@ const dispatch=useDispatch()
   const navigate=useNavigate()
  const [showProfile,setShowProfile]=useState(false)
 const user=useSelector((state)=>state.auth.user)
+const cartItems=useSelector((state)=>state.cart.items);
+
+const cartCount=cartItems.reduce((total,item)=>total+item.quantity,0)
   const links = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/product" },
@@ -128,17 +131,13 @@ function handler(e){
   />
 </div>
 
-        {/* Icons */}
-        {/* <div className="hidden md:flex gap-5">
-          <Link to="/wishlist"><Heart /></Link>
-          <Link to="/cart"><ShoppingCart /></Link>
-          <Link to="/orders"><ClipboardList /></Link>
-          <Link to="/login"><User /></Link>
-        </div> */} 
+
         <div className="hidden md:flex gap-5">
           {icons.map((item)=>(
             <Link to={item.path} key={item.name} className="hover:text-[#2F5D50]">
-              {item.icon}
+              {item.icon} {item.name==="cart" && cartCount>0 &&(
+                <span className="absolute top-4 bg-red-500 text-white
+                text-xs font-bold rounded-full w-3.5 h-3.5  flex items-center justify-center right-58 ">{cartCount}</span>)}
             </Link>
           ))}
         </div>

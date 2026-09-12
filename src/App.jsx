@@ -4,7 +4,7 @@ import { restoreUser } from "./redux/slice/authSlices";
 import { getUserById } from "./services/user services";
 import { getUser } from "./utils/localStorege";
 import AppRoutes from "./routes/AppRoutes";
-
+import { loadUserCart } from "./utils/loadCart";
 function App() {
   const dispatch = useDispatch();
 
@@ -21,6 +21,9 @@ function App() {
         const user = await getUserById(userId);
 
         dispatch(restoreUser(user));
+         
+        await loadUserCart(user.id,dispatch)
+
       } catch (error) {
         console.log("Failed to restore user:", error);
         dispatch(restoreUser(null));

@@ -7,11 +7,10 @@ import {
   increaseQuantity,
   setCart,removeFromCart
 } from "../redux/slice/cartSlice";
-import { updateCart,getCart,deleteCart } from "../services/cartService";
-import { getProducts } from "../services/product services";
+import { updateCart,deleteCart } from "../services/cartService";
 import{Trash2 } from "lucide-react"
 import { calculateTotal } from "../utils/priceCalculator";
-
+import { loadUserCart } from "../utils/loadCart";
 function Cart() {
   const dispatch = useDispatch();
 
@@ -19,41 +18,10 @@ function Cart() {
   const user = useSelector((state) => state.auth.user);
 
 const totalAmount=calculateTotal(cartitems);
-  useEffect(() => {
-  const loadCart = async () => {
-
-        if (!user) return;
-      const products=await getProducts()
-      const cartData=await getCart(user.id)//get cart data from database
-
-    const completeCart =[];
-
-     cartData.forEach((cartItem) => {
-        const product = products.find(
-          (product) =>
-            String(product.id) === String(cartItem.productId)
-        );
-
-        if (!product) return ;
-
-        const existingItem=completeCart.find((item)=>String(item.id)===String(product.id));
-        if(existingItem){
-          existingItem.quantity+=Number(cartItem.quantity);
-        }else{
-          completeCart.push({
-            ...product,
-            cartId:cartItem.id,
-            quantity:Number(cartItem.quantity),
-          })
-        }
-
-      })
-     
-    dispatch(setCart(completeCart));
-  };
-
-  loadCart();
-}, [user, dispatch]);
+useEffect(()=>{
+  if(!user) return;
+  loadUserCart(user.id,dispatch);
+},[user,dispatch])
 
   return (
     <div className="min-h-screen bg-[#F8F5EC] py-10 px-5">
@@ -70,15 +38,15 @@ const totalAmount=calculateTotal(cartitems);
           {cartitems.map((item) => (
             <div
               key={item.id}
-              className="bg-white p-5 rounded-xl shadow flex gap-5"
+              className="bg-white p-4 sm:p-5  rounded-xl shadow flex flex-col sm:flex-row gap-4 sm:gap-5 sm:items-center"
             >
               <img
                 src={item.image}
                 alt={item.name}
-                className="w-24 h-24 object-cover rounded-lg"
+                className=" w-full sm:w-24  h-40 sm:h-24  object-cover rounded-lg"
               />
 
-              <div>
+              <div className="flex-1">
                 <h2 className="text-xl font-bold">
                   {item.name}
                 </h2>
@@ -117,7 +85,13 @@ const totalAmount=calculateTotal(cartitems);
                     +
                   </button>
                  
-      <button type="button" className="text-red-500 hover:text-red-700 p-2 ml-auto" onClick={async ()=>{
+
+                </div>
+
+          
+                
+              </div>
+                  <button type="button" className="text-red-500 hover:text-red-700 p-2 self-end sm:self-center" onClick={async ()=>{
                   try{
                     await deleteCart(item.cartId);
                     dispatch(removeFromCart(item.id))
@@ -127,11 +101,6 @@ const totalAmount=calculateTotal(cartitems);
                 }}>
                   <Trash2 size={22} className="ml-90"/>
                   </button>
-                </div>
-
-          
-                
-              </div>
             </div>
           ))}
 <div className="bg-white p-5 rounded-xl shadow flex justify-between items-center">
