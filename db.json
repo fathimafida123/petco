@@ -224,27 +224,34 @@
       "password": "1234567",
       "cnfrmpass": "1234567",
       "id": "ceWEa3YzJU0"
+    },
+    {
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "mvVEfWLL5L8"
     }
   ],
   "orders": [],
   "carts": [
     {
       "userId": "tWm6gSr-n1A",
-      "productId": "2",
-      "quantity": 3,
-      "id": "RS9g3qe1NfM"
-    },
-    {
-      "userId": "tWm6gSr-n1A",
       "productId": "3",
-      "quantity": 1,
+      "quantity": 11,
       "id": "xDub9dHOKfE"
     },
     {
       "userId": "TuD_nBMXV6E",
       "productId": "4",
-      "quantity": 1,
+      "quantity": 30,
       "id": "FZ58sAVpMps"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "productId": "1",
+      "quantity": 16,
+      "id": "3yxGOET3C-Q"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
