@@ -17,7 +17,7 @@
       "price": 449,
       "description": "Nutritious dry food for cats.",
       "image": "/images/products/cat-food.jpg",
-      "stock": 15,
+      "stock": 0,
       "rating": 4.6
     },
     {
@@ -243,14 +243,8 @@
     {
       "userId": "TuD_nBMXV6E",
       "productId": "4",
-      "quantity": 4,
-      "id": "FZ58sAVpMps"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "2",
       "quantity": 1,
-      "id": "OcBnNuv8i7o"
+      "id": "FZ58sAVpMps"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

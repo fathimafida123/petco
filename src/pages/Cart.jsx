@@ -8,9 +8,11 @@ import {
   setCart,removeFromCart
 } from "../redux/slice/cartSlice";
 import { updateCart,deleteCart } from "../services/cartService";
-import{Trash2 } from "lucide-react"
+import{Trash2,ShoppingCart } from "lucide-react"
 import { calculateTotal } from "../utils/priceCalculator";
 import { loadUserCart } from "../utils/loadCart";
+import { Link } from "react-router-dom";
+import EmptyState from "../components/EmptyState";
 function Cart() {
   const dispatch = useDispatch();
 
@@ -18,6 +20,11 @@ function Cart() {
   const user = useSelector((state) => state.auth.user);
 
 const totalAmount=calculateTotal(cartitems);
+
+const subTotal=totalAmount;
+const deliveryFee=subTotal>500 ? 0 :40 // total price >500 anenkil free delivery
+const discount=0;
+const grandTotal=subTotal+deliveryFee-discount;
 useEffect(()=>{
   if(!user) return;
   loadUserCart(user.id,dispatch);
@@ -31,7 +38,13 @@ useEffect(()=>{
       </h1>
 
       {cartitems.length === 0 ? (
-        <p>Your cart is empty</p>
+            <EmptyState
+          icon={<ShoppingCart size={64} />}
+          title="Your cart is empty"
+          message="Looks like you haven't added anything yet. Start shopping to fill it up!"
+          actionLabel="Shop Now"
+          actionLink="/product"
+        />
       ) : (
         <div className="space-y-4">
 
@@ -71,7 +84,7 @@ useEffect(()=>{
                   <p>
                     Quantity: {item.quantity}
                   </p>
-
+            
                   <button
                     type="button"
                     className="border px-3 py-1"
@@ -84,11 +97,13 @@ useEffect(()=>{
                   >
                     +
                   </button>
-                 
-
                 </div>
 
-          
+                 {item.stock===0?(
+                    <p className="text-red-500 text-sm font-semibold mt-1">Out of stock</p>
+                   ):item.quantity>item.stock?(
+                    <p className="text-red-500 text-sm font-semibold mt-1">Only {item.stock} left in stock</p>
+                   ):null}
                 
               </div>
                   <button type="button" className="text-red-500 hover:text-red-700 p-2 self-end sm:self-center" onClick={async ()=>{
@@ -103,9 +118,39 @@ useEffect(()=>{
                   </button>
             </div>
           ))}
-<div className="bg-white p-5 rounded-xl shadow flex justify-between items-center">
-  <span className="text-xl font-bold">Total</span>
-  <span className="text-xl font-bold text-[#2F5D50]">${totalAmount}</span>
+
+<div className="bg-white p-5 rounded-xl shadow space-y-2">
+  <div className="flex justify-between text-gray-600">
+    <span>Subtotal</span>
+    <span>₹{subTotal}</span>
+  </div>
+
+  <div className="flex justify-between text-gray-600">
+    <span>Delivery Fee</span>
+    <span>{deliveryFee === 0 ? "FREE" : `₹${deliveryFee}`}</span>
+  </div>
+
+  {discount > 0 && (
+    <div className="flex justify-between text-green-600">
+      <span>Discount</span>
+      <span>-₹{discount}</span>
+    </div>
+  )}
+
+  <hr className="my-2" />
+
+  <div className="flex justify-between text-xl font-bold text-[#2F5D50]">
+    <span>Total</span>
+    <span>₹{grandTotal}</span>
+  </div>
+</div>
+
+<div className="flex flex-col sm:flex-row gap-3 mt-2">
+  <Link to="/product" className="flex-1 text-center border-[#2D5D50] text-[#2F5D50] py-3
+  rounded-xl font-semibold hover:bg-[#2F5D50]/10 transition">Continue Shopping</Link>
+
+  <Link to="/checkout" className="flex-1 text-center bg-[#2F5D50] text-white py-3 rounded-xl font-semibold hover:bg-[#244a40] transition">
+  Proceed to Checkout</Link>
 </div>
         </div>
 
