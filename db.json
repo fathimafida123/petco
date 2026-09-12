@@ -231,14 +231,14 @@
     {
       "userId": "tWm6gSr-n1A",
       "productId": "2",
-      "quantity": 8,
-      "id": "RpCZtjz7Tlg"
+      "quantity": 3,
+      "id": "RS9g3qe1NfM"
     },
     {
       "userId": "tWm6gSr-n1A",
-      "productId": "4",
-      "quantity": 23,
-      "id": "hQrVzhYnVPc"
+      "productId": "3",
+      "quantity": 1,
+      "id": "xDub9dHOKfE"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
