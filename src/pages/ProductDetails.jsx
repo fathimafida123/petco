@@ -110,16 +110,15 @@ import ProductCard from "../components/ProductCard";
 import {useDispatch,useSelector} from "react-redux";
 import { addToCart } from "../redux/slice/cartSlice";
 import { addCart } from "../services/cartService";
-
+import toast from "react-hot-toast"
 
 function ProductDetails() {
   const [count,setCount]=useState(1)
   const { id } = useParams();
 const dispatch=useDispatch()
-const cartitems=useSelector((state)=>state.cart.items)
-console.log(cartitems)
 const user=useSelector((state)=>state.auth.user)
 console.log("logged",user)
+const [isAdding,setIsAdding]=useState(false)
 
 const navigate = useNavigate();
 
@@ -158,27 +157,34 @@ const navigate = useNavigate();
 
       
   );
-
 const handletocart = async () => {
 
   if (!user) {
     navigate("/login");
     return;
   }
+ if(isAdding) return
 
+ setIsAdding(true);
+ try{
   const cartData = {
     userId: user.id,
     productId: String(product.id),
-    quantity: count,
+    quantity:Number(count)
   };
 
-  await addCart(cartData);
-
+// Save to database and get the saved cart item
+  const saveCart = await addCart(cartData);
   dispatch(addToCart({
     ...product,
-    quantity: count
+    cartId:saveCart.id,
+    quantity:Number(saveCart.quantity)
   }));
+}finally{
+  setIsAdding(false)
+}
 };
+
   return (
     <div className="min-h-screen bg-olive-500/50 py-12 px-4 sm:px-6">
 
@@ -239,7 +245,7 @@ const handletocart = async () => {
             <div className="mt-5 flex items-center gap-4">
 
               <button className="w-9 h-9 border rounded-lg text-xl " 
-              onClick={()=>setCount(count-1)} disabled={count===1}>
+              onClick={()=>setCount((prev)=>prev-1)} disabled={count===1}>
                 -
               </button>
 
@@ -248,7 +254,7 @@ const handletocart = async () => {
               </span>
 
               <button className="w-9 h-9 border rounded-lg text-xl"
-               onClick={()=>setCount(count+1)} disabled={count===product.stock}>
+               onClick={()=>setCount((prev)=>prev+1)} disabled={count===product.stock}>
                 +
               </button>
 
@@ -257,7 +263,7 @@ const handletocart = async () => {
             {/* ADD TO CART */}
             <button
             type="button"
-              disabled={product.stock === 0}
+              disabled={product.stock === 0||isAdding}
               className="
                 mt-6
                 bg-[#2F5D50]
@@ -270,9 +276,11 @@ const handletocart = async () => {
                 transition
                 disabled:bg-gray-400
               "
+              
               onClick={handletocart} 
             >
-              Add to Cart
+  {isAdding ? "Adding..." : "Add to Cart"}
+
             </button>
 
           </div>

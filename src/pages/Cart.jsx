@@ -73,27 +73,28 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   decreaseQuantity,
   increaseQuantity,
-  setCart,
+  setCart,removeFromCart
 } from "../redux/slice/cartSlice";
-
-import { getCart } from "../services/cartService";
+import { updateCart,getCart,deleteCart } from "../services/cartService";
 import { getProducts } from "../services/product services";
-
+import{Trash2 } from "lucide-react"
 function Cart() {
   const dispatch = useDispatch();
 
   const cartitems = useSelector((state) => state.cart.items);
   const user = useSelector((state) => state.auth.user);
 
+
   useEffect(() => {
   const loadCart = async () => {
-    if (!user) return;
 
-    const cartData = await getCart(user.id);
-    const products = await getProducts();
+        if (!user) return;
+      const products=await getProducts()
+      const cartData=await getCart(user.id)//get cart data from database
 
-    const completeCart = cartData
-      .forEach((cartItem) => {
+    const completeCart =[];
+
+     cartData.forEach((cartItem) => {
         const product = products.find(
           (product) =>
             String(product.id) === String(cartItem.productId)
@@ -108,9 +109,10 @@ function Cart() {
           completeCart.push({
             ...product,
             cartId:cartItem.id,
-            quantity:Numaber(cartItem.quantity),
+            quantity:Number(cartItem.quantity),
           })
         }
+
       })
      
     dispatch(setCart(completeCart));
@@ -154,9 +156,13 @@ function Cart() {
                   <button
                     type="button"
                     className="border px-3 py-1"
-                    onClick={() =>
+                    disabled={item.quantity===1}
+                    onClick={async() =>{
+                      if(item.quantity<=1) return ;
+                      const newQuantity=item.quantity-1;
+                      await updateCart(item.cartId,newQuantity);
                       dispatch(decreaseQuantity(item.id))
-                    }
+                    }}
                   >
                     -
                   </button>
@@ -168,14 +174,28 @@ function Cart() {
                   <button
                     type="button"
                     className="border px-3 py-1"
-                    onClick={() =>
+                    onClick={async() =>{
+                      if(item.quantity>=item.stock)return
+                      const newQuantity=item.quantity+1
+                      await updateCart(item.cartId,newQuantity)
                       dispatch(increaseQuantity(item.id))
-                    }
+                    }}
                   >
                     +
                   </button>
 
                 </div>
+
+                <button typr="button" className="text-red-500 hover:text-red-700 p-2 ml-auto" onClick={async ()=>{
+                  try{
+                    await deleteCart(item.cartId);
+                    dispatch(removeFromCart(item.id))
+                  }catch(error){
+                    console.log("failed to remove item:",error)
+                  }
+                }}>
+                  <Trash2 size={22}/>
+                </button>
               </div>
             </div>
           ))}

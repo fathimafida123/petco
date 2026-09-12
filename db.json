@@ -231,140 +231,14 @@
     {
       "userId": "tWm6gSr-n1A",
       "productId": "2",
-      "quantity": 1,
-      "id": "9Zi6HzhPI5Y"
+      "quantity": 8,
+      "id": "RpCZtjz7Tlg"
     },
     {
       "userId": "tWm6gSr-n1A",
-      "productId": "3",
-      "quantity": 1,
-      "id": "Qqie9F41JIM"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "2",
-      "quantity": 1,
-      "id": "_vokfkeeRv8"
-    },
-    {
-      "userId": "tWm6gSr-n1A",
-      "productId": "3",
-      "quantity": 1,
-      "id": "4jVzl_Jg0vE"
-    },
-    {
-      "userId": "tWm6gSr-n1A",
-      "productId": "3",
-      "quantity": 25,
-      "id": "RflxdyMtewc"
-    },
-    {
-      "userId": "ceWEa3YzJU0",
-      "productId": "2",
-      "quantity": 1,
-      "id": "k2H44EyguLQ"
-    },
-    {
-      "userId": "ceWEa3YzJU0",
-      "productId": "2",
-      "quantity": 1,
-      "id": "VxKkyS9IUjI"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "2",
-      "quantity": 1,
-      "id": "-rbSPAzEw8g"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "5HPGoLeva-0"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "1s14WK_2BJo"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "8ASHVyqlkrY"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "zcRf0lcsvHc"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "mnp-gwGqHYI"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "v1kOqB7NPQY"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "Wr8t5FcOE8A"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "aXoo8Bioo8U"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "aJQjrbIichY"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "24Tmr7mS_ec"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "6NMHrVUJmpA"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "bGOdK5q4pTw"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "DkZg-2DzgEc"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "5bLZnNpUkOc"
-    },
-    {
-      "userId": "TuD_nBMXV6E",
-      "productId": "3",
-      "quantity": 1,
-      "id": "bWQJpEtwdiI"
+      "productId": "4",
+      "quantity": 23,
+      "id": "hQrVzhYnVPc"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
