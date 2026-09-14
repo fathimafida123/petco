@@ -1,7 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useQuery } from "@tanstack/react-query";
+import { getProducts } from "../services/product services";
+import ProductCard from "../components/ProductCard";
+import { ChevronLeft,ChevronRight } from "lucide-react";
+import { useRef } from "react";
 function Home() {
+
+  const{data:products=[],isLoading}=useQuery({
+    queryKey:["products"],
+    queryFn:getProducts,
+  });
+
+  const featuredProducts=[...products].sort((a,b)=>b.rating-a.rating)
+  .slice(0,8)
+
+  const scrollRef=useRef(null)
+  const scroll=(direction)=>{
+    if(!scrollRef.current)return;
+    const amount=direction==="left"? -320 :320;
+    scrollRef.current.scrollBy({left:amount,behavior:"smooth"})
+   }
   return (
     <div>
 
@@ -120,16 +139,62 @@ function Home() {
 </div>
 </section>
 
-
+  
          <section className="bg-gray-500/50 py-16 px-4 sm:px-6">
           <div className="text-center">
             <h2 className="text-5xl sm:text-4xl md:text-6xl font-extrabold tracking-wide font-serif">Featured Products</h2>
             <p className="text-2xl text-sm uppercase tracking-[4px] font-semibold">Our top picks for your pets</p>
 
-       <h2></h2>
-          </div>
-          </section>   
+   {isLoading ? (
+          <p className="text-center">Loading...</p>
+        ) : (
+          <div className="relative m-6 ">
+            {/* left arrow */}
+            <button
+              type="button"
+              onClick={() => scroll("left")}
+              className="hidden sm:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition"
+            >
+              <ChevronLeft size={22} />
+            </button>
 
+            {/* scrollable row */}
+            <div
+              ref={scrollRef}
+              className="flex gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 px-1
+                [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
+              {featuredProducts.map((product) => (
+                <div key={product.id} className="snap-start shrink-0 w-64 sm:w-72">
+                  <ProductCard product={product} />
+                </div>
+              ))}
+            </div>
+
+            {/* right arrow */}
+            <button
+              type="button"
+              onClick={() => scroll("right")}
+              className="hidden sm:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full p-2 hover:bg-gray-100 transition"
+            >
+              <ChevronRight size={22} />
+            </button>
+          </div>
+        )}
+
+        <div className="text-center mt-10">
+          <Link
+            to="/product"
+            className="inline-block bg-[#2F5D50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#244a40] transition"
+          >
+            View All Products
+          </Link>
+        </div>
+        </div>
+      </section>
+        
+
+          
          <section className="bg-gray-400/50 py-20 px-9 sm:px-6 ">
              <div className="text-center">
             <p className="text-5xl sm:text-4xl md:text-6xl font-extrabold tracking-wide font-serif">HAPPY PET PARENTS</p>
