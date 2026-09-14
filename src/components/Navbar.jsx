@@ -54,6 +54,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSelector,useDispatch } from "react-redux";
 import { logout } from "../redux/slice/authSlices";
+
 import {
   Heart,
   ShoppingCart,
@@ -62,7 +63,7 @@ import {
   PawPrint,
   Menu,
   X,
-  Search
+  Search,CreditCard
 } from "lucide-react";
 
 function Navbar() {
@@ -84,7 +85,8 @@ const cartCount=cartItems.reduce((total,item)=>total+item.quantity,0)
   const icons=[
     {name:"wishlist",path:"/wishlist",icon:<Heart size={20}/>},
     {name:"cart" ,path:"/cart",icon:<ShoppingCart size={20}/>},
-    {name:"orders",path:"/orders",icon:<ClipboardList size={20}/>},
+    {name:"checkout",path:"/checkout",icon:<CreditCard size={20}/>},
+    {name:"orders",path:"/orders",icon:<ClipboardList size={20}/>}
   ]
 function handler(e){
   setSearch(e.target.value)

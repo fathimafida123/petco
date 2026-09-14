@@ -1,10 +1,41 @@
 import React from 'react'
 import {Heart} from "lucide-react"
-import { useState } from 'react'
 import {motion} from "motion/react"
-import { Link } from 'react-router-dom'
+import { Link,useNavigate } from 'react-router-dom'
+import {useSelector ,useDispatch} from "react-redux"
+import { deletewishlist,addWishlist } from '../services/wishlistservice'
+import { addToWishlist, removeFromWishlist } from '../redux/slice/wishlistSlice'
 function ProductCard({product}) {
-  const [like,setLike]=useState(false)
+const navigate=useNavigate()
+const dispatch=useDispatch()
+const user=useSelector((state)=>state.auth.user);
+const wishlistItems=useSelector((state)=>state.wishlist.items)
+
+const wishlistItem=wishlistItems.find((item)=>String(item.id)===String(product.id))
+const isWishlisted=Boolean(wishlistItem)
+
+const handleWishlistToggle=async(e)=>{
+  e.stopPropagation();
+  e.preventDefault()
+
+  if(!user){
+    navigate("/login")
+      return
+  }
+  try{
+    if(isWishlisted){
+      await deletewishlist(wishlistItem.wishlistId);
+      dispatch(removeFromWishlist(product.id))
+    }else{
+      const saved=await addWishlist({userId:user.id,
+        productId:String(product.id)
+      });
+      dispatch(addToWishlist({...product,wishlistId:saved.id}))
+    }
+  }catch(error){
+    console.log("failed to update wishlist:",error)
+  }
+}
   return (
     <Link  to={`/product/${product.id}`}>
     <motion.div initial={{opacity:0,y:30}}
@@ -16,8 +47,8 @@ function ProductCard({product}) {
 
       <div className='relative'>
       <img src={product.image} alt={product.name} className='w-full h-60 object-cover rounded-lg'/>
-               <button className='absolute top-3 right-3 bg-white p-2 rounded-full shadow' onClick={(e)=>{e.stopPropagation();e.preventDefault();setLike(!like)}}>
-                <Heart size={20} className={like? "fill-red-500 text-red-500":"text-gray-400"}/></button>
+               <button className='absolute top-3 right-3 bg-white p-2 rounded-full shadow' onClick={handleWishlistToggle}>
+                <Heart size={20} className={isWishlisted? "fill-red-500 text-red-500":"text-gray-400"}/></button>
                {/* stopPropagation is used to dont open productDetails when clicking image  */}
 
       </div>

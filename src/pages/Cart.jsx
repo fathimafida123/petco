@@ -48,7 +48,7 @@ const handleDelete = (item) => {
             onClick={() => {
               undone = true;
               dispatch(addToCart(item));
-              toast.dismiss(t.id);
+              toast.dismiss(t.id); // when user click the msg will disappear
             }}
           >
             Undo

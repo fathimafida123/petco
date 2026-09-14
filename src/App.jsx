@@ -5,6 +5,7 @@ import { getUserById } from "./services/user services";
 import { getUser } from "./utils/localStorege";
 import AppRoutes from "./routes/AppRoutes";
 import { loadUserCart } from "./utils/loadCart";
+import { loadUserWishlist } from "./utils/loadwishlist";
 function App() {
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ function App() {
         dispatch(restoreUser(user));
          
         await loadUserCart(user.id,dispatch)
-
+await loadUserWishlist(user.id, dispatch);
       } catch (error) {
         console.log("Failed to restore user:", error);
         dispatch(restoreUser(null));

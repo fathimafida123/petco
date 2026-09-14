@@ -233,25 +233,130 @@
       "id": "mvVEfWLL5L8"
     }
   ],
-  "orders": [],
-  "carts": [
+  "orders": [
+    {
+      "userId": "tWm6gSr-n1A",
+      "items": [
+        {
+          "productId": "3",
+          "name": "Squeaky Dog food",
+          "image": "/images/products/dog-food2.jpg",
+          "price": 299,
+          "quantity": 2
+        },
+        {
+          "productId": "6",
+          "name": "Adjustable Dog Collar",
+          "image": "/images/products/dog-collar.jpg",
+          "price": 349,
+          "quantity": 3
+        },
+        {
+          "productId": "5",
+          "name": "Pet Food Bowl",
+          "image": "/images/products/cat-bawl.jpg",
+          "price": 249,
+          "quantity": 4
+        }
+      ],
+      "name": "fida",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "673640",
+      "subTotal": 2641,
+      "deliveryFee": 0,
+      "discount": 40,
+      "grandTotal": 2601,
+      "status": "Placed",
+      "createdAt": "2026-09-14T05:45:01.994Z",
+      "id": "dndCyZm2qSE"
+    },
+    {
+      "userId": "tWm6gSr-n1A",
+      "items": [
+        {
+          "productId": "3",
+          "name": "Squeaky Dog food",
+          "image": "/images/products/dog-food2.jpg",
+          "price": 299,
+          "quantity": 1
+        },
+        {
+          "productId": "4",
+          "name": "Cats bed",
+          "image": "/images/products/cat-bed1.jpg",
+          "price": 199,
+          "quantity": 1
+        }
+      ],
+      "name": "fida",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "45456",
+      "subTotal": 498,
+      "deliveryFee": 40,
+      "discount": 40,
+      "grandTotal": 498,
+      "status": "Placed",
+      "createdAt": "2026-09-14T06:03:46.137Z",
+      "id": "ZJnUtZiMBYU"
+    },
+    {
+      "userId": "tWm6gSr-n1A",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Premium Dog Food",
+          "image": "/images/products/dog-food.jpg",
+          "price": 599,
+          "quantity": 1
+        },
+        {
+          "productId": "3",
+          "name": "Squeaky Dog food",
+          "image": "/images/products/dog-food2.jpg",
+          "price": 299,
+          "quantity": 1
+        }
+      ],
+      "name": "fida",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "2edwfrt54gtg",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "subTotal": 898,
+      "deliveryFee": 0,
+      "discount": 40,
+      "grandTotal": 858,
+      "status": "Placed",
+      "createdAt": "2026-09-14T10:28:02.035Z",
+      "id": "9dNXLInRBnA"
+    }
+  ],
+  "carts": [],
+  "wishlist": [
+    {
+      "userId": "tWm6gSr-n1A",
+      "productId": "2",
+      "id": "wXt7JNlPA68"
+    },
     {
       "userId": "tWm6gSr-n1A",
       "productId": "3",
-      "quantity": 11,
-      "id": "xDub9dHOKfE"
+      "id": "HIPrCv-ftEw"
     },
     {
-      "userId": "TuD_nBMXV6E",
+      "userId": "tWm6gSr-n1A",
       "productId": "4",
-      "quantity": 30,
-      "id": "FZ58sAVpMps"
-    },
-    {
-      "userId": "mvVEfWLL5L8",
-      "productId": "1",
-      "quantity": 16,
-      "id": "3yxGOET3C-Q"
+      "id": "Bk30ueEF_q8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
