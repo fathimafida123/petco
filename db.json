@@ -355,7 +355,14 @@
       "id": "9dNXLInRBnA"
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "userId": "mvVEfWLL5L8",
+      "productId": "1",
+      "quantity": 1,
+      "id": "nadqQUhjiic"
+    }
+  ],
   "wishlist": [
     {
       "userId": "tWm6gSr-n1A",
@@ -371,6 +378,16 @@
       "userId": "tWm6gSr-n1A",
       "productId": "4",
       "id": "Bk30ueEF_q8"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "productId": "2",
+      "id": "lE9CuceyVs4"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "productId": "3",
+      "id": "2Fbk01Ioa9k"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -5,6 +5,7 @@ import { Link,useNavigate } from 'react-router-dom'
 import {useSelector ,useDispatch} from "react-redux"
 import { deletewishlist,addWishlist } from '../services/wishlistservice'
 import { addToWishlist, removeFromWishlist } from '../redux/slice/wishlistSlice'
+import { Star } from 'lucide-react'
 function ProductCard({product}) {
 const navigate=useNavigate()
 const dispatch=useDispatch()
@@ -52,15 +53,19 @@ const handleWishlistToggle=async(e)=>{
                {/* stopPropagation is used to dont open productDetails when clicking image  */}
 
       </div>
-      <h2 className='text-xl font-bold mt-4'>{product.name}</h2> 
-           <div>
-        <p className='text-lg font-bold text-[#2F5D50]'>₹{product.price}</p>
-<div className="flex justify-center mt-6">
-  <button className="bg-green-800 text-white h-10 px-8 rounded-2xl font-bold text-lg">
-    Add to Cart
-  </button>
-</div>     
-      </div>
+    <h2 className="text-xl font-bold mt-4 truncate">{product.name}</h2>
+
+        <div className="mt-2 flex items-center justify-between">
+          <p className="text-lg font-bold text-gray-900">₹{product.price}</p>
+          <div className="flex items-center gap-1 text-sm text-gray-900">
+            <Star size={14} className="fill-yellow-400 text-yellow-400" />
+            {product.rating}
+          </div>
+        </div>
+
+        <p className="mt-1 text-sm text-gray-700 font-serif font-semibold line-clamp-2 text-left">
+          {product.description}
+        </p>
 
     </motion.div>
     </Link>
