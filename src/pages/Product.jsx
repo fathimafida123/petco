@@ -69,17 +69,33 @@ function Product() {
     return <h2>Failed to load products</h2>
   }
 
+  // const filteredProducts = products.filter((product) => {
+  //   const categoryMatch =
+  //     !category ||
+  //     product.category.toLowerCase() === category.toLowerCase()
+
+  //   const searchMatch =
+  //     !search ||
+  //     product.name.toLowerCase().includes(search.toLowerCase())
+
+  //   return categoryMatch && searchMatch
+  // })
   const filteredProducts = products.filter((product) => {
-    const categoryMatch =
-      !category ||
-      product.category.toLowerCase() === category.toLowerCase()
+  const categoryMatch =
+    !category ||
+    (Array.isArray(product.category)
+      ? product.category.some(
+          (cat) =>
+            cat.toLowerCase() === category.toLowerCase()
+        )
+      : product.category.toLowerCase() === category.toLowerCase());
 
-    const searchMatch =
-      !search ||
-      product.name.toLowerCase().includes(search.toLowerCase())
+  const searchMatch =
+    !search ||
+    product.name.toLowerCase().includes(search.toLowerCase());
 
-    return categoryMatch && searchMatch
-  })
+  return categoryMatch && searchMatch;
+});
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     if (sort === "low") {

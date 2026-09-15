@@ -3,7 +3,10 @@
     {
       "id": "1",
       "name": "Premium Dog Food",
-      "category": "dogs",
+      "category": [
+        "food",
+        "Dogs"
+      ],
       "price": 599,
       "description": "Healthy and tasty food for dogs.",
       "image": "/images/products/dog-food.jpg",
@@ -13,7 +16,10 @@
     {
       "id": "2",
       "name": "Cat Dry Food",
-      "category": "cats",
+      "category": [
+        "Cats",
+        "food"
+      ],
       "price": 449,
       "description": "Nutritious dry food for cats.",
       "image": "/images/products/cat-food.jpg",
@@ -23,7 +29,10 @@
     {
       "id": "3",
       "name": "Squeaky Dog food",
-      "category": "dogs",
+      "category": [
+        "Dogs",
+        "food"
+      ],
       "price": 299,
       "description": "good food for dog.",
       "image": "/images/products/dog-food2.jpg",
@@ -33,7 +42,7 @@
     {
       "id": "4",
       "name": "Cats bed",
-      "category": "cats",
+      "category": "Cats",
       "price": 199,
       "description": "cats bed.",
       "image": "/images/products/cat-bed1.jpg",
@@ -63,7 +72,7 @@
     {
       "id": "7",
       "name": "accesseries for dog",
-      "category": "cats",
+      "category": "Dogs",
       "price": 799,
       "description": "accessories for dogs",
       "image": "/images/products/dog-access4.jpg",
@@ -73,7 +82,10 @@
     {
       "id": "8",
       "name": "accesseries for cat",
-      "category": "dogs",
+      "category": [
+        "cats",
+        "accesseries"
+      ],
       "price": 179,
       "description": "",
       "image": "/images/products/cat-access4.jpg",
@@ -83,7 +95,10 @@
     {
       "id": "9",
       "name": "cat Grooming products",
-      "category": "grooming",
+      "category": [
+        "grooming",
+        "cats"
+      ],
       "price": 299,
       "description": "cat grooming",
       "image": "/images/products/cat-grooming1.jpg",
@@ -103,7 +118,10 @@
     {
       "id": "11",
       "name": "Premium Cat Food",
-      "category": "Cat",
+      "category": [
+        "Cats",
+        "food"
+      ],
       "price": 599,
       "description": "Healthy and tasty food for cats.",
       "image": "/images/products/cat-food3.jpg",
@@ -112,51 +130,57 @@
     },
     {
       "id": "12",
-      "name": "Interactive Cat Toy",
-      "category": "Cat",
+      "name": "dog accesseries",
+      "category": [
+        "Dogs",
+        "accesseries"
+      ],
       "price": 299,
-      "description": "Fun toy to keep your cat active.",
-      "image": "/images/cat-toy.jpg",
+      "description": "dog accesseries.",
+      "image": "/images/products/dog-access6.jpg",
       "stock": 15,
       "rating": 4.3
     },
     {
       "id": "13",
       "name": "Soft Cat Bed",
-      "category": "Cat",
+      "category": "Cats",
       "price": 899,
       "description": "Soft and comfortable bed for your cat.",
-      "image": "/images/cat-bed.jpg",
+      "image": "/images/products/cat-bed4.jpg",
       "stock": 10,
       "rating": 4.7
     },
     {
       "id": "14",
-      "name": "Healthy Dog Food",
-      "category": "Dog",
+      "name": "dog grooming kit",
+      "category": [
+        "Dogs",
+        "grooming"
+      ],
       "price": 799,
-      "description": "Nutritious food for healthy and active dogs.",
-      "image": "/images/dog-food.jpg",
+      "description": "dog grooming kit.",
+      "image": "/images/products/dog-groom4.jpg",
       "stock": 25,
       "rating": 4.6
     },
     {
       "id": "15",
-      "name": "Dog Chew Toy",
-      "category": "Dog",
+      "name": "cat belt",
+      "category": "Cats",
       "price": 349,
-      "description": "Durable toy for your furry friend.",
-      "image": "/images/dog-toy.jpg",
+      "description": "cats belt.",
+      "image": "/images/products/cat-accesss5.jpg",
       "stock": 18,
       "rating": 4.4
     },
     {
       "id": "16",
-      "name": "Comfort Dog Bed",
-      "category": "Dog",
+      "name": "Comfort cat Bed",
+      "category": "Cats",
       "price": 999,
       "description": "A cozy bed for comfortable rest.",
-      "image": "/images/dog-bed.jpg",
+      "image": "/images/products/cat-bed2.jpg",
       "stock": 8,
       "rating": 4.8
     },
@@ -166,37 +190,37 @@
       "category": "Grooming",
       "price": 249,
       "description": "Gentle brush for keeping your pet's coat clean.",
-      "image": "/images/brush.jpg",
+      "image": "/images/products/cat-grooming3.jpg",
       "stock": 30,
       "rating": 4.2
     },
     {
       "id": "18",
-      "name": "Pet Shampoo",
+      "name": "dog Shampoo",
       "category": "Grooming",
       "price": 399,
       "description": "Gentle shampoo for a clean and fresh pet.",
-      "image": "/images/shampoo.jpg",
+      "image": "/images/products/dog-groom5.jpg",
       "stock": 20,
       "rating": 4.5
     },
     {
       "id": "19",
-      "name": "Pet Collar",
+      "name": "dog Collar",
       "category": "Accessories",
       "price": 199,
       "description": "Comfortable and stylish collar for pets.",
-      "image": "/images/collar.jpg",
+      "image": "/images/products/dog-collar.jpg",
       "stock": 35,
       "rating": 4.1
     },
     {
       "id": "20",
-      "name": "Pet Bowl",
+      "name": "dog collar",
       "category": "Accessories",
       "price": 299,
-      "description": "Durable food and water bowl for pets.",
-      "image": "/images/bowl.jpg",
+      "description": "comfortable collar ",
+      "image": "/images/products/dog-collar3.jpg",
       "stock": 25,
       "rating": 4.4
     }
@@ -353,16 +377,98 @@
       "status": "Placed",
       "createdAt": "2026-09-14T10:28:02.035Z",
       "id": "9dNXLInRBnA"
-    }
-  ],
-  "carts": [
+    },
     {
       "userId": "mvVEfWLL5L8",
-      "productId": "3",
-      "quantity": 2,
-      "id": "v2i84Ma9aQI"
+      "items": [
+        {
+          "productId": "3",
+          "name": "Squeaky Dog food",
+          "image": "/images/products/dog-food2.jpg",
+          "price": 299,
+          "quantity": 2
+        }
+      ],
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "111234",
+      "subTotal": 598,
+      "deliveryFee": 0,
+      "discount": 40,
+      "grandTotal": 558,
+      "status": "Placed",
+      "createdAt": "2026-09-15T11:39:30.593Z",
+      "id": "u1UZHNFthaE"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "items": [
+        {
+          "productId": "11",
+          "name": "Premium Cat Food",
+          "image": "/images/products/cat-food3.jpg",
+          "price": 599,
+          "quantity": 1
+        },
+        {
+          "productId": "14",
+          "name": "dog grooming kit",
+          "image": "/images/products/dog-groom4.jpg",
+          "price": 799,
+          "quantity": 1
+        }
+      ],
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 1398,
+      "deliveryFee": 0,
+      "discount": 40,
+      "grandTotal": 1358,
+      "status": "Placed",
+      "createdAt": "2026-09-15T12:37:07.185Z",
+      "id": "iZgiwIZFchY"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "items": [
+        {
+          "productId": "5",
+          "name": "Pet Food Bowl",
+          "image": "/images/products/cat-bawl.jpg",
+          "price": 249,
+          "quantity": 1
+        }
+      ],
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "upi",
+      "upiId": "fathimafidamayippayil@gmail.com",
+      "subTotal": 249,
+      "deliveryFee": 40,
+      "discount": 40,
+      "grandTotal": 249,
+      "status": "Placed",
+      "createdAt": "2026-09-15T12:39:56.520Z",
+      "id": "IqpfVRkS7DY"
     }
   ],
+  "carts": [],
   "wishlist": [
     {
       "userId": "tWm6gSr-n1A",
@@ -382,12 +488,12 @@
     {
       "userId": "mvVEfWLL5L8",
       "productId": "2",
-      "id": "BTkZrsE_3vM"
+      "id": "GFVbuYDtjRs"
     },
     {
       "userId": "mvVEfWLL5L8",
-      "productId": "3",
-      "id": "wAGyzhC1rCI"
+      "productId": "13",
+      "id": "C_u-T-QHewM"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -19,12 +19,9 @@ export const deleteCart=async (cartId)=>{
 }
 
 export const addCart = async (cartData) => {
-  // userId filter reliable aanu (numeric-looking allaathath kondu)
   const response = await axios.get(`${API_URL}/carts?userId=${cartData.userId}`);
   const userCart = response.data;
 
-  // productId match JS-il thanne cheyyuka - json-server-inte buggy
-  // numeric query-coercion-ine avoid cheyyaan
   const existingItem = userCart.find(
     (item) => String(item.productId) === String(cartData.productId)
   );

@@ -6,6 +6,7 @@ import {useSelector ,useDispatch} from "react-redux"
 import { deletewishlist,addWishlist } from '../services/wishlistservice'
 import { addToWishlist, removeFromWishlist } from '../redux/slice/wishlistSlice'
 import { Star } from 'lucide-react'
+import toast from "react-hot-toast"
 function ProductCard({product}) {
 const navigate=useNavigate()
 const dispatch=useDispatch()
@@ -27,11 +28,13 @@ const handleWishlistToggle=async(e)=>{
     if(isWishlisted){
       await deletewishlist(wishlistItem.wishlistId);
       dispatch(removeFromWishlist(product.id))
+      toast("Product removed from wishlist");
     }else{
       const saved=await addWishlist({userId:user.id,
         productId:String(product.id)
       });
       dispatch(addToWishlist({...product,wishlistId:saved.id}))
+       toast.success("Product added to wishlist ❤️");
     }
   }catch(error){
     console.log("failed to update wishlist:",error)

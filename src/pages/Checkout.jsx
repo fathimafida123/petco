@@ -9,11 +9,14 @@ import { deleteCart } from "../services/cartService";
 import { setCart } from "../redux/slice/cartSlice";
 import { addOrder } from "../services/order services";
 import toast from "react-hot-toast";
+import { Banknote,Smartphone,CreditCard } from "lucide-react";
+
 
 function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-
+  const[upiId,setUpiId]=useState("")
+const[paymentMethod,setPaymentMethod]=useState("cod")
   const cartItems = useSelector((state) => state.cart.items);
   const user = useSelector((state) => state.auth.user);
 
@@ -79,6 +82,9 @@ const[errors,setErrors]=useState({})
     } else if (!/^\d{6}$/.test(formData.pincode)) {
       newErrors.pincode = "Enter a valid 6-digit pincode";
     }
+    if (paymentMethod === "upi" && !upiId.trim()) {
+  newErrors.upiId = "Enter your UPI ID";
+}
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;   // true = errors illa
@@ -114,6 +120,8 @@ const[errors,setErrors]=useState({})
           quantity: item.quantity,
         })),
         ...formData,
+        paymentMethod,
+        upiId:paymentMethod==="upi" ?upiId:null,
         subTotal,
         deliveryFee,
         discount,
@@ -314,6 +322,61 @@ const[errors,setErrors]=useState({})
                 </div>
               </div>
             </div>
+             <div className="pt-2 border-t">
+  <p className="text-sm font-semibold text-gray-500 mb-4">
+    Payment method
+  </p>
+
+  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+    {[
+      { value: "cod", label: "Cash on Delivery", icon: <Banknote size={20} /> },
+      { value: "upi", label: "UPI", icon: <Smartphone size={20} /> },
+      { value: "card", label: "Card", icon: <CreditCard size={20} /> },
+    ].map((method) => (
+      <button
+        key={method.value}
+        type="button"
+        onClick={() => setPaymentMethod(method.value)}
+        className={`flex flex-col items-center gap-2 border rounded-xl py-4 transition ${
+          paymentMethod === method.value
+            ? "border-[#2F5D50] bg-[#2F5D50]/5 text-[#2F5D50]"
+            : "border-gray-200 text-gray-500 hover:border-gray-300"
+        }`}
+      >
+        {method.icon}
+        <span className="text-sm font-medium">{method.label}</span>
+      </button>
+    ))}
+  </div>
+
+  {paymentMethod === "upi" && (
+    <div className="mt-4">
+      <label className="block text-sm font-medium text-gray-600 mb-1.5">
+        UPI ID
+      </label>
+      <input
+        type="text"
+        value={upiId}
+        onChange={(e) => setUpiId(e.target.value)}
+        placeholder="yourname@upi"
+        className={`w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 transition ${
+          errors.upiId
+            ? "border-red-400 focus:ring-red-400"
+            : "border-gray-200 focus:ring-[#2F5D50] focus:border-transparent"
+        }`}
+      />
+      {errors.upiId && (
+        <p className="text-red-500 text-sm mt-1">{errors.upiId}</p>
+      )}
+    </div>
+  )}
+
+  {paymentMethod === "card" && (
+    <p className="mt-4 text-sm text-gray-500 bg-[#F8F5EC] rounded-xl px-4 py-3">
+      Card payment will be collected securely at the time of delivery.
+    </p>
+  )}
+</div>
 
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-[#F8F5EC] rounded-xl px-4 py-3">
               <Truck size={18} className="text-[#2F5D50] shrink-0" />
