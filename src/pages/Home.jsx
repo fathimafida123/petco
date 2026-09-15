@@ -82,9 +82,9 @@ function Home() {
 
 <section className="bg-[#4e6070] min-h-[600px] py-16  sm:px-6">
   <div className="flex flex-col items-center justify-center pl-7">
-    <h2 className="text-white font-bold text-5xl mt-7 ">Explore PETCO</h2><br/>
+    <h2 className="text-white font-bold text-5xl mt-6 ">Explore PETCO</h2><br/>
     <h2 className="text-gray-700 text-3xl font-serif">Shop by category</h2><br/>
-    <p className="text-gray-200 text-2xl font-bold"> Find everything your pet needs in one place.</p>
+    <p className="text-gray-200 text-2xl font-bold mb-7"> Find everything your pet needs in one place.</p>
   </div>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 ">

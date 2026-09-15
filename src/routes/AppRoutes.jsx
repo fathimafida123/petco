@@ -12,6 +12,8 @@ import Wishlist from '../pages/Wishlist'
 import {Route,Routes} from "react-router-dom"
 import UserLayoute from '../layouts/UserLayoute'
 import ProtecteRoute from './ProtecteRoute'
+import About from '../pages/About'
+import Contact from '../pages/Contact'
 function AppRoutes() {
   return (
     <div>
@@ -20,6 +22,8 @@ function AppRoutes() {
         <Route path='/' element={<Home/>}/>
          <Route path='/product/:id' element={<ProductDetails/>}/>
                  <Route path="/product" element={<Product/>}/>
+                 <Route path="/about" element={<About/>}/>
+                 <Route path='/contact' element={<Contact/>}/>
 <Route element={<ProtecteRoute/>}>
         <Route path='/checkout' element={<Checkout/>}/>
      <Route path="/orders" element={<Orders/>}/>
