@@ -14,6 +14,12 @@ import { calculateTotal } from "../utils/priceCalculator";
 import { loadUserCart } from "../utils/loadCart";
 import { Link, useNavigate } from "react-router-dom";
 import EmptyState from "../components/EmptyState";
+import { Heart } from "lucide-react";
+
+import { addWishlist } from "../services/wishlistservice";
+import { addToWishlist } from "../redux/slice/wishlistSlice";
+import Wishlist from "./Wishlist";
+
 function Cart() {
   const dispatch = useDispatch();
 const navigate=useNavigate()
@@ -78,6 +84,21 @@ const handleDelete = (item) => {
   }, 4000);
 };
 
+const handleMoveToWishlist=async(item)=>{
+  try{
+    await deleteCart(item.cartId);
+    dispatch(removeFromCart(item.id))
+
+    const saved=await addWishlist({
+      userId:user.id,
+      productId:String(item.id)
+    })
+    dispatch(addToWishlist({...item,wishlistId:saved.id}));
+    toast.success(`${item.name} moved to wishlist`)
+  }catch(error){
+    console.log("failed to move:",error)
+  }
+}
 
   return (
     <div className="min-h-screen bg-[#F8F5EC] py-10 px-5">
@@ -114,39 +135,36 @@ const handleDelete = (item) => {
                 </h2>
 
                 <p>₹{item.price}</p>
+<div className="flex items-center gap-4 mt-2">
+  <button
+    type="button"
+    className="w-8 h-8 flex items-center justify-center rounded-xl bg-[#2F5D50] text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed"
+    disabled={item.quantity === 1}
+    onClick={async () => {
+      if (item.quantity <= 1) return;
+      const newQuantity = item.quantity - 1;
+      await updateCart(item.cartId, newQuantity);
+      dispatch(decreaseQuantity(item.id));
+    }}
+  >
+    -
+  </button>
 
-                <div className="flex items-center gap=3 mt-2">
-                  <button
-                    type="button"
-                    className="border px-3 py-1"
-                    disabled={item.quantity===1}
-                    onClick={async() =>{
-                      if(item.quantity<=1) return ;
-                      const newQuantity=item.quantity-1;
-                      await updateCart(item.cartId,newQuantity);
-                      dispatch(decreaseQuantity(item.id))
-                    }}
-                  >
-                    -
-                  </button>
+  <p>Quantity: {item.quantity}</p>
 
-                  <p>
-                    Quantity: {item.quantity}
-                  </p>
-            
-                  <button
-                    type="button"
-                    className="border px-3 py-1"
-                    onClick={async() =>{
-                      if(item.quantity>=item.stock)return
-                      const newQuantity=item.quantity+1
-                      await updateCart(item.cartId,newQuantity)
-                      dispatch(increaseQuantity(item.id))
-                    }}
-                  >
-                    +
-                  </button>
-                </div>
+  <button
+    type="button"
+    className="w-8 h-8 flex items-center justify-center rounded-xl bg-[#2F5D50] text-white font-bold disabled:bg-gray-300 disabled:cursor-not-allowed"
+    onClick={async () => {
+      if (item.quantity >= item.stock) return;
+      const newQuantity = item.quantity + 1;
+      await updateCart(item.cartId, newQuantity);
+      dispatch(increaseQuantity(item.id));
+    }}
+  >
+    +
+  </button>
+</div>
 
                  {item.stock===0?(
                     <p className="text-red-500 text-sm font-semibold mt-1">Out of stock</p>
@@ -155,10 +173,13 @@ const handleDelete = (item) => {
                    ):null}
                 
               </div>
+              <div className="flex flex-col items-center gap-2 self-end sm:self-center">
+                <button tyep="button" className="text-gray-400 hover:text-[#2F5D50] p-2 self-end" onClick={()=>handleMoveToWishlist(item)} title="move to wishlist"><Heart size={22}/></button>
                   <button type="button" className="text-red-500 hover:text-red-700 p-2 self-end sm:self-center" 
                   onClick={()=>handleDelete(item)}>
                   <Trash2 size={22} className="ml-90"/>
                   </button>
+                  </div>
             </div>
           ))}
 

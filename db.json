@@ -358,9 +358,9 @@
   "carts": [
     {
       "userId": "mvVEfWLL5L8",
-      "productId": "1",
-      "quantity": 1,
-      "id": "nadqQUhjiic"
+      "productId": "3",
+      "quantity": 2,
+      "id": "v2i84Ma9aQI"
     }
   ],
   "wishlist": [
@@ -382,12 +382,12 @@
     {
       "userId": "mvVEfWLL5L8",
       "productId": "2",
-      "id": "lE9CuceyVs4"
+      "id": "BTkZrsE_3vM"
     },
     {
       "userId": "mvVEfWLL5L8",
       "productId": "3",
-      "id": "2Fbk01Ioa9k"
+      "id": "wAGyzhC1rCI"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
