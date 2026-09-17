@@ -11,25 +11,27 @@ function Login() {
     const navigate=useNavigate()
     function handler(e){
         setFormData({...formData,[e.target.name]:e.target.value})
-setErrors(
-    
-)    }
+setErrors("")    }
 const submitHandler=async(e)=>{
     e.preventDefault()
     setErrors("") 
     try{
-        const response=await getUsers()
-       const data=response.data
+        const data=await getUsers()
+      console.log("users from dn:",data)
+      console.log("entered:",formData)
        const user=data.find((user)=>user.password===formData.password && user.name===formData.name)
-
+console.log("found useer",user)
        if(!user){
         setErrors("invalid username or password")
         return;
        }
        saveUser(user.id)
        dispatch(loginSuccess(user))
-      
+      if(user.role==="admin"){
+        navigate("/admin");
+      }else{
        navigate("/")
+      }
     }catch(error){
         console.log("something went wrong")
     }
