@@ -6,6 +6,7 @@ import { getUser } from "./utils/localStorege";
 import AppRoutes from "./routes/AppRoutes";
 import { loadUserCart } from "./utils/loadCart";
 import { loadUserWishlist } from "./utils/loadwishlist";
+import AdminRoutes from "./adminroutes/AdminRoutes";
 function App() {
   const dispatch = useDispatch();
 
@@ -22,9 +23,9 @@ function App() {
         const user = await getUserById(userId);
 
         dispatch(restoreUser(user));
-         
-        await loadUserCart(user.id,dispatch)
-await loadUserWishlist(user.id, dispatch);
+
+        await loadUserCart(user.id, dispatch)
+        await loadUserWishlist(user.id, dispatch);
       } catch (error) {
         console.log("Failed to restore user:", error);
         dispatch(restoreUser(null));
@@ -34,7 +35,12 @@ await loadUserWishlist(user.id, dispatch);
     restoreLoggedUser();
   }, [dispatch]);
 
-  return <AppRoutes />;
+  return(
+  <><AppRoutes />
+    <AdminRoutes />
+  </>
+  );
 }
 
 export default App;
+

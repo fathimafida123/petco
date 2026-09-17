@@ -237,205 +237,19 @@
   "users": [
     {
       "name": "fida",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
+      "email": "fida@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "Hn3L8GD8EH0"
+    },
+    {
+      "name": "finu",
+      "email": "finu@gmail.com",
+      "password": "finu123",
       "role": "admin",
       "blocked": false,
-      "id": "tWm6gSr-n1A"
-    },
-    {
-      "name": "fida",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123654",
-      "cnfrmpass": "123654",
-      "role": "user",
-      "blocked": false,
-      "id": "TuD_nBMXV6E"
-    },
-    {
-      "name": "finu",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "1234567",
-      "cnfrmpass": "1234567",
-      "blocked": false,
-      "id": "ceWEa3YzJU0"
-    },
-    {
-      "name": "finu",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "mvVEfWLL5L8"
-    },
-    {
-      "name": "fida",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "DNoCD1FnHBU"
-    },
-    {
-      "name": "fida",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "lXolPOTT-Cc"
-    },
-    {
-      "name": "shamna",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "E8e-Ji8MQCY"
-    },
-    {
-      "name": "fidafida",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "FQMG9cpXn5M"
-    },
-    {
-      "name": "moluse",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "vCpnJX49Lkc"
-    },
-    {
-      "name": "moluse",
-      "email": "fida@gmail.com",
-      "password": "123456",
-      "cnfrmpass": "123456",
-      "blocked": false,
-      "id": "N0WRXGwg9Bw"
-    },
-    {
-      "name": "fideeyyy",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "u0NoOobxLnM"
-    },
-    {
-      "name": "fideeyy",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "4TnXaabzzRI"
-    },
-    {
-      "name": "cat",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "GiyFUx1Eol8"
-    },
-    {
-      "name": "caat",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "lOnRpgM2IjE"
-    },
-    {
-      "name": "qhdhn",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "TOy3UNYQv08"
-    },
-    {
-      "name": "dog",
-      "email": "fathimafidamayippayil@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "Gst2zon9DKI"
-    },
-    {
-      "name": "fidah",
-      "email": "gghh@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "7GQv6Ux9SbY"
-    },
-    {
-      "name": "sdcsd",
-      "email": "qdeqr@gmail.com",
-      "password": "123456",
-      "role": "user",
-      "blocked": false,
-      "id": "LqbZYRDCKhk"
-    },
-    {
-      "name": "fida",
-      "email": "fideeey@gmail.com",
-      "password": "123123",
-      "role": "user",
-      "blocked": false,
-      "id": "k86KaIDko6U"
-    },
-    {
-      "name": "fida",
-      "email": "fidaaaa@gmail.com",
-      "password": "123123",
-      "role": "user",
-      "blocked": false,
-      "id": "JwQ-fqQ2PGM"
-    },
-    {
-      "name": "sha",
-      "email": "shamna@gmail.com",
-      "password": "123123",
-      "role": "user",
-      "blocked": false,
-      "id": "VQNnnT-8PqQ"
-    },
-    {
-      "name": "shamna",
-      "email": "shamne@gmail.com",
-      "password": "12341234",
-      "role": "user",
-      "blocked": false,
-      "id": "R6z_KXw7Ipk"
-    },
-    {
-      "name": "fida",
-      "email": "finu@gmail.com",
-      "password": "12341234",
-      "role": "user",
-      "blocked": false,
-      "id": "q8BIYH0zI2I"
-    },
-    {
-      "name": "salu",
-      "email": "salu@gmail.com",
-      "password": "salu123",
-      "role": "user",
-      "blocked": false,
-      "id": "KMPLSdW6Ub8"
-    },
-    {
-      "name": "muthu",
-      "email": "muthu@gmail.com",
-      "password": "muthu123",
-      "role": "user",
-      "blocked": false,
-      "id": "bGyv2AeyiiA"
+      "id": "ssb_PISinf4"
     }
   ],
   "orders": [
@@ -797,6 +611,11 @@
       "userId": "vCpnJX49Lkc",
       "productId": "1",
       "id": "E6y3juL6oyo"
+    },
+    {
+      "userId": "Hn3L8GD8EH0",
+      "productId": "4",
+      "id": "8tswlFk-phU"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
