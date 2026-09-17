@@ -42,7 +42,10 @@
     {
       "id": "4",
       "name": "Cats bed",
-      "category": "Cats",
+      "category": [
+        "Cats",
+        "accesseries"
+      ],
       "price": 199,
       "description": "cats bed.",
       "image": "/images/products/cat-bed1.jpg",
@@ -62,7 +65,10 @@
     {
       "id": "6",
       "name": "Adjustable Dog Collar",
-      "category": "accessories",
+      "category": [
+        "accessories",
+        "dogs"
+      ],
       "price": 349,
       "description": "Comfortable adjustable collar for dogs.",
       "image": "/images/products/dog-collar.jpg",
@@ -72,7 +78,10 @@
     {
       "id": "7",
       "name": "accesseries for dog",
-      "category": "Dogs",
+      "category": [
+        "Dogs",
+        "assecceries"
+      ],
       "price": 799,
       "description": "accessories for dogs",
       "image": "/images/products/dog-access4.jpg",
@@ -269,6 +278,34 @@
       "password": "123456",
       "cnfrmpass": "123456",
       "id": "lXolPOTT-Cc"
+    },
+    {
+      "name": "shamna",
+      "email": "fathimafidamayippayil@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "E8e-Ji8MQCY"
+    },
+    {
+      "name": "fidafida",
+      "email": "fathimafidamayippayil@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "FQMG9cpXn5M"
+    },
+    {
+      "name": "moluse",
+      "email": "fathimafidamayippayil@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "vCpnJX49Lkc"
+    },
+    {
+      "name": "moluse",
+      "email": "fida@gmail.com",
+      "password": "123456",
+      "cnfrmpass": "123456",
+      "id": "N0WRXGwg9Bw"
     }
   ],
   "orders": [
@@ -466,9 +503,140 @@
       "status": "Placed",
       "createdAt": "2026-09-15T12:39:56.520Z",
       "id": "IqpfVRkS7DY"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "items": [
+        {
+          "productId": "5",
+          "name": "Pet Food Bowl",
+          "image": "/images/products/cat-bawl.jpg",
+          "price": 249,
+          "quantity": 1
+        }
+      ],
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 249,
+      "deliveryFee": 40,
+      "discount": 0,
+      "grandTotal": 289,
+      "status": "Placed",
+      "createdAt": "2026-09-16T03:08:37.454Z",
+      "id": "cJ7KoOtF_nc"
+    },
+    {
+      "userId": "E8e-Ji8MQCY",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Cats bed",
+          "image": "/images/products/cat-bed1.jpg",
+          "price": 199,
+          "quantity": 2
+        }
+      ],
+      "name": "shamna",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "mundumuzhi",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "upi",
+      "upiId": "12345678",
+      "subTotal": 398,
+      "deliveryFee": 40,
+      "discount": 0,
+      "grandTotal": 438,
+      "status": "Placed",
+      "createdAt": "2026-09-16T05:21:54.638Z",
+      "id": "jDIjAh22PQI"
+    },
+    {
+      "userId": "E8e-Ji8MQCY",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Premium Dog Food",
+          "image": "/images/products/dog-food.jpg",
+          "price": 599,
+          "quantity": 1
+        }
+      ],
+      "name": "shamna",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "yhfghngbnc ",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "card",
+      "upiId": null,
+      "subTotal": 599,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 599,
+      "status": "Placed",
+      "createdAt": "2026-09-16T06:04:05.032Z",
+      "id": "SQjC2tHO5YM"
+    },
+    {
+      "userId": "mvVEfWLL5L8",
+      "items": [
+        {
+          "productId": "1",
+          "name": "Premium Dog Food",
+          "image": "/images/products/dog-food.jpg",
+          "price": 599,
+          "quantity": 2
+        }
+      ],
+      "name": "finu",
+      "email": "fathimafidamayippayil@gmail.com",
+      "phone": "1233425436",
+      "address": "mundumuzhi",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123456",
+      "paymentMethod": "upi",
+      "upiId": "1213",
+      "subTotal": 1198,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 1198,
+      "status": "Placed",
+      "createdAt": "2026-09-16T08:17:41.216Z",
+      "id": "Db1XHfgVBPE"
     }
   ],
-  "carts": [],
+  "carts": [
+    {
+      "userId": "E8e-Ji8MQCY",
+      "productId": "1",
+      "quantity": 2,
+      "id": "uxBthm5J03Y"
+    },
+    {
+      "userId": "vCpnJX49Lkc",
+      "productId": "4",
+      "quantity": 1,
+      "id": "Zhr7qPEYMy8"
+    },
+    {
+      "userId": "vCpnJX49Lkc",
+      "productId": "6",
+      "quantity": 7,
+      "id": "RJBhlFpNeO4"
+    }
+  ],
   "wishlist": [
     {
       "userId": "tWm6gSr-n1A",
@@ -486,14 +654,19 @@
       "id": "Bk30ueEF_q8"
     },
     {
-      "userId": "mvVEfWLL5L8",
+      "userId": "vCpnJX49Lkc",
       "productId": "2",
-      "id": "GFVbuYDtjRs"
+      "id": "5mzp8H4pH48"
     },
     {
-      "userId": "mvVEfWLL5L8",
-      "productId": "13",
-      "id": "C_u-T-QHewM"
+      "userId": "vCpnJX49Lkc",
+      "productId": "3",
+      "id": "LlIio2t5SBw"
+    },
+    {
+      "userId": "vCpnJX49Lkc",
+      "productId": "1",
+      "id": "E6y3juL6oyo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

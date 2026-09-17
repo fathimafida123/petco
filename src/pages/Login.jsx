@@ -16,7 +16,7 @@ setErrors(
 )    }
 const submitHandler=async(e)=>{
     e.preventDefault()
-    setErrors("") //remove previous error
+    setErrors("") 
     try{
         const response=await getUsers()
        const data=response.data
@@ -26,9 +26,7 @@ const submitHandler=async(e)=>{
         setErrors("invalid username or password")
         return;
        }
-       //save only ID in localStorage
        saveUser(user.id)
-       // save user in redux
        dispatch(loginSuccess(user))
       
        navigate("/")

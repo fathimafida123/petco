@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link ,useLocation} from "react-router-dom";
 import { User, Mail, Phone, MapPin, Truck, ShieldCheck } from "lucide-react";
 import { calculateTotal } from "../utils/priceCalculator";
 import { deleteCart } from "../services/cartService";
@@ -10,19 +10,28 @@ import { setCart } from "../redux/slice/cartSlice";
 import { addOrder } from "../services/order services";
 import toast from "react-hot-toast";
 import { Banknote,Smartphone,CreditCard } from "lucide-react";
+import { loadUserCart } from "../utils/loadCart";
 
 
 function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location=useLocation()
   const[upiId,setUpiId]=useState("")
 const[paymentMethod,setPaymentMethod]=useState("cod")
+
+const buyNowItem=location.state?.buyNowItem;
+const isBuyNow=Boolean(buyNowItem)
+
   const cartItems = useSelector((state) => state.cart.items);
+const  items=isBuyNow ? [buyNowItem]:cartItems
+
   const user = useSelector((state) => state.auth.user);
+
 
   const subTotal = calculateTotal(cartItems);
   const deliveryFee = subTotal > 500 ? 0 : 40;
-  const discount = subTotal > 3000 ? 100 : 40;
+  const discount = subTotal > 3000 ? 100 : 0;
   const grandTotal = subTotal + deliveryFee - discount;
 
   const [formData, setFormData] = useState({
@@ -131,6 +140,9 @@ const[errors,setErrors]=useState({})
       };
 
       await addOrder(orderData);
+      if(isBuyNow){
+
+      }else
       await Promise.all(cartItems.map((item) => deleteCart(item.cartId)));
       dispatch(setCart([]));
 

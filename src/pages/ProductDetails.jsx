@@ -54,6 +54,8 @@ const navigate = useNavigate();
 
       
   );
+
+ 
 const handletocart = async () => {
 
   if (!user) {
@@ -82,15 +84,29 @@ const handletocart = async () => {
 }
 };
 
+const handleBuyNow=()=>{
+  if(!user){
+    navigate("/login");
+    return;
+  }
+  navigate("/checkout",{
+    state:{
+      buyNowItem:{
+        ...product,
+        quantity:Number(count),
+      },
+    },
+  });
+
+};
+
   return (
     <div className="min-h-screen bg-olive-500/50 py-12 px-4 sm:px-6">
 
-      {/* PRODUCT DETAILS */}
       <div className="max-w-5xl mx-auto rounded-2xl shadow-lg p-6 md:p-10">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#4e6070]/50 p-6 rounded-xl">
 
-          {/* PRODUCT IMAGE */}
           <div className="flex items-center justify-center">
             <img
               src={product.image}
@@ -141,7 +157,7 @@ const handletocart = async () => {
             {/* QUANTITY */}
             <div className="mt-5 flex items-center gap-4">
 
-              <button className="w-9 h-9 border rounded-lg text-xl " 
+              <button className="w-9 h-9 border rounded-lg text-xl bg-[#2F5D50] text-white" 
               onClick={()=>setCount((prev)=>prev-1)} disabled={count===1}>
                 -
               </button>
@@ -150,7 +166,7 @@ const handletocart = async () => {
                 {count}
               </span>
 
-              <button className="w-9 h-9 border rounded-lg text-xl"
+              <button className="w-9 h-9 border rounded-lg text-xl bg-[#2F5D50] text-white"
                onClick={()=>setCount((prev)=>prev+1)} disabled={count===product.stock}>
                 +
               </button>
@@ -179,6 +195,24 @@ const handletocart = async () => {
   {isAdding ? "Adding..." : "Add to Cart"}
 
             </button>
+            <button
+  type="button"
+  disabled={product.stock === 0}
+  className="
+    mt-3
+    border-2 border-[#2F5D50]
+    text-[#2F5D50]
+    py-3
+    px-6
+    rounded-xl
+    font-semibold
+    hover:bg-[#2F5D50] hover:text-white
+    transition
+  "
+  onClick={handleBuyNow}
+>
+  Buy Now
+</button>
 
           </div>
         </div>

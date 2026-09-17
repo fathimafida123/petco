@@ -27,8 +27,9 @@ function Navbar() {
 
   const user = useSelector((state) => state.auth.user);
   const cartItems = useSelector((state) => state.cart.items);
+  const wishItems=useSelector((state)=>state.wishlist?.items || [])
   const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
-
+   const wishcount= wishItems.length
   const links = [
     { name: "Home", path: "/" },
     { name: "Products", path: "/product" },
@@ -88,8 +89,13 @@ function Navbar() {
               {item.name === "cart" && cartCount > 0 && (
                 <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
                   {cartCount}
+                </span> )}
+                {item.name==="wishlist" && wishcount>0 && (
+                   <span className="absolute -top-2 -right-2 bg-red-500 text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                  {wishcount}
                 </span>
-              )}
+                )}
+             
             </Link>
           ))}
         </div>

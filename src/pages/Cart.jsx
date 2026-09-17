@@ -18,7 +18,6 @@ import { Heart } from "lucide-react";
 
 import { addWishlist } from "../services/wishlistservice";
 import { addToWishlist } from "../redux/slice/wishlistSlice";
-import Wishlist from "./Wishlist";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -29,7 +28,7 @@ const navigate=useNavigate()
 const totalAmount=calculateTotal(cartitems);
 
 const subTotal=totalAmount;
-const deliveryFee=subTotal>500 ? 0 :40 // total price >500 anenkil free delivery
+const deliveryFee=subTotal>500 ? 0 :40 
 const discount=0;
 const grandTotal=subTotal+deliveryFee-discount;
 
@@ -39,49 +38,11 @@ useEffect(()=>{
   loadUserCart(user.id,dispatch);
 },[user,dispatch])
 
-const handleDelete = (item) => {
+const handleDelete = async(item) => {
   dispatch(removeFromCart(item.id));
-
-  let undone = false;
-
-  toast(
-    (t) => (
-      <div className="w-64">
-        <div className="flex items-center justify-between gap-3">
-          <span>{item.name} removed</span>
-          <button
-            className="font-semibold text-[#2F5D50] underline"
-            onClick={() => {
-              undone = true;
-              dispatch(addToCart(item));
-              toast.dismiss(t.id); // when user click the msg will disappear
-            }}
-          >
-            Undo
-          </button>
-        </div>
-
-        {/* countdown line */}
-        <div className="h-1 bg-gray-200 rounded mt-2 overflow-hidden">
-          <div
-            className="h-full bg-[#2F5D50]"
-            style={{ animation: "shrinkWidth 4s linear forwards" }}
-          />
-        </div>
-      </div>
-    ),
-    { duration: 4000 }
-  );
-
-  setTimeout(async () => {
-    if (!undone) {
-      try {
-        await deleteCart(item.cartId);
-      } catch (error) {
-        console.log("failed to remove item:", error);
-      }
-    }
-  }, 4000);
+   await deleteCart(item.cartId);
+toast.success(`${item.name} removed from cart`);
+ 
 };
 
 const handleMoveToWishlist=async(item)=>{
