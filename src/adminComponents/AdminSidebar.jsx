@@ -20,7 +20,7 @@ function AdminSidebar() {
         <Link to="/admin/users" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10">
         <Users size={20}/>Users</Link>
         <Link to="/admin/orders" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10">
-        <ShoppingBag siz={20}/>Orders</Link>
+        <ShoppingBag size={20}/>Orders</Link>
     </nav>
    </aside>
   )

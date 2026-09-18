@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EditProduct() {
+function ProductForm() {
   return (
     <div>
       
@@ -8,4 +8,4 @@ function EditProduct() {
   )
 }
 
-export default EditProduct
+export default ProductForm

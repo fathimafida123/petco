@@ -1,32 +1,6 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Premium Dog Food",
-      "category": [
-        "food",
-        "Dogs"
-      ],
-      "price": 599,
-      "description": "Healthy and tasty food for dogs.",
-      "image": "/images/products/dog-food.jpg",
-      "stock": 20,
-      "rating": 4.5
-    },
-    {
-      "id": "2",
-      "name": "Cat Dry Food",
-      "category": [
-        "Cats",
-        "food"
-      ],
-      "price": 449,
-      "description": "Nutritious dry food for cats.",
-      "image": "/images/products/cat-food.jpg",
-      "stock": 0,
-      "rating": 4.6
-    },
-    {
       "id": "3",
       "name": "Squeaky Dog food",
       "category": [
@@ -564,7 +538,7 @@
   "carts": [
     {
       "userId": "E8e-Ji8MQCY",
-      "productId": "1",
+      "productId": null,
       "quantity": 2,
       "id": "uxBthm5J03Y"
     },
@@ -584,7 +558,7 @@
   "wishlist": [
     {
       "userId": "tWm6gSr-n1A",
-      "productId": "2",
+      "productId": null,
       "id": "wXt7JNlPA68"
     },
     {
@@ -599,7 +573,7 @@
     },
     {
       "userId": "vCpnJX49Lkc",
-      "productId": "2",
+      "productId": null,
       "id": "5mzp8H4pH48"
     },
     {
@@ -609,7 +583,7 @@
     },
     {
       "userId": "vCpnJX49Lkc",
-      "productId": "1",
+      "productId": null,
       "id": "E6y3juL6oyo"
     },
     {
