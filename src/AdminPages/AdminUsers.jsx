@@ -7,6 +7,7 @@ function AdminUsers() {
 const {users,loading,error}=useSelector((state)=>state.adminUsers)
 const dispatch=useDispatch()
 const [search,setSearch]=useState("")
+const[filter,setFilter]=useState("all")
 useEffect(()=>{
   const loadUsers=async()=>{
    try{
@@ -32,8 +33,20 @@ try{
   dispatch(setError("failed to update user"))
 }
 }
-const filteredUsers=users.filter((user)=>user.name.toLowerCase().includes(search.toLowerCase()))
+const filteredUsers=users.filter((user)=>{
+  const matchesSearch=user.name.toLowerCase()
+.includes(search.toLowerCase())
  
+const matchesFilter=
+filter==="all"||
+user.role===filter||
+(filter==="active" && user.blocked===false)||
+(filter==="blocked" && user.blocked===true)
+
+return matchesSearch && matchesFilter
+})
+
+
 if(loading){
  return <h2>loading users...</h2>
 }
@@ -50,6 +63,13 @@ if(error){
         setSearch(e.target.value)} 
         className='w-76 border outline-none px-5 py-1 rounded-lg pl-11'/>
     </div>
+    <select value={filter} onChange={(e)=>setFilter(e.target.value)}>
+      <option value="all">All</option>
+      <option value="user">User</option>
+      <option value="admin">Admin</option>
+      <option value="active">Active</option>
+      <option value="blocked">Blocked</option>
+    </select>
     </div>
     <table>
       <thead>

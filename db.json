@@ -235,6 +235,46 @@
       "role": "admin",
       "blocked": false,
       "id": "ssb_PISinf4"
+    },
+    {
+      "name": "shamna",
+      "email": "shamne@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "QcfT_DNIOao"
+    },
+    {
+      "name": "subair",
+      "email": "subair@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "GLzR9LR7C24"
+    },
+    {
+      "name": "ummusalma",
+      "email": "salma@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "2NNLmx58E7M"
+    },
+    {
+      "name": "semi",
+      "email": "semi@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "LW1gEMzBDXo"
+    },
+    {
+      "name": "muthu",
+      "email": "muthu@gmail.com",
+      "password": "123123",
+      "role": "user",
+      "blocked": false,
+      "id": "LcJlqPvRuWw"
     }
   ],
   "orders": [
