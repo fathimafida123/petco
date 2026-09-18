@@ -1,6 +1,5 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import AddProduct from "../../AdminPages/AddProduct";
 const AdminProductSlice=createSlice({name:"adminProducts",initialState:{products:[],
     loading:false,error:null},reducers:{
            setProducts:(state,action)=>{

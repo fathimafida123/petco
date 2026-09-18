@@ -3,12 +3,14 @@ import authReducer from '../slice/authSlices.js'
 import cartReducer from "../slice/cartSlice.js"
 import wishlistReducer from "../slice/wishlistSlice.js";
 import AdminProductReducer from "../adminSlice/AdminProductSlice";
+import AdminUsersReducer from "../adminSlice/AdminUserSlice.js"
 export const store = configureStore({
   reducer: {
     auth : authReducer,
     cart:cartReducer,
     wishlist:wishlistReducer,
-    adminProducts:AdminProductReducer
+    adminProducts:AdminProductReducer,
+    adminUsers:AdminUsersReducer
   }
 });
 

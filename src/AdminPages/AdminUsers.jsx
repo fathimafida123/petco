@@ -1,9 +1,67 @@
-import React from 'react'
-
+import React, { useEffect ,useState} from 'react'
+import { getUsers } from '../services/user services'
+import { useSelector,useDispatch } from 'react-redux'
+import { setUsers,setLoading ,setError} from '../redux/adminSlice/AdminUserSlice'
+import { Search } from 'lucide-react'
 function AdminUsers() {
+const {users,loading,error}=useSelector((state)=>state.adminUsers)
+const dispatch=useDispatch()
+const [search,setSearch]=useState("")
+useEffect(()=>{
+  const loadUsers=async()=>{
+   try{
+  dispatch(setLoading(true))
+  const data=await getUsers()
+  dispatch(setUsers(data))
+   }catch(error){
+    dispatch(setError("failed to load users"))
+   }finally{
+    dispatch(setLoading(false))
+   }
+  }
+  loadUsers()
+},[dispatch])
+ 
+if(loading){
+ return <h2>loading users...</h2>
+}
+if(error){
+  return <h2 className="text-red-500">{error}</h2>
+}
   return (
     <div>
-      
+    <div className='flex items-center justify-between '>
+      <h2 className='font-bold text-3xl font-serif '>Users</h2>
+      <div className='relative'>
+        <Search size={18} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'/>
+      <input type="text" value={search} placeholder='Search users...' onChange={(e)=>
+        setSearch(e.target.value)} 
+        className='w-76 border outline-none px-5 py-1 rounded-lg pl-11'/>
+    </div>
+    </div>
+    <table>
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+        {users.map((user)=>(
+          <tr key={user.id} className=''>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.role}</td>
+            <td>{user.status}</td>
+            <td>{user.action}</td>
+          </tr>
+        ))}
+  
+      </tbody>
+    </table>
     </div>
   )
 }

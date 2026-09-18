@@ -33,7 +33,7 @@ function Register() {
 
 
             const data = await registerUser({ name: formData.name, email: formData.email, password: formData.password, role: "user", blocked: false })
-            setFormData({ name: "", password: "", email: "", cnfrmpass: "", role: "user" })
+            setFormData({ name: "", password: "", email: "", cnfrmpass: "", role: "user",blocked:false })
             setErrors({})
             navigate("/login")
         } catch (error) {

@@ -9,7 +9,7 @@ export const createAdminProduct=async (product)=>{
    const response=await axios.post(`${API_URL}/products`,product)
    return response.data
 }
-export const upadateAdminProduct=async(id,product)=>{
+export const updateAdminProduct=async(id,product)=>{
    const response=await axios.put(`${API_URL}/products/${id}`,product);
    return response.data
 }

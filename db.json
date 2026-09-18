@@ -1,17 +1,16 @@
 {
   "products": [
     {
-      "id": "3",
       "name": "Squeaky Dog food",
+      "price": 230,
       "category": [
         "Dogs",
         "food"
       ],
-      "price": 299,
-      "description": "good food for dog.",
-      "image": "/images/products/dog-food2.jpg",
       "stock": 25,
-      "rating": 4.3
+      "image": "/images/products/dog-food2.jpg",
+      "description": "good food for dog.",
+      "id": "3"
     },
     {
       "id": "4",
@@ -206,6 +205,18 @@
       "image": "/images/products/dog-collar3.jpg",
       "stock": 25,
       "rating": 4.4
+    },
+    {
+      "name": "dog grooming product",
+      "price": 599,
+      "category": [
+        "dog",
+        "grooming"
+      ],
+      "description": "make your pet more glow",
+      "image": "/images/products/dog-groom2.jpg",
+      "stock": 16,
+      "id": "V1sBX1vl3Wk"
     }
   ],
   "users": [
