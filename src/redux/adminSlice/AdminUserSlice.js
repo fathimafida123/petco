@@ -5,9 +5,9 @@ reducers:{
     setUsers:(state,action)=>{state.users=action.payload},
     setLoading:(state,action)=>{state.loading=action.payload},
     setError:(state,action)=>{state.error=action.payload},
-    updateUsers:(state,action)=>{state.users.map((user)=>user.id==action.payload.id ?action.payload:product)}
+    setupdateUsers:(state,action)=>{state.users=state.users.map((user)=>user.id==action.payload.id ?action.payload:user)}
 },
 
 })
-export const{setError,setLoading,setUsers,updateUsers}=AdminUsersSlice.actions;
+export const{setError,setLoading,setUsers,setupdateUsers}=AdminUsersSlice.actions;
 export default AdminUsersSlice.reducer

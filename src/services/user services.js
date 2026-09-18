@@ -13,3 +13,8 @@ export const getUserById = async (userId) => {
   const response = await axios.get(`${API_URL}/users/${userId}`);
   return response.data;
 };
+
+export const updateUser=async(userId,data)=>{
+    const response=await axios.patch(`${API_URL}/users/${userId}`,data)
+    return response.data
+}

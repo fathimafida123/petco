@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from 'react'
-import { getUsers } from '../services/user services'
+import { getUsers ,updateUser} from '../services/user services'
 import { useSelector,useDispatch } from 'react-redux'
-import { setUsers,setLoading ,setError} from '../redux/adminSlice/AdminUserSlice'
+import { setUsers,setLoading ,setError,setupdateUsers} from '../redux/adminSlice/AdminUserSlice'
 import { Search } from 'lucide-react'
 function AdminUsers() {
 const {users,loading,error}=useSelector((state)=>state.adminUsers)
@@ -21,6 +21,18 @@ useEffect(()=>{
   }
   loadUsers()
 },[dispatch])
+ 
+const handleBlock=async(user)=>{
+try{
+  const newBlocked=!user.blocked; // it will show opposite value
+
+  const updatedUser=await updateUser(user.id,{blocked:newBlocked})
+  dispatch(setupdateUsers(updatedUser))
+}catch(error){
+  dispatch(setError("failed to update user"))
+}
+}
+const filteredUsers=users.filter((user)=>user.name.toLowerCase().includes(search.toLowerCase()))
  
 if(loading){
  return <h2>loading users...</h2>
@@ -50,13 +62,13 @@ if(error){
       </tr>
       </thead>
       <tbody>
-        {users.map((user)=>(
+        {filteredUsers.map((user)=>(
           <tr key={user.id} className=''>
             <td>{user.name}</td>
             <td>{user.email}</td>
             <td>{user.role}</td>
-            <td>{user.status}</td>
-            <td>{user.action}</td>
+            <td>{user.blocked ? "Blocked":"Active"}</td>
+            <td><button onClick={()=>handleBlock(user)}>{user.blocked ? "Unblock":"Block"}</button></td>
           </tr>
         ))}
   
