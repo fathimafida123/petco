@@ -10,3 +10,12 @@ export const getOrders=async(userId)=>{
     const res=await axios.get(`${API_URL}/orders?userId=${userId}`)
     return res.data
 }
+export const getAllOrders=async()=>{
+    const res =await axios.get(`${API_URL}/orders`)
+    return res.data
+}
+export const updateOrderStatus=async(id,status)=>{
+    const res=await axios.patch(`${API_URL}/orders/${id}`,
+        {status:status})
+        return res.data
+}

@@ -1,7 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setError, setLoading } from "./AdminUserSlice";
- const AdminProductSlice=createSlice({name:"order" ,initialState:{order:[],loading:false,error:null},
-reducer:{
+ const AdminOrderSlice=createSlice({name:"order" ,initialState:{order:[],loading:false,error:null},
+reducers:{
     setOrders:(state,action)=>
         {state.order=action.payload},
     setLoading:(state,action)=>{
@@ -12,6 +11,6 @@ reducer:{
     }
 }})
 
-export const{setOrders,setError,setLoading}=AdminProductSlice.actions
-export default AdminProductSlice.reducer
+export const{setOrders,setError,setLoading}=AdminOrderSlice.actions
+export default AdminOrderSlice.reducer
 

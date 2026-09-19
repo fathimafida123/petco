@@ -314,7 +314,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 2601,
-      "status": "Placed",
+      "status": "Delivered",
       "createdAt": "2026-09-14T05:45:01.994Z",
       "id": "dndCyZm2qSE"
     },
@@ -347,7 +347,7 @@
       "deliveryFee": 40,
       "discount": 40,
       "grandTotal": 498,
-      "status": "Placed",
+      "status": "Processing",
       "createdAt": "2026-09-14T06:03:46.137Z",
       "id": "ZJnUtZiMBYU"
     },
@@ -380,7 +380,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 858,
-      "status": "Placed",
+      "status": "Shipped",
       "createdAt": "2026-09-14T10:28:02.035Z",
       "id": "9dNXLInRBnA"
     },
@@ -406,7 +406,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 558,
-      "status": "Placed",
+      "status": "Delivered",
       "createdAt": "2026-09-15T11:39:30.593Z",
       "id": "u1UZHNFthaE"
     },
@@ -469,7 +469,7 @@
       "deliveryFee": 40,
       "discount": 40,
       "grandTotal": 249,
-      "status": "Placed",
+      "status": "Delivered",
       "createdAt": "2026-09-15T12:39:56.520Z",
       "id": "IqpfVRkS7DY"
     },
@@ -553,7 +553,7 @@
       "deliveryFee": 0,
       "discount": 0,
       "grandTotal": 599,
-      "status": "Placed",
+      "status": "Delivered",
       "createdAt": "2026-09-16T06:04:05.032Z",
       "id": "SQjC2tHO5YM"
     },
@@ -584,48 +584,6 @@
       "status": "Placed",
       "createdAt": "2026-09-16T08:17:41.216Z",
       "id": "Db1XHfgVBPE"
-    },
-    {
-      "userId": "ssb_PISinf4",
-      "items": [
-        {
-          "productId": "4",
-          "name": "Cats bed",
-          "image": "/images/products/cat-bed1.jpg",
-          "price": 199,
-          "quantity": 4
-        },
-        {
-          "productId": "8",
-          "name": "accesseries for cat",
-          "image": "/images/products/cat-access4.jpg",
-          "price": 179,
-          "quantity": 1
-        },
-        {
-          "productId": "11",
-          "name": "Premium Cat Food",
-          "image": "/images/products/cat-food3.jpg",
-          "price": 599,
-          "quantity": 1
-        }
-      ],
-      "name": "finu",
-      "email": "finu@gmail.com",
-      "phone": "6282838529",
-      "address": "mundumuzhi,malappuram",
-      "city": "malappuram",
-      "state": "kerala",
-      "pincode": "673640",
-      "paymentMethod": "card",
-      "upiId": null,
-      "subTotal": 1574,
-      "deliveryFee": 0,
-      "discount": 0,
-      "grandTotal": 1574,
-      "status": "Placed",
-      "createdAt": "2026-09-19T06:20:50.384Z",
-      "id": "yXGkT7jUFE0"
     }
   ],
   "carts": [
@@ -646,6 +604,24 @@
       "productId": "6",
       "quantity": 7,
       "id": "RJBhlFpNeO4"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "productId": "4",
+      "quantity": 4,
+      "id": "_myTtnRsaqM"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "productId": "8",
+      "quantity": 1,
+      "id": "oyBaZJ4f6l0"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "productId": "11",
+      "quantity": 1,
+      "id": "Onos8Mvxtm8"
     }
   ],
   "wishlist": [
