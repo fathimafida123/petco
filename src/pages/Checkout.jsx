@@ -127,6 +127,7 @@ const[errors,setErrors]=useState({})
           image: item.image,
           price: item.price,
           quantity: item.quantity,
+          deleted:false
         })),
         ...formData,
         paymentMethod,

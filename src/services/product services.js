@@ -18,3 +18,18 @@ export const deleteAdminProduct=async (id)=>{
    const response=await axios.delete(`${API_URL}/products/${id}`);
    return response.data
 }
+
+export const softDeleteProduct=async(id)=>{
+   const response=await axios.patch(`${API_URL}/products/${id}`,{deleted:true})
+   return response.data
+}
+
+export const restoreProduct=async(id)=>{
+   const response=await axios.patch(`${API_URL}/products/${id}`,{delete:false})
+   return response.data
+}
+
+export const permenentDelete=async(id)=>{
+   const response=await axios.delete(`${API_URL}/products/${id}`)
+   response.data
+}
