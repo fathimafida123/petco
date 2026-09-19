@@ -584,6 +584,48 @@
       "status": "Placed",
       "createdAt": "2026-09-16T08:17:41.216Z",
       "id": "Db1XHfgVBPE"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "items": [
+        {
+          "productId": "4",
+          "name": "Cats bed",
+          "image": "/images/products/cat-bed1.jpg",
+          "price": 199,
+          "quantity": 4
+        },
+        {
+          "productId": "8",
+          "name": "accesseries for cat",
+          "image": "/images/products/cat-access4.jpg",
+          "price": 179,
+          "quantity": 1
+        },
+        {
+          "productId": "11",
+          "name": "Premium Cat Food",
+          "image": "/images/products/cat-food3.jpg",
+          "price": 599,
+          "quantity": 1
+        }
+      ],
+      "name": "finu",
+      "email": "finu@gmail.com",
+      "phone": "6282838529",
+      "address": "mundumuzhi,malappuram",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "673640",
+      "paymentMethod": "card",
+      "upiId": null,
+      "subTotal": 1574,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 1574,
+      "status": "Placed",
+      "createdAt": "2026-09-19T06:20:50.384Z",
+      "id": "yXGkT7jUFE0"
     }
   ],
   "carts": [

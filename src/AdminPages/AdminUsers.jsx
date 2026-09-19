@@ -3,9 +3,16 @@ import { getUsers ,updateUser} from '../services/user services'
 import { useSelector,useDispatch } from 'react-redux'
 import { setUsers,setLoading ,setError,setupdateUsers} from '../redux/adminSlice/AdminUserSlice'
 import { Search } from 'lucide-react'
+import { useSearchParams } from 'react-router-dom'
 function AdminUsers() {
 const {users,loading,error}=useSelector((state)=>state.adminUsers)
 const dispatch=useDispatch()
+
+const [searchParams,setSearchParams]=useSearchParams()
+const page=Number(searchParams.get("page")) ||1;
+const perPage=Number(searchParams.get("per_page")) ||5
+
+
 const [search,setSearch]=useState("")
 const[filter,setFilter]=useState("all")
 useEffect(()=>{
@@ -45,7 +52,29 @@ user.role===filter||
 
 return matchesSearch && matchesFilter
 })
+const start=(page-1)*perPage;
+const end=start+perPage;
+const currentUsers=filteredUsers.slice(start,end);
+//total pages
+const totalPages=Math.ceil(filteredUsers.length/perPage)
 
+const handleNext=()=>{
+  if(page<totalPages){
+    setSearchParams({
+      page:page+1,
+      per_page:perPage,
+    })
+  }
+}
+
+ const handlePrevious=()=>{
+  if(page>1){
+    setSearchParams({
+      page:page-1,
+      per_page:perPage
+    })
+  }
+ }
 
 if(loading){
  return <h2>loading users...</h2>
@@ -59,11 +88,14 @@ if(error){
       <h2 className='font-bold text-3xl font-serif '>Users</h2>
       <div className='relative'>
         <Search size={18} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'/>
-      <input type="text" value={search} placeholder='Search users...' onChange={(e)=>
-        setSearch(e.target.value)} 
+      <input type="text" value={search} placeholder='Search users...' onChange={(e)=>{
+        setSearch(e.target.value); setSearchParams({
+  page:1,
+  per_page:perPage
+        })} }
         className='w-76 border outline-none px-5 py-1 rounded-lg pl-11'/>
     </div>
-    <select value={filter} onChange={(e)=>setFilter(e.target.value)}>
+    <select value={filter} onChange={(e)=>{setFilter(e.target.value);setSearchParams({page:1,per_page:perPage})}}>
       <option value="all">All</option>
       <option value="user">User</option>
       <option value="admin">Admin</option>
@@ -82,7 +114,7 @@ if(error){
       </tr>
       </thead>
       <tbody>
-        {filteredUsers.map((user)=>(
+        {currentUsers.map((user)=>(
           <tr key={user.id} className=''>
             <td>{user.name}</td>
             <td>{user.email}</td>
@@ -94,6 +126,32 @@ if(error){
   
       </tbody>
     </table>
+    {currentUsers.length===0&&(
+      <p className='text-center py-8 text-gray-500'>No users Found</p>
+    )}
+           <div className="flex items-center justify-center gap-4 mt-6">
+        <button
+          onClick={handlePrevious}
+          disabled={page === 1}
+          className="px-4 py-2 rounded-lg border disabled:opacity-40"
+        >
+          Previous
+        </button>
+
+        <span className="font-medium">
+          Page {page} of {totalPages || 1}
+        </span>
+
+        <button
+          onClick={handleNext}
+          disabled={page >= totalPages}
+          className="px-4 py-2 rounded-lg border disabled:opacity-40"
+        >
+          Next
+        </button>
+      </div>
+
+
     </div>
   )
 }

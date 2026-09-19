@@ -1,12 +1,12 @@
 
 
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProducts,
   deleteAdminProduct
 } from "../services/product services";
-
+import { Search } from "lucide-react";
 import {
   setProducts,
   setLoading,
@@ -15,6 +15,7 @@ import {
 } from "../redux/adminSlice/AdminProductSlice"
 
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 function AdminProduct() {
 
@@ -23,6 +24,8 @@ function AdminProduct() {
   const { products, loading, error } = useSelector(
     (state) => state.adminProducts
   );
+  const[search,setSearch]=useState("")
+  const [searchParams,setSearchParams]=useSearchParams()
 
   useEffect(() => {
 
@@ -67,6 +70,15 @@ function AdminProduct() {
 
   };
 
+const filteredProducts=products.filter((product)=>
+product.name.toLowerCase().includes(search.toLowerCase())
+)
+const page=Number(searchParams.get("page")) ||1
+const perPage=Number(searchParams.get("per_page"))||5
+ const start=(page-1)*perPage;
+ const end=start+perPage
+const currentProduct=filteredProducts.slice(start,end);
+const totalPage=Math.ceil(filteredProducts.length/perPage)
 
   if (loading) {
     return <p>Loading products...</p>;
@@ -85,7 +97,8 @@ function AdminProduct() {
         <h1 className="text-2xl font-bold">
           Products
         </h1>
-
+<input type="text" value={search} onChange={(e)=>
+  setSearch(e.target.value)} className="border rounded"/>
         <Link
           to="/admin/products/add"
           className="bg-[#2F5D50] text-white px-5 py-2 rounded-lg"
@@ -113,7 +126,7 @@ function AdminProduct() {
 
           <tbody>
 
-            {products.map((product) => (
+            {currentProduct.map((product) => (
 
               <tr key={product.id} className="border-b">
 
@@ -164,7 +177,19 @@ function AdminProduct() {
         </table>
 
       </div>
+      <div>
+      <button onClick={()=>setSearchParams({page:page-1,per_page:perPage}) }
+      disabled={page===1}
+       className="px-4 py-2 rounded-lg border
+        disabled:opacity-40">Previous</button>
+        <span>page {page} of {totalPage||1}</span>
 
+        <button onClick={()=>setSearchParams({
+          page:page+1,
+          per_page:perPage
+        })} disabled={page>=totalPage} 
+         className="px-4 py-2 rounded-lg border disabled:opacity-40">Next</button>
+</div>
     </div>
   );
 }
