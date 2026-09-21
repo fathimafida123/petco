@@ -4,16 +4,16 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getProducts,
-  softDeleteProduct,permenentDelete
+  softDeleteProduct,permenentDelete,restoreProduct
 } from "../services/product services";
 
-import { Search, Plus, Pencil, Trash2 } from "lucide-react";
+import { Search, Plus, Pencil, Trash2,RefreshCcw } from "lucide-react";
 
 import {
   setProducts,
   setLoading,
   setError,
-  softDeleteProductSlice,deleteProduct
+  softDeleteProductSlice,deleteProduct,restoreProductSlice
 } from "../redux/adminSlice/AdminProductSlice";
 
 import { Link, useSearchParams } from "react-router-dom";
@@ -30,7 +30,7 @@ function AdminProduct() {
 
   const [deleteProductId, setDeleteProductId] = useState(null)
   const [showDeleteModel, setShowDeleteModel] = useState(false)
-
+   const[showTrash,setShowTrash]=useState(false)
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -64,7 +64,7 @@ const handleSoftDelete=async ()=>{
 const permenentDeletHandler=async()=>{
   try{
      
-  const prmntdelte=await permenentDelete(deleteProductId)
+  await permenentDelete(deleteProductId)
   dispatch(deleteProduct(deleteProductId))
   setShowDeleteModel(false)
   setDeleteProductId(null)
@@ -74,9 +74,12 @@ const permenentDeletHandler=async()=>{
   }
 
 }
-  // Search
   const activeProducts = products.filter((product) => product.deleted !== true)
-  const filteredProducts = activeProducts.filter((product) =>
+  const trashProducts=products.filter((product)=>product.deleted===true)
+
+  const productsToDisplay=showTrash ? trashProducts :activeProducts;
+
+  const filteredProducts = productsToDisplay.filter((product) =>
     product.name.toLowerCase().includes(search.toLowerCase())
   );
 
@@ -90,6 +93,16 @@ const permenentDeletHandler=async()=>{
   const currentProduct = filteredProducts.slice(start, end);
 
   const totalPage = Math.ceil(filteredProducts.length / perPage);
+
+  const restoreProducts=async(productId)=>{
+    try{
+    const restoreProductApi=await restoreProduct(productId)
+    dispatch (restoreProductSlice(restoreProductApi.id))
+    }catch(error){
+      console.log("restore error:",error)
+      dispatch(setError("failded restore product"))
+    }
+  }
 
   if (loading) {
     return (
@@ -133,6 +146,10 @@ const permenentDeletHandler=async()=>{
           Add Product
         </Link>
 
+      </div>
+      <div>
+        <button onClick={()=>{setShowTrash(false); setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3  ${!showTrash ? "text-[#2F5D50] border-b-2 border-[#2F5D50]":"text-gray-500"}`}>All products</button>
+        <button onClick={()=>{setShowTrash(true);setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3 ${showTrash ? "text-[#2F5D50] border-b-2 border-[#2F5D50]":"text-gray-500"}`}>Trash</button>
       </div>
 
       {/* Search + Count */}
@@ -294,7 +311,11 @@ const permenentDeletHandler=async()=>{
                       <div className="flex justify-end gap-2">
 
                         {/* Edit */}
-                        <Link
+                      { showTrash ? (<button onClick={()=>restoreProducts(product.id)}
+                      className="text-green-600 hover:text-green-800" 
+                      title="Restore">Restore<RefreshCcw size={18}/>
+                      </button>) :
+                      (<><Link
                           to={`/admin/products/edit/${product.id}`}
                           className="inline-flex items-center gap-2
                           px-3 py-2 rounded-lg
@@ -318,7 +339,7 @@ const permenentDeletHandler=async()=>{
                         >
                           <Trash2 size={16} />
                           Delete
-                        </button>
+                        </button></>)}
 
                       </div>
 

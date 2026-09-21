@@ -86,8 +86,7 @@ import {
 
 function AdminOrders() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+   const navigate=useNavigate()
   const { order, loading, error } = useSelector(
     (state) => state.adminOrders
   );
@@ -202,20 +201,17 @@ function AdminOrders() {
                 <th className="px-5 py-4 text-left">
                   Status
                 </th>
-
-                <th className="px-5 py-4 text-left">
-                  Action
-                </th>
               </tr>
             </thead>
 
             {/* Table Body */}
             <tbody>
 
-              {order.map((item) => (
+                   {order.map((item) => (
                 <tr
                   key={item.id}
-                  className="border-t hover:bg-gray-50"
+                  onClick={()=>navigate(`admin/orders/${item.id}`)}
+                  className="border-t hover:bg-gray-50 cursor-pointer"
                 >
 
                   {/* ID */}
@@ -248,6 +244,7 @@ function AdminOrders() {
                   <td className="px-5 py-4">
 
                     <select
+                    onClick={(e)=>e.stopPropagation()}
                       value={item.status}
                       onChange={(e) =>
                         handleStatusChange(
@@ -281,23 +278,6 @@ function AdminOrders() {
                     </select>
 
                   </td>
-
-                  {/* Action */}
-                  <td className="px-5 py-4">
-
-                    <button
-                      onClick={() =>
-                        navigate(
-                          `/admin/orders/${item.id}`
-                        )
-                      }
-                      className="px-4 py-2 bg-[#2F5D50] text-white rounded-lg hover:bg-[#244a40]"
-                    >
-                      View
-                    </button>
-
-                  </td>
-
                 </tr>
               ))}
 

@@ -28,6 +28,12 @@ const AdminProductSlice = createSlice({
                 product.deleted = true
             }
         },
+        restoreProductSlice:(state,action)=>{
+            const product=state.products.find((product)=>product.id===action.payload)
+             if(product){
+                product.deleted=false
+             }
+        },
         deleteProduct: (state, action) => {
             state.products = state.products.filter((product) => product.id!== action.payload)
         }
@@ -38,6 +44,7 @@ export const {
     setProducts,
     setError, setLoading,
     addProduct,
-    updateProduct, softDeleteProductSlice, deleteProduct
+    updateProduct, softDeleteProductSlice, deleteProduct,
+    restoreProductSlice
 } = AdminProductSlice.actions;
 export default AdminProductSlice.reducer;

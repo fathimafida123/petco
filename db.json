@@ -11,7 +11,7 @@
       "image": "/images/products/dog-food2.jpg",
       "description": "good food for dog.",
       "id": "3",
-      "deleted": true
+      "deleted": false
     },
     {
       "id": "5",
@@ -22,7 +22,7 @@
       "image": "/images/products/cat-bawl.jpg",
       "stock": 18,
       "rating": 4.2,
-      "deleted": true
+      "deleted": false
     },
     {
       "id": "12",
@@ -36,7 +36,7 @@
       "image": "/images/products/dog-access6.jpg",
       "stock": 15,
       "rating": 4.3,
-      "deleted": true
+      "deleted": false
     },
     {
       "id": "14",
@@ -59,7 +59,8 @@
       "description": "cats belt.",
       "image": "/images/products/cat-accesss5.jpg",
       "stock": 18,
-      "rating": 4.4
+      "rating": 4.4,
+      "deleted": false
     },
     {
       "id": "16",
@@ -69,7 +70,8 @@
       "description": "A cozy bed for comfortable rest.",
       "image": "/images/products/cat-bed2.jpg",
       "stock": 8,
-      "rating": 4.8
+      "rating": 4.8,
+      "deleted": false
     },
     {
       "id": "17",
@@ -79,7 +81,8 @@
       "description": "Gentle brush for keeping your pet's coat clean.",
       "image": "/images/products/cat-grooming3.jpg",
       "stock": 30,
-      "rating": 4.2
+      "rating": 4.2,
+      "deleted": false
     },
     {
       "id": "18",
@@ -89,7 +92,8 @@
       "description": "Gentle shampoo for a clean and fresh pet.",
       "image": "/images/products/dog-groom5.jpg",
       "stock": 20,
-      "rating": 4.5
+      "rating": 4.5,
+      "deleted": false
     },
     {
       "id": "19",
@@ -99,7 +103,8 @@
       "description": "Comfortable and stylish collar for pets.",
       "image": "/images/products/dog-collar.jpg",
       "stock": 35,
-      "rating": 4.1
+      "rating": 4.1,
+      "deleted": false
     },
     {
       "id": "20",
@@ -109,7 +114,8 @@
       "description": "comfortable collar ",
       "image": "/images/products/dog-collar3.jpg",
       "stock": 25,
-      "rating": 4.4
+      "rating": 4.4,
+      "deleted": true
     },
     {
       "name": "dog grooming product",
@@ -121,7 +127,8 @@
       "description": "make your pet more glow",
       "image": "/images/products/dog-groom2.jpg",
       "stock": 16,
-      "id": "V1sBX1vl3Wk"
+      "id": "V1sBX1vl3Wk",
+      "deleted": false
     }
   ],
   "users": [
