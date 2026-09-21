@@ -25,11 +25,11 @@ export const softDeleteProduct=async(id)=>{
 }
 
 export const restoreProduct=async(id)=>{
-   const response=await axios.patch(`${API_URL}/products/${id}`,{delete:false})
+   const response=await axios.patch(`${API_URL}/products/${id}`,{deleted:false})
    return response.data
 }
 
 export const permenentDelete=async(id)=>{
    const response=await axios.delete(`${API_URL}/products/${id}`)
-   response.data
+   return response.data
 }

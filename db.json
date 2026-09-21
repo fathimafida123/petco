@@ -10,20 +10,8 @@
       "stock": 25,
       "image": "/images/products/dog-food2.jpg",
       "description": "good food for dog.",
-      "id": "3"
-    },
-    {
-      "id": "4",
-      "name": "Cats bed",
-      "category": [
-        "Cats",
-        "accesseries"
-      ],
-      "price": 199,
-      "description": "cats bed.",
-      "image": "/images/products/cat-bed1.jpg",
-      "stock": 30,
-      "rating": 4.4
+      "id": "3",
+      "deleted": true
     },
     {
       "id": "5",
@@ -33,82 +21,8 @@
       "description": "Simple and durable food bowl.",
       "image": "/images/products/cat-bawl.jpg",
       "stock": 18,
-      "rating": 4.2
-    },
-    {
-      "id": "6",
-      "name": "Adjustable Dog Collar",
-      "category": [
-        "accessories",
-        "dogs"
-      ],
-      "price": 349,
-      "description": "Comfortable adjustable collar for dogs.",
-      "image": "/images/products/dog-collar.jpg",
-      "stock": 12,
-      "rating": 4.5
-    },
-    {
-      "id": "7",
-      "name": "accesseries for dog",
-      "category": [
-        "Dogs",
-        "assecceries"
-      ],
-      "price": 799,
-      "description": "accessories for dogs",
-      "image": "/images/products/dog-access4.jpg",
-      "stock": 10,
-      "rating": 4.7
-    },
-    {
-      "id": "8",
-      "name": "accesseries for cat",
-      "category": [
-        "cats",
-        "accesseries"
-      ],
-      "price": 179,
-      "description": "",
-      "image": "/images/products/cat-access4.jpg",
-      "stock": 22,
-      "rating": 4.3
-    },
-    {
-      "id": "9",
-      "name": "cat Grooming products",
-      "category": [
-        "grooming",
-        "cats"
-      ],
-      "price": 299,
-      "description": "cat grooming",
-      "image": "/images/products/cat-grooming1.jpg",
-      "stock": 14,
-      "rating": 4.4
-    },
-    {
-      "id": "10",
-      "name": "Pet Shampoo",
-      "category": "grooming",
-      "price": 399,
-      "description": "Gentle shampoo for regular pet grooming.",
-      "image": "/images/products/cat-grooming5.jpg",
-      "stock": 16,
-      "rating": 4.6
-    },
-    {
-      "id": "11",
-      "name": "Premium Cat Food",
-      "category": [
-        "Cats",
-        "food"
-      ],
-      "price": 599,
-      "description": "Healthy and tasty food for cats.",
-      "image": "/images/products/cat-food3.jpg",
-      "stock": 20,
-      "rating": 4.5
+      "rating": 4.2,
+      "deleted": true
     },
     {
       "id": "12",
@@ -121,17 +35,8 @@
       "description": "dog accesseries.",
       "image": "/images/products/dog-access6.jpg",
       "stock": 15,
-      "rating": 4.3
-    },
-    {
-      "id": "13",
-      "name": "Soft Cat Bed",
-      "category": "Cats",
-      "price": 899,
-      "description": "Soft and comfortable bed for your cat.",
-      "image": "/images/products/cat-bed4.jpg",
-      "stock": 10,
-      "rating": 4.7
+      "rating": 4.3,
+      "deleted": true
     },
     {
       "id": "14",
@@ -314,7 +219,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 2601,
-      "status": "Delivered",
+      "status": "Shipped",
       "createdAt": "2026-09-14T05:45:01.994Z",
       "id": "dndCyZm2qSE"
     },
@@ -595,31 +500,31 @@
     },
     {
       "userId": "vCpnJX49Lkc",
-      "productId": "4",
+      "productId": null,
       "quantity": 1,
       "id": "Zhr7qPEYMy8"
     },
     {
       "userId": "vCpnJX49Lkc",
-      "productId": "6",
+      "productId": null,
       "quantity": 7,
       "id": "RJBhlFpNeO4"
     },
     {
       "userId": "ssb_PISinf4",
-      "productId": "4",
+      "productId": null,
       "quantity": 4,
       "id": "_myTtnRsaqM"
     },
     {
       "userId": "ssb_PISinf4",
-      "productId": "8",
+      "productId": null,
       "quantity": 1,
       "id": "oyBaZJ4f6l0"
     },
     {
       "userId": "ssb_PISinf4",
-      "productId": "11",
+      "productId": null,
       "quantity": 1,
       "id": "Onos8Mvxtm8"
     }
@@ -637,7 +542,7 @@
     },
     {
       "userId": "tWm6gSr-n1A",
-      "productId": "4",
+      "productId": null,
       "id": "Bk30ueEF_q8"
     },
     {
@@ -657,7 +562,7 @@
     },
     {
       "userId": "Hn3L8GD8EH0",
-      "productId": "4",
+      "productId": null,
       "id": "8tswlFk-phU"
     }
   ],
