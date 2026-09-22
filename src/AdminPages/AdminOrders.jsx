@@ -210,7 +210,7 @@ function AdminOrders() {
                    {order.map((item) => (
                 <tr
                   key={item.id}
-                  onClick={()=>navigate(`admin/orders/${item.id}`)}
+                  onClick={()=>navigate(`/admin/orders/${item.id}`)}
                   className="border-t hover:bg-gray-50 cursor-pointer"
                 >
 

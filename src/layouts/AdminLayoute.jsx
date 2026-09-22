@@ -4,10 +4,9 @@ import AdminSidebar from '../adminComponents/AdminSidebar'
 import AdminHeader from '../adminComponents/AdminHeader'
 function AdminLayoute() {
   return (
-    <div className="flex min-h-screen bg-[#F8F5EC]">
+    <div className="min-h-screen bg-[#F8F5EC]">
    <AdminSidebar />
-   <div className='flex-1'> 
-     {/* flex 1 it use the existing width */}
+   <div className='ml-64'> 
    <AdminHeader/>
    <main className='p-6'>
       <Outlet/>

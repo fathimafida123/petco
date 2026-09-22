@@ -8,7 +8,7 @@ import {
 } from "lucide-react"
 function AdminSidebar() {
   return (
-   <aside className='w-64 min-h-screen bg-[#2F5D50] text-white p-5 '>
+   <aside className='fixed left-0 top-0 w-64 min-h-screen bg-[#2F5D50] text-white p-5 '>
     
     <h1 className='flex  items-center gap-2 text-2xl font-bold mb-10'>PETCO<PawPrint size={28}/></h1>
    

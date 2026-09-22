@@ -1,5 +1,7 @@
 import React from 'react'
-
+import { getAllOrders } from '../services/order services'
+import { getProducts } from '../services/product services'
+import { getUsers } from '../services/user services'
 function AdminDashboard() {
   return (
     <div>
