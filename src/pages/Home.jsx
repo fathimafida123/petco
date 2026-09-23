@@ -185,7 +185,7 @@ function Home() {
         <div className="text-center mt-10">
           <Link
             to="/product"
-            className="inline-block bg-[#2F5D50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#244a40] transition"
+            className="inline-block bg-blue-950 text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#244a40] transition"
           >
             View All Products
           </Link>

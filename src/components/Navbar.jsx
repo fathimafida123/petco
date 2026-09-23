@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../redux/slice/authSlices";
-
+import ConfirmationModal from "./ConfirmationModal";
 import {
   Heart,
   ShoppingCart,
@@ -24,6 +24,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [showProfile, setShowProfile] = useState(false);
+  const[showLogoutConfirm,setShowLogoutConfirm]=useState(false)
 
   const user = useSelector((state) => state.auth.user);
   const cartItems = useSelector((state) => state.cart.items);
@@ -119,7 +120,7 @@ function Navbar() {
           </p>
           <button
             type="button"
-            onClick={handleLogout}
+            onClick={()=>setShowLogoutConfirm(true)}
             className="w-full flex items-center justify-center gap-2 bg-red-50 text-red-600 text-sm font-medium py-2 rounded-lg hover:bg-red-100 mt-15"
           >
             <LogOut size={16} />
@@ -162,6 +163,14 @@ function Navbar() {
           ))}
         </div>
       )}
+      <ConfirmationModal
+  show={showLogoutConfirm}
+  title="Are you sure?"
+  message="Do you want to logout?"
+  onCancel={() => setShowLogoutConfirm(false)}
+  onConfirm={handleLogout}
+  confirmText="Logout"
+/>
     </nav>
   );
 }

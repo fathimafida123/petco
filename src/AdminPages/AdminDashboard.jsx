@@ -4,7 +4,7 @@ import { getProducts } from '../services/product services'
 import { getUsers } from '../services/user services'
 import { useNavigate } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
-import { LineChart,Line,XAxis,YAxis,Tooltip,ResponsiveContainer,PieChart,Pie,Legend } from "recharts"
+import { LineChart,Line,XAxis,YAxis,Tooltip,ResponsiveContainer} from "recharts"
 function AdminDashboard() {
     const navigate=useNavigate()
     const [order,setOrder]=useState([])
@@ -27,29 +27,6 @@ function AdminDashboard() {
        setProduct(productData.length)
       const users=await getUsers()
       setUser(users.length)
-
-
-      const categorySales={};
-
-      orders.forEach((order)=>{
-        order.items?.forEach((item)=>{
-            const product=productData.find((product)=>String(product.id)===String(item.productId));
-
-            if(product){
-                product.categories?.forEach((category)=>{
-                    if(!categorySales[category]){
-                        categorySales[category]=0
-                    }
-                    categorySales[category]+=Number(item.quantity || 0)
-                })
-            }
-        })
-      })
-
-      const chartData=Object.entries(categorySales).map(
-        ([category,sold])=>({category,sold,fill:categoryColors[index % categoryColors.length]}))
-
-        setCategoryData(chartData)
       }catch(error){
         console.log(error)
       }
@@ -165,41 +142,6 @@ function AdminDashboard() {
     </LineChart>
   </ResponsiveContainer>
 </div>
-
-<div className="bg-white p-5 rounded-xl shadow mt-8">
-
-  <h2 className="text-xl font-semibold mb-4">
-    Category Sales
-  </h2>
-
-  <ResponsiveContainer
-    width="100%"
-    height={300}
-  >
-    <PieChart>
-
-      <Pie
-        data={categoryData}
-        dataKey="sold"
-        nameKey="category"
-        cx="50%"
-        cy="50%"
-        outerRadius={100}
-        innerRadius={60}
-      >
-
-      </Pie>
-
-      <Tooltip />
-
-      <Legend />
-
-    </PieChart>
-
-  </ResponsiveContainer>
-
-</div>
-
     <div className='mt-8'>
         <div className='flex items-center justify-between'>
         <h2 className='text-xl font-bold mb-4'>Recent Orders</h2>
@@ -220,7 +162,7 @@ function AdminDashboard() {
                     </thead>
                     <tbody>
                         {recentOrders.map((item)=>(
-                            <tr key={item.id} className='border-t'>
+                            <tr key={item.id} onClick={()=>navigate(`/admin/orders/${item.id}`)} className='border-t cursor-pointer hover:bg-gray-50'>
                                 <td className='p-4'>
                                     {item.id}
                                 </td>

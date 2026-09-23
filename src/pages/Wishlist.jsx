@@ -26,7 +26,7 @@ function Wishlist() {
   return (
     <div className="min-h-screen bg-[#f7f3ed] px-6 py-10">
 
-      <h1 className="text-4xl font-bold text-center text-[#2F5D50]">
+      <h1 className="text-4xl font-bold text-center text-blue-900">
         My Wishlist
       </h1>
 
@@ -48,7 +48,7 @@ function Wishlist() {
 
           <Link
             to="/product"
-            className="inline-block mt-6 bg-[#2F5D50] text-white px-6 py-3 rounded-xl"
+            className="inline-block mt-6 bg-blue-950 text-white px-6 py-3 rounded-xl"
           >
             Explore Products
           </Link>

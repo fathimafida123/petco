@@ -512,7 +512,7 @@ function AdminUsers() {
 
                       <div className="flex justify-end">
 
-                        <button
+                      {user.role !=="admin" &&( <button
                           onClick={() => handleBlock(user)}
                           className={`px-4 py-2 rounded-lg
                           text-sm font-medium transition
@@ -525,7 +525,7 @@ function AdminUsers() {
                           {user.blocked
                             ? "Unblock"
                             : "Block"}
-                        </button>
+                        </button>)}
 
                       </div>
 

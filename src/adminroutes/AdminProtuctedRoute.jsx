@@ -14,6 +14,7 @@ function AdminProtuctedRoute() {
     if(user.role !=="admin"){
         return <Navigate to="/" replace/>
     }
+  
 return <Outlet/>
 
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Link} from "react-router-dom"
 import {
     LayoutDashboard,
@@ -6,7 +6,21 @@ import {
     Users,
     ShoppingBag,PawPrint
 } from "lucide-react"
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../redux/slice/authSlices'
+import { LogOut } from 'lucide-react'
+import toast from "react-hot-toast";
+import ConfirmationModal from "../components/ConfirmationModal";
 function AdminSidebar() {
+    const dispatch=useDispatch()
+    const navigate =useNavigate()
+    const handleLogout=()=>{
+        dispatch(logout())
+            toast.success("Logged out successfully!");
+        navigate("/login")
+    }
+    const [message,setMessage]=useState(false)
   return (
    <aside className='fixed left-0 top-0 w-64 min-h-screen bg-[#2F5D50] text-white p-5 '>
     
@@ -21,7 +35,20 @@ function AdminSidebar() {
         <Users size={20}/>Users</Link>
         <Link to="/admin/orders" className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-white/10">
         <ShoppingBag size={20}/>Orders</Link>
+        <button  onClick={()=>setMessage(true)} className="flex items-center gap-3 w-full px-4 py-3
+         text-red-600 hover:bg-red-50 rounded-lg transition">
+            <LogOut size={20}/>LogOut</button>
+
+           
     </nav>
+ <ConfirmationModal
+  show={message}
+  title="Are you sure?"
+  message="Do you want to logout?"
+  onCancel={() => setMessage(false)}
+  onConfirm={handleLogout}
+  confirmText="Logout"
+/>
    </aside>
   )
 }

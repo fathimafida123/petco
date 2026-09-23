@@ -176,15 +176,15 @@ const[errors,setErrors]=useState({})
     return (
       <div className="min-h-screen bg-[#F8F5EC] flex items-center justify-center px-5">
         <div className="text-center max-w-sm">
-          <h1 className="text-2xl font-bold text-[#2F5D50] mb-2">
-            Nothing to check out yet
+          <h1 className="text-2xl font-bold text-blue-900 mb-2">
+            Nothing to checkout yet
           </h1>
-          <p className="text-gray-500 mb-6">
+          <p className="text-gray-900 mb-6">
             Your cart is empty. Add a few things you love, then come back here.
           </p>
           <Link
             to="/product"
-            className="inline-block bg-[#2F5D50] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#244a40] transition"
+            className="inline-block bg-blue-950 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-900 transition"
           >
             Browse products
           </Link>

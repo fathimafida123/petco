@@ -48,9 +48,21 @@ const navigate = useNavigate();
 
   // Find products from same category
   const relatedProducts = products.filter(
-    (item) =>
-      item.category === product.category &&
-      String(item.id) !== String(product.id)
+    (item) =>{
+      if(String(item.id)===String(product.id)){
+        return false
+      }
+      const productCategories=Array.isArray(product.category)
+      ?product.category:[product.category];
+
+      const itemCategories=Array.isArray(item.category)?
+      item.category:[item.category]
+
+      return productCategories.some((category)=>
+      itemCategories.some((itemCategory)=>itemCategory && category &&
+       itemCategory.toLowerCase()===category.toLowerCase()))
+    }
+     
 
       
   );
@@ -84,172 +96,204 @@ const handletocart = async () => {
 }
 };
 
-const handleBuyNow=()=>{
-  if(!user){
-    navigate("/login");
-    return;
-  }
-  navigate("/checkout",{
-    state:{
-      buyNowItem:{
-        ...product,
-        quantity:Number(count),
-      },
-    },
-  });
+return (
+  <div className="min-h-screen bg-[#F8F5EC] py-10 px-4 sm:px-6 lg:px-8">
 
-};
+    {/* PRODUCT DETAILS */}
+    <div className="max-w-6xl mx-auto">
 
-  return (
-    <div className="min-h-screen bg-olive-500/50 py-12 px-4 sm:px-6">
+      <div className="bg-white rounded-3xl shadow-sm overflow-hidden">
 
-      <div className="max-w-5xl mx-auto rounded-2xl shadow-lg p-6 md:p-10">
+        <div className="grid grid-cols-1 md:grid-cols-2">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-[#4e6070]/50 p-6 rounded-xl">
+          {/* PRODUCT IMAGE */}
+          <div className="bg-[#E8F0ED] flex items-center justify-center p-8 md:p-12">
 
-          <div className="flex items-center justify-center">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-75 h-90 object-cover rounded-2xl"
-            />
+            <div className="bg-white rounded-2xl p-6 shadow-sm">
+              <img
+                src={product.image}
+                alt={product.name}
+                className="w-full max-w-md h-[380px] object-contain rounded-xl"
+              />
+            </div>
+
           </div>
 
-          <div className="flex flex-col justify-center">
 
-            <p className="text-sm uppercase tracking-widest text-[#2F5D50] font-semibold">
+          {/* PRODUCT INFORMATION */}
+          <div className="p-8 md:p-12 flex flex-col justify-center">
+
+            {/* CATEGORY */}
+            <span className="inline-block w-fit px-4 py-1.5 rounded-full bg-[#E8F0ED] text-[#2F5D50] text-sm font-semibold uppercase tracking-wide">
               {product.category}
-            </p>
+            </span>
 
-            <h1 className="text-3xl md:text-4xl font-bold mt-2 text-gray-800">
+
+            {/* NAME */}
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-5">
               {product.name}
             </h1>
 
-            <p className="text-2xl font-bold text-[#2F5D50] mt-4">
-              ₹{product.price}
-            </p>
 
-            <p className="text-gray-600 mt-4 leading-relaxed line-clamp-3">
+            {/* RATING */}
+            <div className="flex items-center gap-2 mt-4">
+
+              <div className="text-yellow-400 text-lg">
+                ★★★★★
+              </div>
+
+              <span className="text-gray-500 text-sm">
+                {product.rating} rating
+              </span>
+
+            </div>
+
+
+            {/* PRICE */}
+            <div className="mt-6">
+
+              <span className="text-3xl font-bold text-[#2F5D50]">
+                ₹{product.price}
+              </span>
+
+            </div>
+
+
+            {/* DESCRIPTION */}
+            <p className="text-gray-600 leading-7 mt-5">
               {product.description}
             </p>
 
-            <div className="mt-4">
-              <span className="text-yellow-500 text-xl">
-                ★★★★★
-              </span>
-
-              <span className="ml-2 text-gray-700">
-                {product.rating}
-              </span>
-            </div>
 
             {/* STOCK */}
-            <p className="mt-3 font-semibold">
+            <div className="mt-6">
+
               {product.stock > 0 ? (
-                <span>Stock: {product.stock}</span>
+                <div className="flex items-center gap-2">
+
+                  <span className="w-3 h-3 rounded-full bg-green-500"></span>
+
+                  <span className="text-green-700 font-semibold">
+                    In Stock
+                  </span>
+
+                  <span className="text-gray-500 text-sm">
+                    ({product.stock} available)
+                  </span>
+
+                </div>
               ) : (
-                <span className="text-red-500">
-                  Out of stock
-                </span>
+                <div className="flex items-center gap-2">
+
+                  <span className="w-3 h-3 rounded-full bg-red-500"></span>
+
+                  <span className="text-red-500 font-semibold">
+                    Out of Stock
+                  </span>
+
+                </div>
               )}
-            </p>
-
-            {/* QUANTITY */}
-            <div className="mt-5 flex items-center gap-4">
-
-              <button className="w-9 h-9 border rounded-lg text-xl bg-[#2F5D50] text-white" 
-              onClick={()=>setCount((prev)=>prev-1)} disabled={count===1}>
-                -
-              </button>
-
-              <span className="font-semibold">
-                {count}
-              </span>
-
-              <button className="w-9 h-9 border rounded-lg text-xl bg-[#2F5D50] text-white"
-               onClick={()=>setCount((prev)=>prev+1)} disabled={count===product.stock}>
-                +
-              </button>
 
             </div>
+
+
+            {/* QUANTITY */}
+            {product.stock > 0 && (
+              <div className="mt-7">
+
+                <p className="text-sm font-semibold text-gray-700 mb-3">
+                  Quantity
+                </p>
+
+                <div className="flex items-center gap-4">
+
+                  <button
+                    onClick={() =>
+                      setCount((prev) => prev - 1)
+                    }
+                    disabled={count === 1}
+                    className="w-10 h-10 rounded-lg bg-[#2F5D50] text-white text-xl hover:bg-[#244A40] disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  >
+                    -
+                  </button>
+
+                  <span className="w-8 text-center text-lg font-semibold">
+                    {count}
+                  </span>
+
+                  <button
+                    onClick={() =>
+                      setCount((prev) => prev + 1)
+                    }
+                    disabled={count === product.stock}
+                    className="w-10 h-10 rounded-lg bg-[#2F5D50] text-white text-xl hover:bg-[#244A40] disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+            )}
+
 
             {/* ADD TO CART */}
             <button
-            type="button"
-              disabled={product.stock === 0||isAdding}
-              className="
-                mt-6
-                bg-[#2F5D50]
-                text-white
-                py-3
-                px-6
-                rounded-xl
-                font-semibold
-                hover:bg-[#244a40]
-                transition
-                disabled:bg-gray-400
-              "
-              
-              onClick={handletocart} 
+              type="button"
+              disabled={product.stock === 0 || isAdding}
+              onClick={handletocart}
+              className="mt-8 w-full md:w-fit px-10 py-3.5 rounded-xl bg-[#2F5D50] text-white font-semibold hover:bg-[#244A40] transition disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-  {isAdding ? "Adding..." : "Add to Cart"}
-
+              {isAdding ? "Adding..." : "Add to Cart"}
             </button>
-            <button
-  type="button"
-  disabled={product.stock === 0}
-  className="
-    mt-3
-    border-2 border-[#2F5D50]
-    text-[#2F5D50]
-    py-3
-    px-6
-    rounded-xl
-    font-semibold
-    hover:bg-[#2F5D50] hover:text-white
-    transition
-  "
-  onClick={handleBuyNow}
->
-  Buy Now
-</button>
 
           </div>
+
         </div>
 
-        {/* RELATED PRODUCTS */}
-        {relatedProducts.length > 0 && (
-          <section className="mt-16 bg-[#4e6070]/50 rounded-2xl p-4">
-
-            <div className="text-center mb-8">
-
-              <p className="text-sm uppercase tracking-[4px] text-[#2F5D50] font-semibold">
-                You May Also Like
-              </p>
-
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-800 mt-2">
-                Related Products
-              </h2>
-
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-
-              {relatedProducts.map((item) => (
-                <ProductCard
-                  key={item.id}
-                  product={item}
-                />
-              ))}
-
-            </div>
-
-          </section>
-        )}
-
       </div>
-    </div>
-  );
-}
 
-export default ProductDetails;
+
+      {/* RELATED PRODUCTS */}
+      {relatedProducts.length > 0 && (
+        <section className="mt-16">
+
+          {/* SECTION HEADING */}
+          <div className="text-center mb-10">
+
+            <p className="text-sm uppercase tracking-[4px] text-[#2F5D50] font-semibold">
+              You May Also Like
+            </p>
+
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mt-2">
+              Related Products
+            </h2>
+
+            <p className="text-gray-500 mt-2">
+              More products you might love
+            </p>
+
+          </div>
+
+
+          {/* PRODUCTS */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+
+            {relatedProducts.map((item) => (
+              <ProductCard
+                key={item.id}
+                product={item}
+              />
+            ))}
+
+          </div>
+
+        </section>
+      )}
+
+    </div>
+
+  </div>
+);
+}
+export default ProductDetails 

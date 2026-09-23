@@ -7,7 +7,7 @@
         "Dogs",
         "food"
       ],
-      "stock": 25,
+      "stock": 0,
       "image": "/images/products/dog-food2.jpg",
       "description": "good food for dog.",
       "id": "3",
@@ -48,7 +48,7 @@
       "price": 799,
       "description": "dog grooming kit.",
       "image": "/images/products/dog-groom4.jpg",
-      "stock": 25,
+      "stock": 24,
       "rating": 4.6
     },
     {
@@ -109,7 +109,7 @@
     {
       "id": "20",
       "name": "dog collar",
-      "category": "Accessories",
+      "category": ["Accessories","dogs"],
       "price": 299,
       "description": "comfortable collar ",
       "image": "/images/products/dog-collar3.jpg",
@@ -121,7 +121,7 @@
       "name": "dog grooming product",
       "price": 599,
       "category": [
-        "dog",
+        "dogs",
         "grooming"
       ],
       "description": "make your pet more glow",
@@ -129,6 +129,221 @@
       "stock": 16,
       "id": "V1sBX1vl3Wk",
       "deleted": false
+    },
+    {
+      "name": "cat toy",
+      "price": 299,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "for your cat",
+      "image": "/images/products/cat-access1.jpg",
+      "stock": 13,
+      "id": "hV-8OLu6vY0"
+    },
+    {
+      "name": "cat toy",
+      "price": 340,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "for your cat",
+      "image": "/images/products/cat-access2.jpg",
+      "stock": 13,
+      "id": "R8N7jF_smyA"
+    },
+    {
+      "name": "cat belt",
+      "price": 400,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "happy pet",
+      "image": "/images/products/cat-access7.jpg",
+      "stock": 13,
+      "id": "l8sXY9W_650"
+    },
+    {
+      "name": "cat bed",
+      "price": 400,
+      "category": [
+        "cats"
+      ],
+      "description": "soft bed for your cat",
+      "image": "/images/products/cat-bed3.jpg",
+      "stock": 16,
+      "id": "SMjnWfcj9Js"
+    },
+    {
+      "name": "cat bed",
+      "price": 400,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "stock": 16,
+      "image": "/images/products/cat-bed4.jpg",
+      "description": "soft bed for your pet",
+      "id": "M_w5t4xMxD8"
+    },
+    {
+      "name": "cat collar",
+      "price": 299,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "stock": 6,
+      "image": "/images/products/cat-collar.jpg",
+      "description": "for your cat",
+      "id": "iIfX6bJhTHM"
+    },
+    {
+      "name": "food",
+      "price": 199,
+      "category": [
+        "cats",
+        "food"
+      ],
+      "description": "for your cats health",
+      "image": "/images/products/cat-food.jpg",
+      "stock": 3,
+      "id": "noowr9C-VRA"
+    },
+    {
+      "name": "cat food",
+      "price": 169,
+      "category": [
+        "cats",
+        "food"
+      ],
+      "description": "healthy food for your cat",
+      "image": "/images/products/cat-food2.jpg",
+      "stock": 14,
+      "id": "5zXLvPNYd3U"
+    },
+    {
+      "name": "catfood",
+      "price": 129,
+      "category": [
+        "cats",
+        "food"
+      ],
+      "description": "healthy food",
+      "image": "/images/products/cat-food3jpg",
+      "stock": 8,
+      "id": "FnlOwIoxJq4"
+    },
+    {
+      "name": "pet claw balm",
+      "price": 459,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "for your cat soft skin",
+      "image": "/images/products/cat-groom7.jpg",
+      "stock": 13,
+      "id": "nuJ8Y9s-jck"
+    },
+    {
+      "name": "cat grooming kit",
+      "price": 489,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "cat grooming kit",
+      "image": "/images/products/cat-grooming2.jpg",
+      "stock": 9,
+      "id": "AtRQbSOVn48"
+    },
+    {
+      "name": "paw cleansing foam",
+      "price": 399,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "for  your cats soft paw",
+      "image": "/images/products/cat-grooming4.jpg",
+      "stock": 9,
+      "id": "gkZmYjF9CEg"
+    },
+    {
+      "name": "tissue",
+      "price": 126,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "description": "for your dog",
+      "image": "/images/products/cat-grooming5.jpg",
+      "stock": 5,
+      "id": "y5F4IqsgA-Q"
+    },
+    {
+      "name": "dog belt",
+      "price": 399,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "description": "for your baby dog",
+      "image": "/images/products/dog-acccess4.jpg",
+      "stock": 5,
+      "id": "kAFuKhG7Z7o"
+    },
+    {
+      "name": "dog belt",
+      "price": 599,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "description": "soft belt",
+      "image": "/images/products/dog-acccess.jpg",
+      "stock": 5,
+      "id": "iWqjDU2ktVQ"
+    },
+    {
+      "name": "cat collar",
+      "price": 567,
+      "category": [
+        "cats",
+        "accesseries"
+      ],
+      "description": "beautiful collar",
+      "image": "/images/products/dog-access2.jpg",
+      "stock": 10,
+      "id": "JO3v3K5CC_Y"
+    },
+    {
+      "name": "dog bed",
+      "price": 499,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "description": "soft bed for your dog",
+      "image": "/images/products/dog-bed.jpg",
+      "stock": 15,
+      "id": "eQaJ3vT7N2c"
+    },
+    {
+      "name": "dog collar",
+      "price": 169,
+      "category": [
+        "dogs",
+        "accesseries"
+      ],
+      "description": "dog collar",
+      "image": "/images/products/dog-collar.jpg",
+      "stock": 15,
+      "id": "uSShBem_ipU"
     }
   ],
   "users": [
@@ -641,6 +856,43 @@
       "status": "Cancelled",
       "createdAt": "2026-09-23T09:07:07.732Z",
       "id": "VxqrstXBhk4"
+    },
+    {
+      "userId": "Hn3L8GD8EH0",
+      "items": [
+        {
+          "productId": "14",
+          "name": "dog grooming kit",
+          "image": "/images/products/dog-groom4.jpg",
+          "price": 799,
+          "quantity": 1,
+          "deleted": false
+        },
+        {
+          "productId": "3",
+          "name": "Squeaky Dog food",
+          "image": "/images/products/dog-food2.jpg",
+          "price": 230,
+          "quantity": 25,
+          "deleted": false
+        }
+      ],
+      "name": "fida",
+      "email": "fida@gmail.com",
+      "phone": "1233425436",
+      "address": "a1edwvfere",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "673640",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 6549,
+      "deliveryFee": 0,
+      "discount": 100,
+      "grandTotal": 6449,
+      "status": "Placed",
+      "createdAt": "2026-09-23T15:36:13.664Z",
+      "id": "HKsxmoSQlJw"
     }
   ],
   "carts": [
@@ -716,6 +968,21 @@
       "userId": "Hn3L8GD8EH0",
       "productId": null,
       "id": "8tswlFk-phU"
+    },
+    {
+      "userId": "Hn3L8GD8EH0",
+      "productId": "5",
+      "id": "YQQSkJMZqs8"
+    },
+    {
+      "userId": "Hn3L8GD8EH0",
+      "productId": "12",
+      "id": "dL2G8UUh_ic"
+    },
+    {
+      "userId": "Hn3L8GD8EH0",
+      "productId": "14",
+      "id": "slz91EGviu8"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"
