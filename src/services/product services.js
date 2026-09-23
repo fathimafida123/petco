@@ -33,3 +33,7 @@ export const permenentDelete=async(id)=>{
    const response=await axios.delete(`${API_URL}/products/${id}`)
    return response.data
 }
+export const updateProductStock=async(id,stock)=>{
+   const res=await axios.patch(`${API_URL}/products/${id}`,{stock:stock})
+   return res
+}

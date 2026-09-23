@@ -11,11 +11,13 @@ import { addOrder } from "../services/order services";
 import toast from "react-hot-toast";
 import { Banknote,Smartphone,CreditCard } from "lucide-react";
 import { loadUserCart } from "../utils/loadCart";
-
+import { getProducts, updateProductStock } from "../services/product services";
+import { useQueryClient } from "@tanstack/react-query";
 
 function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient=useQueryClient()
   const location=useLocation()
   const[upiId,setUpiId]=useState("")
 const[paymentMethod,setPaymentMethod]=useState("cod")
@@ -141,6 +143,19 @@ const[errors,setErrors]=useState({})
       };
 
       await addOrder(orderData);
+      const products=await getProducts()
+
+      for(const item of cartItems){
+        const product=products.find((product)=>String(product.id)===String(item.id));
+
+        if(product){
+          const newStock=Number(product.stock)-Number(item.quantity)
+          await updateProductStock(product.id,newStock)
+        }
+      }
+      queryClient.invalidateQueries({
+        queryKey:["products"]
+      })
       if(isBuyNow){
 
       }else

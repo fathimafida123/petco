@@ -58,7 +58,7 @@
       "price": 349,
       "description": "cats belt.",
       "image": "/images/products/cat-accesss5.jpg",
-      "stock": 18,
+      "stock": 14,
       "rating": 4.4,
       "deleted": false
     },
@@ -226,7 +226,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 2601,
-      "status": "Shipped",
+      "status": "Delivered",
       "createdAt": "2026-05-14T05:45:01.994Z",
       "id": "dndCyZm2qSE"
     },
@@ -353,7 +353,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 1358,
-      "status": "Placed",
+      "status": "Shipped",
       "createdAt": "2026-05-15T12:37:07.185Z",
       "id": "iZgiwIZFchY"
     },
@@ -381,8 +381,8 @@
       "deliveryFee": 40,
       "discount": 40,
       "grandTotal": 249,
-      "status": "Delivered",
-      "createdAt": "2026-06-15T12:39:56.520Z",
+      "status": "Shipped",
+      "createdAt": "2026-06-7T12:39:56.520Z",
       "id": "IqpfVRkS7DY"
     },
     {
@@ -409,8 +409,8 @@
       "deliveryFee": 40,
       "discount": 0,
       "grandTotal": 289,
-      "status": "Delivered",
-      "createdAt": "2026-09-16T03:08:37.454Z",
+      "status": "Cancelled",
+      "createdAt": "2026-09-25T03:08:37.454Z",
       "id": "cJ7KoOtF_nc"
     },
     {
@@ -438,7 +438,7 @@
       "discount": 0,
       "grandTotal": 438,
       "status": "Placed",
-      "createdAt": "2026-08-16T05:21:54.638Z",
+      "createdAt": "2026-08-10T05:21:54.638Z",
       "id": "jDIjAh22PQI"
     },
     {
@@ -466,7 +466,7 @@
       "discount": 0,
       "grandTotal": 599,
       "status": "Delivered",
-      "createdAt": "2026-07-16T06:04:05.032Z",
+      "createdAt": "2026-07-9T06:04:05.032Z",
       "id": "SQjC2tHO5YM"
     },
     {
@@ -494,7 +494,7 @@
       "discount": 0,
       "grandTotal": 1198,
       "status": "Placed",
-      "createdAt": "2026-07-16T08:17:41.216Z",
+      "createdAt": "2026-07-4T08:17:41.216Z",
       "id": "Db1XHfgVBPE"
     },
     {
@@ -554,6 +554,93 @@
       "status": "Placed",
       "createdAt": "2026-08-22T08:07:06.622Z",
       "id": "1cVVnsH5fDM"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "items": [
+        {
+          "productId": "15",
+          "name": "cat belt",
+          "image": "/images/products/cat-accesss5.jpg",
+          "price": 349,
+          "quantity": 4,
+          "deleted": false
+        }
+      ],
+      "name": "finu",
+      "email": "finu@gmail.com",
+      "phone": "1233425436",
+      "address": "ggghhj",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "673640",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 1396,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 1396,
+      "status": "Cancelled",
+      "createdAt": "2026-09-23T08:37:19.185Z",
+      "id": "Z6AUnokPxmc"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "items": [
+        {
+          "productId": "15",
+          "name": "cat belt",
+          "image": "/images/products/cat-accesss5.jpg",
+          "price": 349,
+          "quantity": 2,
+          "deleted": false
+        }
+      ],
+      "name": "finu",
+      "email": "finu@gmail.com",
+      "phone": "1233425436",
+      "address": "3332r2",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "673640",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 698,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 698,
+      "status": "Cancelled",
+      "createdAt": "2026-09-23T09:04:22.007Z",
+      "id": "JK9qNfVXV9E"
+    },
+    {
+      "userId": "ssb_PISinf4",
+      "items": [
+        {
+          "productId": "15",
+          "name": "cat belt",
+          "image": "/images/products/cat-accesss5.jpg",
+          "price": 349,
+          "quantity": 6,
+          "deleted": false
+        }
+      ],
+      "name": "finu",
+      "email": "finu@gmail.com",
+      "phone": "1233425436",
+      "address": "3332r2",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "655789",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 2094,
+      "deliveryFee": 0,
+      "discount": 0,
+      "grandTotal": 2094,
+      "status": "Cancelled",
+      "createdAt": "2026-09-23T09:07:07.732Z",
+      "id": "VxqrstXBhk4"
     }
   ],
   "carts": [

@@ -1,90 +1,22 @@
-// import React, { useEffect } from 'react'
-// import { getAllOrders,updateOrderStatus } from '../services/order services'
-// import { useDispatch,useSelector } from 'react-redux'
-// import { setLoading,setError,setOrders } from '../redux/adminSlice/AdminOrderSlice'
-// function AdminOrders() {
-//   const dispatch=useDispatch()
-//   const {order,loading,error}=useSelector((state)=>state.adminOrders)
-//   useEffect(()=>{
-//      const loadOrders=async()=>{
-//     try{
-//       dispatch(setLoading(true))
-//   const orders=await getAllOrders()
-//  dispatch(setOrders(orders))
-//     }catch(error){
-//      dispatch(setError("failed to load orders"))
-//     }finally{
-//       dispatch(setLoading(false))
-//     }
-//   }
-//   loadOrders()
-// },[dispatch])
 
-// const handleStatusChange=async (id,status)=>{
-//   try{
-//     const updatedOrder=await updateOrderStatus(id,status);
-//  const updatedOrders=order.map((item)=>item.id===updatedOrder.id?updatedOrder:item)
-//     dispatch(setOrders(updatedOrders))
-//   }catch(error){
-//     dispatch(setError("failed to update order status"))
-//   }
-// }
 
-// if(loading){
-//   return <h2>Loding Orders... </h2>
-// }
-//  if(error){
-//   return <h2 className="text-red-500">{error}</h2>
-// }
-//   return (
-//     <div>
-//       <table>
-//         <thead >
-//           <tr>
-//           <th>ID</th>
-//           <th>Customer</th>
-//           <th>Total</th>
-//           <th>Paymnet</th>
-//           <th>Status</th>
-//           <th>Action</th>
-//             </tr>
-//               </thead>
-//             <tbody>
-//               {order.map((item)=>(
-//                 <tr key={item?.id}>
-//                   <td>{item?.name}</td>
-//                   <td>{item?.grandTotal}</td>
-//                   <td>{item?.paymentMethod}</td>
-//                   <td>{item?.status}</td>
-//                   <td><select value={item.status} onChange={(e)=>handleStatusChange(item.id,e.target.value)}> </select></td>
-//                    </tr>
-//               ))}
-//             </tbody>
-      
-//       </table>
-      
-//     </div>
-//   )
-// }
-
-// export default AdminOrders
-
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getProducts,updateProductStock } from "../services/product services";
 import {
   setLoading,
   setError,
   setOrders,
 } from "../redux/adminSlice/AdminOrderSlice";
-
 import {
   getAllOrders,
   updateOrderStatus,
 } from "../services/order services";
 
 function AdminOrders() {
+  const[search,setSearch]=useState("")
+  const[searchParams,setSearchParams]=useSearchParams()
   const dispatch = useDispatch();
    const navigate=useNavigate()
   const { order, loading, error } = useSelector(
@@ -113,8 +45,24 @@ function AdminOrders() {
   // Change order status
   const handleStatusChange = async (id, status) => {
     try {
+      const currentOrder=order.find((item)=>String(item.id)===String(id))
       const updatedOrder = await updateOrderStatus(id, status);
+       if(status==="Cancelled" &&
+          currentOrder?.status !=="Cancelled"
+       ){
+         const products=await getProducts()
+        
+         for(const item of currentOrder.items){
+          const product=products.find((product)=>String(product.id)===String(item.productId));
+          if(product){
+            const newStock=Number(product.stock)+Number(item.quantity)
 
+            await updateProductStock(product.id,
+              newStock
+            )
+          }
+         }
+       }
       // Update Redux
       const updatedOrders = order.map((item) =>
         item.id === updatedOrder.id ? updatedOrder : item
@@ -126,6 +74,23 @@ function AdminOrders() {
       dispatch(setError("Failed to update order status"));
     }
   };
+ 
+  //pagination
+const page=Number(searchParams.get("page"))||1
+const perPage=Number(searchParams.get("per_page"))||5
+
+const searchedOrders=order.filter((item)=>
+  item.name.toLowerCase().includes(search.toLowerCase())||
+item.email.toLowerCase().includes(search.toLowerCase())||
+ String(item.id).toLowerCase().includes(search.toLowerCase())
+);
+const start=(page-1)*perPage;
+const end=start+perPage
+const currentOrders=searchedOrders.slice(start,end);
+const totalPages=Math.ceil(searchedOrders.length/perPage)
+   
+//filter
+
 
   // Loading
   if (loading) {
@@ -175,8 +140,24 @@ function AdminOrders() {
           </p>
         </div>
       ) : (
+        <>
+        <div className="mb-4">
+  <input
+    type="text"
+    placeholder="Search orders..."
+    value={search}
+    onChange={(e) => {
+      setSearch(e.target.value);
+      setSearchParams({
+        page: "1",
+        per_page: String(perPage),
+      });
+    }}
+    className="border rounded-lg px-4 py-2 w-full md:w-80 outline-none"
+  />
+</div>
         <div className="bg-white rounded-xl shadow overflow-x-auto">
-
+   
           <table className="w-full">
 
             {/* Table Header */}
@@ -207,7 +188,7 @@ function AdminOrders() {
             {/* Table Body */}
             <tbody>
 
-                   {order.map((item) => (
+                   {currentOrders.map((item) => (
                 <tr
                   key={item.id}
                   onClick={()=>navigate(`/admin/orders/${item.id}`)}
@@ -284,10 +265,34 @@ function AdminOrders() {
             </tbody>
 
           </table>
+       
 
         </div>
+        </>
       )}
+   <div className="flex justify-center items-center gap-4 p-4">
 
+            <button 
+            disabled={page===1}
+            onClick={()=>
+              setSearchParams({
+              page:String(page-1),
+              per_page:String(perPage)
+            })} 
+            className="px-4 py-2 bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
+            >
+           Previous
+            </button>
+            <span>{page} of {totalPages}</span>
+            <button disabled={page===totalPages}
+            onClick={()=>setSearchParams({
+              page:String(page+1),
+              per_page:String(perPage)
+            })}
+                className="px-4 py-2 bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
+
+            >Next</button>
+          </div>
     </div>
   );
 }
