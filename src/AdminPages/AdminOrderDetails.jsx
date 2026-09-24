@@ -24,16 +24,16 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
 <div className='p-6 '>
   <button
   onClick={() => navigate("/admin/orders")}
-  className="mb-6 px-4 py-2 bg-[#2F5D50] text-white rounded-lg hover:bg-[#244a40]"
+  className="mb-6 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-700"
 >
   ← Back to Orders
 </button>
   {orderDetails && (
     <div>
-    <div className='bg-[#244A40] rounded-xl shadow p-6'>
+    <div className='bg-gray-900 rounded-xl shadow p-6 text-white'>
     <div className='flex items-center gap-2 mb-4'>
     <User/>
-      <h2 className='text-[#2F5D50] text-xl font-semibold mb-4'>Customer Details</h2>
+      <h2 className='text-white text-xl font-semibold mb-4'>Customer Details</h2>
       </div>
       <p>
         <span className='font-medium'>Name:</span>{" "}
@@ -48,10 +48,10 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
         {orderDetails.phone}
       </p>
     </div>
-    <div className='bg-[#244A40] rounded-xl shadow p-6 mt-6'>
+    <div className='bg-gray-900 rounded-xl shadow p-6 mt-6 text-white'>
     <div className='flex items-center gap-2 mb-4'>
       <MapPin/>
-      <h2 className='text-xl font-semibold mb-4 text-[#2F5D50]'>Delivery Address</h2></div>
+      <h2 className='text-xl font-semibold mb-4 text-white'>Delivery Address</h2></div>
       <p><span className='font-medium'>Address:</span>{" "}
       {orderDetails.address}
       </p>
@@ -63,7 +63,7 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
         {orderDetails.pincode}
       </p>
       </div>
-      <div className='bg-[#244A40] rounded-xl p-6 mt-6'>
+      <div className='bg-gray-900 rounded-xl p-6 mt-6 text-white'>
     <div className='flex items-ceneter gap-3 mb-4'>
       <Package />
             <h2 className='text-xl font-semibold mb-4'>Ordered products</h2></div>
@@ -82,7 +82,7 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
             </div>
 
       </div>
-      <div className='bg-[#244A40] rounded-xl shadow p-6 mt-6'>
+      <div className='bg-gray-900 rounded-xl shadow p-6 mt-6 text-white'>
       <div className="flex items-center gap-2 mb-4">
   <Receipt size={20} />
         <h2 className='text-xl font-semibold mb-4'>Order Summery</h2></div>
@@ -106,7 +106,7 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
           </div>
         </div>
       </div>
-      <div className="bg-[#244A40] text-white rounded-xl p-6 mt-6">
+      <div className="bg-gray-900 text-white rounded-xl p-6 mt-6">
   
   <div className="flex items-center gap-2 mb-4">
     <CreditCard size={20} />
@@ -136,7 +136,7 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
 
 
 </div>
-<div className="bg-[#244A40] text-white rounded-xl p-6 mt-6">
+<div className="bg-gray-900 text-white rounded-xl p-6 mt-6">
 
   <h2 className="text-xl font-semibold mb-6">
     Order Status
@@ -163,33 +163,33 @@ const currentStatusIndex=statuses.indexOf(orderDetails?.status)
   </div>
 
 </div>
-      <div className='bg-[#244A40] rounded-xl shadow p-6 mt-6'>
+      <div className='bg-gray-900 rounded-xl shadow p-6 mt-6'>
       <div className="flex items-center gap-2 mb-4">
   <ClipboardList size={20} />
-        <h2 className='text-xl font-semibold mb-4'>
+        <h2 className='text-xl font-semibold mb-4 text-white'>
           Order Information
         </h2></div>
         <div className='space-y-3'>
           <div className='flex justify-between'>
             <span className='  text-white '>Order ID</span>
-            <span className='font-medium'>{orderDetails.id}</span>
+            <span className='font-medium text-white'>{orderDetails.id}</span>
             </div>
-           <div className="flex justify-between">
+           <div className="flex justify-between text-white">
       <span className=" text-white ">
         Status
       </span>
 
-      <span className="font-medium">
+      <span className="font-medium text-white">
         {orderDetails.status}
       </span>
     </div>
 
-    <div className="flex justify-between">
+    <div className="flex justify-between text-white">
       <span className=" text-white ">
         Order Date
       </span>
 
-      <span className="font-medium">
+      <span className="font-medium text-white">
         {new Date(orderDetails.createdAt).toLocaleDateString()}
       </span>
     </div>

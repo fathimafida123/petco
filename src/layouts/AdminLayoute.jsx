@@ -4,7 +4,7 @@ import AdminSidebar from '../adminComponents/AdminSidebar'
 import AdminHeader from '../adminComponents/AdminHeader'
 function AdminLayoute() {
   return (
-    <div className="min-h-screen bg-[#F8F5EC]">
+    <div className="min-h-screen bg-white">
    <AdminSidebar />
    <div className='ml-64'> 
    <AdminHeader/>

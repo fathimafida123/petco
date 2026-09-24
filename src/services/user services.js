@@ -18,3 +18,7 @@ export const updateUser=async(userId,data)=>{
     const response=await axios.patch(`${API_URL}/users/${userId}`,data)
     return response.data
 }
+export const makeUserAdmin=async(id)=>{
+    const res=await axios.patch(`${API_URL}/users/${id}`,{role:"admin"})
+    return res.data;
+}

@@ -1,165 +1,7 @@
-// import React, { useEffect ,useState} from 'react'
-// import { getUsers ,updateUser} from '../services/user services'
-// import { useSelector,useDispatch } from 'react-redux'
-// import { setUsers,setLoading ,setError,setupdateUsers} from '../redux/adminSlice/AdminUserSlice'
-// import { Search } from 'lucide-react'
-// import { useSearchParams } from 'react-router-dom'
-// function AdminUsers() {
-// const {users,loading,error}=useSelector((state)=>state.adminUsers)
-// const dispatch=useDispatch()
 
-// const [searchParams,setSearchParams]=useSearchParams()
-// const page=Number(searchParams.get("page")) ||1;
-// const perPage=Number(searchParams.get("per_page")) ||5
-
-
-// const [search,setSearch]=useState("")
-// const[filter,setFilter]=useState("all")
-// useEffect(()=>{
-//   const loadUsers=async()=>{
-//    try{
-//   dispatch(setLoading(true))
-//   const data=await getUsers()
-//   dispatch(setUsers(data))
-//    }catch(error){
-//     dispatch(setError("failed to load users"))
-//    }finally{
-//     dispatch(setLoading(false))
-//    }
-//   }
-//   loadUsers()
-// },[dispatch])
- 
-// const handleBlock=async(user)=>{
-// try{
-//   const newBlocked=!user.blocked; // it will show opposite value
-
-//   const updatedUser=await updateUser(user.id,{blocked:newBlocked})
-//   dispatch(setupdateUsers(updatedUser))
-// }catch(error){
-//   dispatch(setError("failed to update user"))
-// }
-// }
-// const filteredUsers=users.filter((user)=>{
-//   const matchesSearch=user.name.toLowerCase()
-// .includes(search.toLowerCase())
- 
-// const matchesFilter=
-// filter==="all"||
-// user.role===filter||
-// (filter==="active" && user.blocked===false)||
-// (filter==="blocked" && user.blocked===true)
-
-// return matchesSearch && matchesFilter
-// })
-// const start=(page-1)*perPage;
-// const end=start+perPage;
-// const currentUsers=filteredUsers.slice(start,end);
-// //total pages
-// const totalPages=Math.ceil(filteredUsers.length/perPage)
-
-// const handleNext=()=>{
-//   if(page<totalPages){
-//     setSearchParams({
-//       page:page+1,
-//       per_page:perPage,
-//     })
-//   }
-// }
-
-//  const handlePrevious=()=>{
-//   if(page>1){
-//     setSearchParams({
-//       page:page-1,
-//       per_page:perPage
-//     })
-//   }
-//  }
-
-// if(loading){
-//  return <h2>loading users...</h2>
-// }
-// if(error){
-//   return <h2 className="text-red-500">{error}</h2>
-// }
-//   return (
-//     <div>
-//     <div className='flex items-center justify-between '>
-//       <h2 className='font-bold text-3xl font-serif '>Users</h2>
-//       <div className='relative'>
-//         <Search size={18} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-400'/>
-//       <input type="text" value={search} placeholder='Search users...' onChange={(e)=>{
-//         setSearch(e.target.value); setSearchParams({
-//   page:1,
-//   per_page:perPage
-//         })} }
-//         className='w-76 border outline-none px-5 py-1 rounded-lg pl-11'/>
-//     </div>
-//     <select value={filter} onChange={(e)=>{setFilter(e.target.value);setSearchParams({page:1,per_page:perPage})}}>
-//       <option value="all">All</option>
-//       <option value="user">User</option>
-//       <option value="admin">Admin</option>
-//       <option value="active">Active</option>
-//       <option value="blocked">Blocked</option>
-//     </select>
-//     </div>
-//     <table>
-//       <thead>
-//       <tr>
-//         <th>Name</th>
-//         <th>Email</th>
-//         <th>Role</th>
-//         <th>Status</th>
-//         <th>Actions</th>
-//       </tr>
-//       </thead>
-//       <tbody>
-//         {currentUsers.map((user)=>(
-//           <tr key={user.id} className=''>
-//             <td>{user.name}</td>
-//             <td>{user.email}</td>
-//             <td>{user.role}</td>
-//             <td>{user.blocked ? "Blocked":"Active"}</td>
-//             <td><button onClick={()=>handleBlock(user)}>{user.blocked ? "Unblock":"Block"}</button></td>
-//           </tr>
-//         ))}
-  
-//       </tbody>
-//     </table>
-//     {currentUsers.length===0&&(
-//       <p className='text-center py-8 text-gray-500'>No users Found</p>
-//     )}
-//            <div className="flex items-center justify-center gap-4 mt-6">
-//         <button
-//           onClick={handlePrevious}
-//           disabled={page === 1}
-//           className="px-4 py-2 rounded-lg border disabled:opacity-40"
-//         >
-//           Previous
-//         </button>
-
-//         <span className="font-medium">
-//           Page {page} of {totalPages || 1}
-//         </span>
-
-//         <button
-//           onClick={handleNext}
-//           disabled={page >= totalPages}
-//           className="px-4 py-2 rounded-lg border disabled:opacity-40"
-//         >
-//           Next
-//         </button>
-//       </div>
-
-
-//     </div>
-//   )
-// }
-
-// export default AdminUsers
 
 import React, { useEffect, useState } from "react";
-import { getUsers, updateUser } from "../services/user services";
+import { getUsers, updateUser ,makeUserAdmin} from "../services/user services";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setUsers,
@@ -170,13 +12,16 @@ import {
 
 import { Search, ShieldCheck, ShieldOff } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
-
+import toast from "react-hot-toast";
+import ConfirmationModal from "../components/ConfirmationModal";
 function AdminUsers() {
   const { users, loading, error } = useSelector(
     (state) => state.adminUsers
   );
 
   const dispatch = useDispatch();
+   const[showMessage,setShowMessage]=useState(false)
+   const[selectUser,setSelectUser]=useState(null)
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -263,6 +108,20 @@ function AdminUsers() {
     }
   };
 
+  const handleMakeAdmin=async()=>{
+    try{
+   
+    await makeUserAdmin(selectUser.id)
+  const updatedUser= await getUsers()
+  dispatch(setUsers(updatedUser))
+  toast.success("User is now admin")
+  setShowMessage(false)
+  setSelectUser(null)
+    }catch(error){
+      toast.error("failed to make user admin")
+    }
+  }
+
   if (loading) {
     return (
       <div className="flex justify-center py-20">
@@ -284,100 +143,97 @@ function AdminUsers() {
   return (
     <div className="space-y-6">
 
-      {/* Header */}
-      <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      
+    {/* Header */}
+<div>
+  <h2 className="font-bold text-3xl text-gray-800">
+    Users
+  </h2>
 
-        <div>
-          <h2 className="font-bold text-3xl text-gray-800">
-            Users
-          </h2>
+  <p className="text-gray-500 mt-1">
+    Manage registered users and their access
+  </p>
+</div>
 
-          <p className="text-gray-500 mt-1">
-            Manage registered users and their access
-          </p>
-        </div>
 
-        {/* Search + Filter */}
-        <div className="flex flex-col sm:flex-row gap-3">
+{/* User Count + Search + Filter */}
+<div className="bg-gray-900 border rounded-2xl px-5 py-4 shadow-sm">
+  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 items-center">
 
-          {/* Search */}
-          <div className="relative">
+    {/* Total Users */}
+    <div className="text-center md:text-left">
+      <p className="text-white">
+        Total users
+      </p>
 
-            <Search
-              size={18}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
-            />
+      <p className="text-2xl font-bold text-white mt-1">
+        {filteredUsers.length}
+      </p>
+    </div>
 
-            <input
-              type="text"
-              value={search}
-              placeholder="Search users..."
-              onChange={(e) => {
-                setSearch(e.target.value);
+    {/* Search */}
+    <div className="relative w-full md:justify-self-center">
+      <Search
+        size={18}
+        className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+      />
 
-                setSearchParams({
-                  page: 1,
-                  per_page: perPage,
-                });
-              }}
-              className="w-full sm:w-72 border border-gray-200
-              outline-none px-4 py-3 pl-10 rounded-xl
-              bg-white
-              focus:ring-2 focus:ring-[#2F5D50]/30
-              focus:border-[#2F5D50]"
-            />
+      <input
+        type="text"
+        value={search}
+        placeholder="Search users..."
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setSearchParams({
+            page: 1,
+            per_page: perPage,
+          });
+        }}
+        className="w-full md:w-72 border border-gray-200
+        outline-none px-4 py-3 pl-10 rounded-xl
+        bg-white
+        focus:ring-2 focus:ring-[#2F5D50]/30
+        focus:border-[#2F5D50]"
+      />
+    </div>
 
-          </div>
+    {/* Filter */}
+    <div className="w-full md:flex md:justify-end  ">
+      <select
+        value={filter}
+        onChange={(e) => {
+          setFilter(e.target.value);
+          setSearchParams({
+            page: 1,
+            per_page: perPage,
+          });
+        }}
+        className="w-full md:w-auto border border-gray-200
+        bg-gray-700 text-white px-4 py-3 rounded-xl outline-none
+        focus:ring-2 focus:ring-[#2F5D50]/30
+        focus:border-[#2F5D50]"
+      >
+        <option value="all">All Users</option>
+        <option value="user">Users</option>
+        <option value="admin">Admins</option>
+        <option value="active">Active</option>
+        <option value="blocked">Blocked</option>
+     
+      </select>
+    </div>
 
-          {/* Filter */}
-          <select
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-
-              setSearchParams({
-                page: 1,
-                per_page: perPage,
-              });
-            }}
-            className="border border-gray-200 bg-white
-            px-4 py-3 rounded-xl outline-none
-            focus:ring-2 focus:ring-[#2F5D50]/30
-            focus:border-[#2F5D50]"
-          >
-            <option value="all">All Users</option>
-            <option value="user">Users</option>
-            <option value="admin">Admins</option>
-            <option value="active">Active</option>
-            <option value="blocked">Blocked</option>
-          </select>
-
-        </div>
-
-      </div>
-
-      {/* User Count */}
-      <div className="bg-white border rounded-2xl px-5 py-4 shadow-sm">
-
-        <p className="text-sm text-gray-500">
-          Total users
-        </p>
-
-        <p className="text-2xl font-bold text-gray-800 mt-1">
-          {filteredUsers.length}
-        </p>
-
-      </div>
+  </div>
+</div>
 
       {/* Table */}
-      <div className="bg-white rounded-2xl shadow-sm border overflow-hidden">
+      <div className="bg-gray-950 rounded-2xl shadow-sm  overflow-hidden text-white mt-8 ">
 
         <div className="overflow-x-auto">
 
-          <table className="w-full">
+          <table className="w-full border border-black border-collapse ">
 
             {/* Header */}
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50  ">
 
               <tr className="border-b">
 
@@ -415,7 +271,7 @@ function AdminUsers() {
                   <tr
                     key={user.id}
                     className="border-b last:border-b-0
-                    hover:bg-gray-50 transition"
+                    hover:bg-gray-800 transition"
                   >
 
                     {/* User */}
@@ -436,11 +292,11 @@ function AdminUsers() {
 
                         <div>
 
-                          <p className="font-semibold text-gray-800">
+                          <p className="font-semibold ">
                             {user.name}
                           </p>
 
-                          <p className="text-xs text-gray-400">
+                          <p className="text-xs">
                             ID: {user.id}
                           </p>
 
@@ -453,7 +309,7 @@ function AdminUsers() {
                     {/* Email */}
                     <td className="px-6 py-4">
 
-                      <span className="text-gray-600">
+                      <span className="">
                         {user.email}
                       </span>
 
@@ -469,7 +325,10 @@ function AdminUsers() {
                           user.role === "admin"
                             ? "bg-purple-100 text-purple-700"
                             : "bg-blue-100 text-blue-700"
-                        }`}
+                        }`} 
+                        onClick={()=>{if(user.role==="user"){
+                          setShowMessage(true);
+                        setSelectUser(user)}}}
                       >
                         {user.role}
                       </span>
@@ -596,8 +455,8 @@ function AdminUsers() {
             onClick={handlePrevious}
             disabled={page === 1}
             className="px-4 py-2 rounded-lg border
-            bg-white text-gray-700
-            hover:bg-gray-50
+          bg-[#030712]  text-white
+            hover:bg-blue-950 
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >
@@ -608,8 +467,8 @@ function AdminUsers() {
             onClick={handleNext}
             disabled={page >= totalPages}
             className="px-4 py-2 rounded-lg border
-            bg-white text-gray-700
-            hover:bg-gray-50
+           bg-[#030712]  text-white
+            hover:bg-blue-950
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >
@@ -619,6 +478,17 @@ function AdminUsers() {
         </div>
 
       </div>
+       <ConfirmationModal
+  show={showMessage}
+  title="Change Role?"
+  message={`Are you sure you want to make ${selectUser?.name} an admin?`}
+  onCancel={() => {
+    setShowMessage(false);
+    setSelectUser(null);
+  }}
+  onConfirm={handleMakeAdmin}
+  confirmText="Make Admin"
+/>
 
     </div>
   );

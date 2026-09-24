@@ -80,9 +80,9 @@ function Home() {
 
 
 
-<section className="bg-gray-500/50 min-h-[600px] py-16  sm:px-6">
+<section className="bg-gray-900/50 min-h-[600px] py-16  sm:px-6">
   <div className="flex flex-col items-center justify-center pl-7">
-    <h2 className="text-white font-bold text-5xl mt-6 ">Explore PETCO</h2><br/>
+    <h2 className="text-gray-950 font-bold text-5xl mt-6 ">Explore PETCO</h2><br/>
     <h2 className="text-gray-700 text-3xl font-serif">Shop by category</h2><br/>
     <p className="text-gray-800 text-2xl font-bold mb-7"> Find everything your pet needs in one place.</p>
   </div>
@@ -140,7 +140,7 @@ function Home() {
 </section>
 
   
-         <section className="bg-gray-500/50 py-16 px-4 sm:px-6">
+         <section className="bg-gray-900/50 py-16 px-4 sm:px-6">
           <div className="text-center">
             <h2 className="text-5xl sm:text-4xl md:text-6xl font-extrabold tracking-wide font-serif">Featured Products</h2>
             <p className="text-2xl text-sm uppercase tracking-[4px] font-semibold">Our top picks for your pets</p>
@@ -185,7 +185,7 @@ function Home() {
         <div className="text-center mt-10">
           <Link
             to="/product"
-            className="inline-block bg-blue-950 text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#244a40] transition"
+            className="inline-block bg-gray-950 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-950 transition"
           >
             View All Products
           </Link>
@@ -195,7 +195,7 @@ function Home() {
         
 
           
-         <section className="bg-gray-500/50 py-20 px-9 sm:px-6 ">
+         <section className="bg-gray-900/50 py-20 px-9 sm:px-6 ">
              <div className="text-center">
             <p className="text-5xl sm:text-4xl md:text-6xl font-extrabold tracking-wide font-serif">HAPPY PET PARENTS</p>
             <p className="text-2xl text-sm uppercase tracking-[4px] font-semibold">What out Customer Say</p>

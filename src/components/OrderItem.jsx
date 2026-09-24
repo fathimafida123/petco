@@ -4,6 +4,7 @@ function OrderItem({ order }) {
   return (
     <div className="bg-white p-5 rounded-xl shadow">
       <div className="flex justify-between items-center mb-3">
+
         <span className="text-sm text-gray-500">
           Order #{order.id} — {new Date(order.createdAt).toLocaleDateString()}
         </span>
@@ -15,6 +16,9 @@ function OrderItem({ order }) {
       <div className="space-y-2">
         {order.items.map((item, index) => (
           <div key={index} className="flex justify-between text-sm">
+            <div className="flex items center gap-3">
+              <img src={item.image} className="w-16 h-16 object-cover rounded-2xl"/>
+              </div>
             <span>{item.name} × {item.quantity}</span>
             <span>₹{item.price * item.quantity}</span>
           </div>

@@ -19,6 +19,8 @@ function AdminOrders() {
   const[searchParams,setSearchParams]=useSearchParams()
   const dispatch = useDispatch();
    const navigate=useNavigate()
+   const[statusFilter,setStatusFilter]=useState("all")
+   const[paymentFilter,setPaymentFilter]=useState("all")
   const { order, loading, error } = useSelector(
     (state) => state.adminOrders
   );
@@ -84,10 +86,15 @@ const searchedOrders=order.filter((item)=>
 item.email.toLowerCase().includes(search.toLowerCase())||
  String(item.id).toLowerCase().includes(search.toLowerCase())
 );
+const filterOrders=searchedOrders.filter((item)=>{
+  const statusMatch= statusFilter==="all"||item.status===statusFilter;
+  const paymentMatch=paymentFilter==="all"||item.paymentMethod===paymentFilter;
+  return statusMatch && paymentMatch
+})
 const start=(page-1)*perPage;
 const end=start+perPage
-const currentOrders=searchedOrders.slice(start,end);
-const totalPages=Math.ceil(searchedOrders.length/perPage)
+const currentOrders=filterOrders.slice(start,end);
+const totalPages=Math.ceil(filterOrders.length/perPage)
    
 //filter
 
@@ -141,7 +148,8 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
         </div>
       ) : (
         <>
-        <div className="mb-4">
+       <div>
+        <div className="mb-4 flex items-center justify-between ">
   <input
     type="text"
     placeholder="Search orders..."
@@ -155,13 +163,48 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
     }}
     className="border rounded-lg px-4 py-2 w-full md:w-80 outline-none"
   />
+
+
+<div className="flex gap-3 mt-3">
+  <select
+  value={statusFilter}
+  onChange={(e)=>{
+    setStatusFilter(e.target.value)
+    setSearchParams({
+      page:"1",
+      per_page:String(perPage)
+    })
+  }} className="border rounded-lg px-4 py-2 outline-none">
+ <option value="all">All Status</option>
+ <option value="Placed">Placed</option>
+ <option value="Processing">Processing</option>
+ <option value="Shipped">Shipped</option>
+ <option value="Delivered">Delivered</option>
+ <option value="Cancelled">Cancelled</option>
+  </select>
+
+  <select value={paymentFilter}
+  onChange={(e)=>{
+    setPaymentFilter(e.target.value)
+    setSearchParams({
+      page:"1",
+      per_page:perPage
+    })
+  }} className="border rounded-lg px-4 py-2 outline-none">
+    <option value="all">All paymnet</option>
+   <option value="cod">COD</option>
+   <option value="upi">UPI</option>
+   <option value="card">Card</option>
+  </select>
 </div>
-        <div className="bg-white rounded-xl shadow overflow-x-auto">
+</div>
+</div>
+        <div className="bg-white rounded-xl  overflow-x-auto  mt-8">
    
-          <table className="w-full">
+          <table className="w-full border ">
 
             {/* Table Header */}
-            <thead className="bg-gray-100">
+            <thead className="bg-white ">
               <tr>
                 <th className="px-5 py-4 text-left">
                   ID
@@ -182,17 +225,18 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
                 <th className="px-5 py-4 text-left">
                   Status
                 </th>
+              
               </tr>
             </thead>
 
             {/* Table Body */}
-            <tbody>
+            <tbody className="bg-gray-950 text-white ">
 
                    {currentOrders.map((item) => (
                 <tr
                   key={item.id}
                   onClick={()=>navigate(`/admin/orders/${item.id}`)}
-                  className="border-t hover:bg-gray-50 cursor-pointer"
+                  className="border-t hover:bg-gray-900 cursor-pointer "
                 >
 
                   {/* ID */}
@@ -224,7 +268,7 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
                   {/* Status */}
                   <td className="px-5 py-4">
 
-                    <select
+                    <select 
                     onClick={(e)=>e.stopPropagation()}
                       value={item.status}
                       onChange={(e) =>
@@ -233,7 +277,7 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
                           e.target.value
                         )
                       }
-                      className="border rounded-lg px-3 py-2 text-sm outline-none"
+                      className="border rounded-lg px-3 py-2 text-sm outline-none bg-gray-800"
                     >
 
                       <option value="Placed">
@@ -279,7 +323,7 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
               page:String(page-1),
               per_page:String(perPage)
             })} 
-            className="px-4 py-2 bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
+            className="px-4 py-2 bg-[#030712] bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
             >
            Previous
             </button>
@@ -289,7 +333,7 @@ const totalPages=Math.ceil(searchedOrders.length/perPage)
               page:String(page+1),
               per_page:String(perPage)
             })}
-                className="px-4 py-2 bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
+                className="px-4 py-2 bg-[#030712] text-white rounded-lg disabled:bg-gray-300"
 
             >Next</button>
           </div>

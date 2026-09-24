@@ -5,7 +5,7 @@ import { loginSuccess } from '../redux/slice/authSlices'
 import { Link, useNavigate } from 'react-router-dom'
 import { saveUser } from '../utils/localStorege'
 function Login() {
-    const[formData,setFormData]=useState({name:"",password:""})
+    const[formData,setFormData]=useState({name:"",password:"",email:""})
     const dispatch=useDispatch()
     const [errors,setErrors]=useState("")
     const navigate=useNavigate()
@@ -23,7 +23,7 @@ const submitHandler=async(e)=>{
         const data=await getUsers()
         
        const user=data.find((user)=>user.password===formData.password &&
-        user.name===formData.name)
+        user.name===formData.name  && user.email===formData.email)
 
        if(!user){
         setErrors("invalid username or password")
@@ -61,13 +61,17 @@ const submitHandler=async(e)=>{
             Login to your PETCO account
           </p>
         <form onSubmit={submitHandler} className='space-y-3'>
-        <p className='mb-1 text-gray-600'>userName</p>
- <input className='w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#2F5D50]' type='text' value={formData.name} name='name' onChange={handler}/>
- <p>password</p>
+        <p className='mb-1'>userName</p>
+ <input className='w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#2F5D50]' 
+ type='text' value={formData.name} name='name' onChange={handler}/>
+ <p className='mb-1'>Email</p>
+ <input className='w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#2F5D50]'
+  type="email" value={formData.email} name="email" onChange={handler}/>
+   <p className='mb-1'>password</p>
  <input className="w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#2F5D50]"
  type="password" value={formData.password} name='password' onChange={handler}/>
  {errors &&(<p className='text-red-500 text-sm'>{errors}</p>)}
- <button type='submit'  className="w-full bg-[#2F5D50] hover:bg-[#24493f] text-white py-3 rounded-lg transition"
+ <button type='submit'  className="w-full bg-gray-950 hover:bg-gray-900 text-white py-3 rounded-lg transition"
  >Login</button>
  <p>Don't have an account? <Link to="/register" className='text-blue-500' >please register</Link> </p>
  </form>

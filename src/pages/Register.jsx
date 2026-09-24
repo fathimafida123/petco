@@ -64,7 +64,8 @@ function Register() {
                         className='w-full border border-gray-300 rounded-lg px-4 py-3 outline-none focus:ring-2 focus:ring-[#2F5D50]' type="password" name="cnfrmpass" value={formData.cnfrmpass} onChange={handler} /><br />
                         {errors.cnfrmpass && <p className='text-red-500 text-sm'>{errors.cnfrmpass}</p>}
 
-                        <button className="w-full bg-[#2F5D50] hover:bg-[#24493f] text-white py-3 rounded-lg transition" type="submit">Register</button>
+                        <button className="w-full hover:bg-gray-900 bg-gray-950 text-white py-3 rounded-lg transition" type="submit">Register</button>
+                        <p className='text-center font-serif'>if you already registered <span className='text-blue-600' onClick={()=>navigate("/login")}>Login</span></p>
                     </form>
                 </div>
             </div>

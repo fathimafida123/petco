@@ -121,7 +121,7 @@ const permenentDeletHandler=async()=>{
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 ">
 
       {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -139,8 +139,8 @@ const permenentDeletHandler=async()=>{
         <Link
           to="/admin/products/add"
           className="inline-flex items-center justify-center gap-2
-          bg-[#2F5D50] text-white px-5 py-3 rounded-xl
-          hover:bg-[#244a40] transition"
+          bg-[#030712]  text-white px-5 py-3 rounded-xl
+          hover:bg-blue-950 transition"
         >
           <Plus size={20} />
           Add Product
@@ -148,17 +148,17 @@ const permenentDeletHandler=async()=>{
 
       </div>
       <div>
-        <button onClick={()=>{setShowTrash(false); setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3  ${!showTrash ? "text-[#2F5D50] border-b-2 border-[#2F5D50]":"text-gray-500"}`}>All products</button>
-        <button onClick={()=>{setShowTrash(true);setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3 ${showTrash ? "text-[#2F5D50] border-b-2 border-[#2F5D50]":"text-gray-500"}`}>Trash</button>
+        <button onClick={()=>{setShowTrash(false); setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3  ${!showTrash ? "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>All products</button>
+        <button onClick={()=>{setShowTrash(true);setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3 ${showTrash ? "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>Trash</button>
       </div>
 
       {/* Search + Count */}
-      <div className="bg-white rounded-2xl shadow-sm border p-4">
+      <div className="bg-gray-900 rounded-2xl shadow-sm border p-4">
 
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
           {/* Search */}
-          <div className="relative w-full md:w-96">
+          <div className="relative w-full md:w-96 bg-white rounded-2xl">
 
             <Search
               size={20}
@@ -179,9 +179,9 @@ const permenentDeletHandler=async()=>{
           </div>
 
           {/* Product count */}
-          <p className="text-sm text-gray-500">
+          <p className="text-sm text-white">
             Showing{" "}
-            <span className="font-semibold text-gray-700">
+            <span className="font-semibold text-white">
               {filteredProducts.length}
             </span>{" "}
             products
@@ -199,27 +199,27 @@ const permenentDeletHandler=async()=>{
           <table className="w-full">
 
             {/* Header */}
-            <thead className="bg-gray-50">
+            <thead className="bg-white text-gray-950">
 
-              <tr className="border-b">
+              <tr className="border-b font-bold">
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-sm ">
                   Product
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-sm ">
                   Price
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-sm ">
                   Stock
                 </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-left text-sm ">
                   Status
                 </th>
 
-                <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">
+                <th className="px-6 py-4 text-right text-sm ">
                   Actions
                 </th>
 
@@ -236,7 +236,7 @@ const permenentDeletHandler=async()=>{
 
                   <tr
                     key={product.id}
-                    className="border-b last:border-b-0 hover:bg-gray-50 transition"
+                    className="border-b bg-gray-950  last:border-b-0 hover:bg-gray-900 transition "
                   >
 
                     {/* Product */}
@@ -252,11 +252,11 @@ const permenentDeletHandler=async()=>{
 
                         <div>
 
-                          <p className="font-semibold text-gray-800">
+                          <p className="font-semibold text-white">
                             {product.name}
                           </p>
 
-                          <p className="text-xs text-gray-400 mt-1">
+                          <p className="text-xs text-white mt-1">
                             ID: {product.id}
                           </p>
 
@@ -269,7 +269,7 @@ const permenentDeletHandler=async()=>{
                     {/* Price */}
                     <td className="px-6 py-4">
 
-                      <span className="font-semibold text-gray-800">
+                      <span className="font-semibold text-white">
                         ₹{product.price}
                       </span>
 
@@ -278,7 +278,7 @@ const permenentDeletHandler=async()=>{
                     {/* Stock */}
                     <td className="px-6 py-4">
 
-                      <span className="text-gray-700">
+                      <span className="text-white">
                         {product.stock}
                       </span>
 
@@ -319,7 +319,7 @@ const permenentDeletHandler=async()=>{
                           to={`/admin/products/edit/${product.id}`}
                           className="inline-flex items-center gap-2
                           px-3 py-2 rounded-lg
-                          bg-gray-100 text-gray-700
+                          bg-white text-gray-700
                           hover:bg-gray-200 transition"
                         >
                           <Pencil size={16} />
@@ -392,13 +392,13 @@ const permenentDeletHandler=async()=>{
       {/* Pagination */}
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-gray-900">
           Page{" "}
-          <span className="font-semibold text-gray-700">
+          <span className="font-semibold text-gray-950">
             {page}
           </span>{" "}
           of{" "}
-          <span className="font-semibold text-gray-700">
+          <span className="font-semibold text-gray-900">
             {totalPage || 1}
           </span>
         </p>
@@ -414,8 +414,8 @@ const permenentDeletHandler=async()=>{
             }
             disabled={page === 1}
             className="px-4 py-2 rounded-lg border
-            bg-white text-gray-700
-            hover:bg-gray-50
+          bg-[#030712]  text-white
+            hover:bg-blue-950
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >
@@ -431,8 +431,8 @@ const permenentDeletHandler=async()=>{
             }
             disabled={page >= totalPage}
             className="px-4 py-2 rounded-lg border
-            bg-white text-gray-700
-            hover:bg-gray-50
+           bg-[#030712]  text-white
+            hover:bg-blue-950
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >

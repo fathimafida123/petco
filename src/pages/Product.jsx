@@ -26,17 +26,6 @@ function Product() {
     return <h2>Failed to load products</h2>
   }
 
-  // const filteredProducts = products.filter((product) => {
-  //   const categoryMatch =
-  //     !category ||
-  //     product.category.toLowerCase() === category.toLowerCase()
-
-  //   const searchMatch =
-  //     !search ||
-  //     product.name.toLowerCase().includes(search.toLowerCase())
-
-  //   return categoryMatch && searchMatch
-  // })
   const filteredProducts = products.filter((product) => {
   const categoryMatch =
     !category ||
@@ -80,7 +69,7 @@ function Product() {
 
   return (
     <div className="p-8 bg-gray-500/50">
-
+      <div className='flex items-center justify-between'>
       {/* Heading */}
       <div className="flex gap-2 items-center">
         <span className="text-5xl md:text-6xl font-extrabold tracking-tight text-[#26332F]">
@@ -88,10 +77,8 @@ function Product() {
         </span>
 
         <PawPrint size={35} />
-      </div>
-
-      {/* Sort */}
-      <div className="flex justify-end mt-6">
+         </div>
+         <div className="flex justify-end mt-6">
         <select
           value={sort || ""}
           onChange={handleSort}
@@ -102,6 +89,20 @@ function Product() {
           <option value="high">Price: High → Low</option>
         </select>
       </div>
+      </div>
+
+      {/* Sort */}
+      {/* <div className="flex justify-end mt-6">
+        <select
+          value={sort || ""}
+          onChange={handleSort}
+          className="px-4 py-2 rounded-lg border border-gray-300 bg-white"
+        >
+          <option value="">Sort by Price</option>
+          <option value="low">Price: Low → High</option>
+          <option value="high">Price: High → Low</option>
+        </select>
+      </div> */}
 
       {/* Products */}
       {sortedProducts.length === 0 ? (

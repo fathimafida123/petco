@@ -5,6 +5,8 @@ import { Heart, Trash2 } from "lucide-react";
 import { motion } from "motion/react";
 import { deletewishlist } from "../services/wishlistservice";
 import { removeFromWishlist } from "../redux/slice/wishlistSlice";
+import toast from "react-hot-toast";
+
 
 function Wishlist() {
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ function Wishlist() {
       await deletewishlist(item.wishlistId);
 
       dispatch(removeFromWishlist(item.id));
+      toast("removed from wishlist")
     } catch (error) {
       console.log("Failed to remove wishlist item:", error);
     }
