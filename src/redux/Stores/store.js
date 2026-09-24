@@ -5,6 +5,7 @@ import wishlistReducer from "../slice/wishlistSlice.js";
 import AdminProductReducer from "../adminSlice/AdminProductSlice";
 import AdminUsersReducer from "../adminSlice/AdminUserSlice.js"
 import AdminOrderReducer from "../adminSlice/AdminOrderSlice.js"
+import checkoutReducer from "../slice/checkoutSlice.js"
 export const store = configureStore({
   reducer: {
     auth : authReducer,
@@ -12,7 +13,8 @@ export const store = configureStore({
     wishlist:wishlistReducer,
     adminProducts:AdminProductReducer,
     adminUsers:AdminUsersReducer,
-    adminOrders:AdminOrderReducer
+    adminOrders:AdminOrderReducer,
+    checkout:checkoutReducer
   }
 });
 

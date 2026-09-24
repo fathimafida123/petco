@@ -39,9 +39,9 @@ const submitHandler=async(e)=>{
        dispatch(loginSuccess(user))
 
       if(user.role==="admin"){
-        navigate("/admin");
+        navigate("/admin",{replace:true});
       }else{
-       navigate("/")
+       navigate("/",{replace:true})
       }
     }catch(error){
         console.log("something went wrong",error)

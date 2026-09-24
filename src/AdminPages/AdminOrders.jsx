@@ -225,7 +225,9 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
                 <th className="px-5 py-4 text-left">
                   Status
                 </th>
-              
+              <th className="px-5 py-4 text-left ">
+                actions
+              </th>
               </tr>
             </thead>
 
@@ -235,7 +237,6 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
                    {currentOrders.map((item) => (
                 <tr
                   key={item.id}
-                  onClick={()=>navigate(`/admin/orders/${item.id}`)}
                   className="border-t hover:bg-gray-900 cursor-pointer "
                 >
 
@@ -301,8 +302,10 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
                       </option>
 
                     </select>
+      
 
                   </td>
+                  <td><button className="border px-4 py-1 rounded-lg bg-gray-800" onClick={()=>navigate(`/admin/orders/${item.id}`)} >View</button></td>
                 </tr>
               ))}
 
