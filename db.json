@@ -20,7 +20,7 @@
       "price": 249,
       "description": "Simple and durable food bowl.",
       "image": "/images/products/cat-bawl.jpg",
-      "stock": 17,
+      "stock": 15,
       "rating": 4.2,
       "deleted": false
     },
@@ -949,6 +949,35 @@
       "status": "Placed",
       "createdAt": "2026-09-24T03:19:55.883Z",
       "id": "4DhgsELmEAs"
+    },
+    {
+      "userId": "OB3G0dQN2Ok",
+      "items": [
+        {
+          "productId": "5",
+          "name": "Pet Food Bowl",
+          "image": "/images/products/cat-bawl.jpg",
+          "price": 249,
+          "quantity": 2,
+          "deleted": false
+        }
+      ],
+      "name": "moluse",
+      "email": "moluse@gmail.com",
+      "phone": "1233425436",
+      "address": "uheuhdiefj",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "123243",
+      "paymentMethod": "card",
+      "upiId": null,
+      "subTotal": 498,
+      "deliveryFee": 40,
+      "discount": 0,
+      "grandTotal": 538,
+      "status": "Placed",
+      "createdAt": "2026-09-25T04:40:35.172Z",
+      "id": "OlENYPT-peY"
     }
   ],
   "carts": [

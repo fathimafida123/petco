@@ -8,6 +8,7 @@ import {useDispatch,useSelector} from "react-redux";
 import { addToCart } from "../redux/slice/cartSlice";
 import { addCart } from "../services/cartService";
 import toast from "react-hot-toast"
+import { addProduct } from "../redux/slice/checkoutSlice";
 
 function ProductDetails() {
   const [count,setCount]=useState(1)
@@ -66,7 +67,22 @@ const navigate = useNavigate();
 
       
   );
-
+const buynow=async()=>{
+  if(!user){
+    navigate("/login")
+    return
+  }
+  try{
+  const data={
+   ...product,
+   quantity:Number(count)
+  }
+  dispatch(addProduct(data))
+  navigate("/checkout")
+}catch(error){
+ console.log(error)
+}
+}
  
 const handletocart = async () => {
 
@@ -97,7 +113,7 @@ const handletocart = async () => {
 };
 
 return (
-  <div className="min-h-screen bg-[#F8F5EC] py-10 px-4 sm:px-6 lg:px-8">
+  <div className="min-h-screen bg-gray-500 py-10 px-4 sm:px-6 lg:px-8">
 
     {/* PRODUCT DETAILS */}
     <div className="max-w-6xl mx-auto">
@@ -107,9 +123,9 @@ return (
         <div className="grid grid-cols-1 md:grid-cols-2">
 
           {/* PRODUCT IMAGE */}
-          <div className="bg-[#E8F0ED] flex items-center justify-center p-8 md:p-12">
+          <div className="bg-[#E8F0ED]   flex items-center justify-center p-8 md:p-12">
 
-            <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <div className="bg-white  rounded-2xl p-6 shadow-sm">
               <img
                 src={product.image}
                 alt={product.name}
@@ -212,7 +228,7 @@ return (
                       setCount((prev) => prev - 1)
                     }
                     disabled={count === 1}
-                    className="w-10 h-10 rounded-lg bg-[#2F5D50] text-white text-xl hover:bg-[#244A40] disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                    className="w-10 h-10 rounded-lg bg-gray-900 text-white text-xl hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
                   >
                     -
                   </button>
@@ -226,7 +242,7 @@ return (
                       setCount((prev) => prev + 1)
                     }
                     disabled={count === product.stock}
-                    className="w-10 h-10 rounded-lg bg-[#2F5D50] text-white text-xl hover:bg-[#244A40] disabled:bg-gray-300 disabled:cursor-not-allowed transition"
+                    className="w-10 h-10 rounded-lg bg-gray-900 text-white text-xl hover:bg-gray-800 disabled:bg-gray-300 disabled:cursor-not-allowed transition"
                   >
                     +
                   </button>
@@ -237,16 +253,18 @@ return (
             )}
 
 
-            {/* ADD TO CART */}
+            <div className="flex items-center gap-5 sm:flex-col lg:flex-row">
             <button
               type="button"
               disabled={product.stock === 0 || isAdding}
               onClick={handletocart}
-              className="mt-8 w-full md:w-fit px-10 py-3.5 rounded-xl bg-[#2F5D50] text-white font-semibold hover:bg-[#244A40] transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+              className="mt-8 w-full md:w-fit px-10 py-3.5 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-950 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
               {isAdding ? "Adding..." : "Add to Cart"}
             </button>
-
+            <button type="button" disabled={product.stock===0 || isAdding} onClick={buynow}
+            className="mt-8 w-full md:w-fit px-10 py-3.5 rounded-xl bg-gray-900 text-white font-semibold hover:bg-gray-950 transition disabled:bg-gray-400 disabled:cursor-not-allowed">BuyNow</button>
+              </div>
           </div>
 
         </div>

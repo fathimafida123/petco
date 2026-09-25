@@ -2,14 +2,15 @@
 
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link ,useLocation} from "react-router-dom";
+import { useNavigate, Link} from "react-router-dom";
 import { User, Mail, Phone, MapPin, Truck, ShieldCheck } from "lucide-react";
 import { calculateTotal } from "../utils/priceCalculator";
 import { deleteCart } from "../services/cartService";
 import { setCart } from "../redux/slice/cartSlice";
 import { addOrder } from "../services/order services";
 import toast from "react-hot-toast";
-import { Banknote,Smartphone,CreditCard } from "lucide-react";
+import { clearCheckout } from "../redux/slice/checkoutSlice";
+import { Banknote, Smartphone, CreditCard } from "lucide-react";
 import { loadUserCart } from "../utils/loadCart";
 import { getProducts, updateProductStock } from "../services/product services";
 import { useQueryClient } from "@tanstack/react-query";
@@ -17,21 +18,18 @@ import { useQueryClient } from "@tanstack/react-query";
 function Checkout() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const queryClient=useQueryClient()
-  const location=useLocation()
-  const[upiId,setUpiId]=useState("")
-const[paymentMethod,setPaymentMethod]=useState("cod")
+  const queryClient = useQueryClient()
+  const [upiId, setUpiId] = useState("")
+  const [paymentMethod, setPaymentMethod] = useState("cod")
 
-const buyNowItem=location.state?.buyNowItem;
-const isBuyNow=Boolean(buyNowItem)
-
-  const cartItems = useSelector((state) => state.cart.items);
-const  items=isBuyNow ? [buyNowItem]:cartItems
 
   const user = useSelector((state) => state.auth.user);
+   const cartItems=useSelector((state)=>state.cart.items)
+  const checkoutItem = useSelector((state) => state.checkout.items)
+  const isBuyNow = Boolean(checkoutItem)
+  const items = isBuyNow ? [checkoutItem] : cartItems;
 
-
-  const subTotal = calculateTotal(cartItems);
+  const subTotal = calculateTotal(items);
   const deliveryFee = subTotal > 500 ? 0 : 40;
   const discount = subTotal > 3000 ? 100 : 0;
   const grandTotal = subTotal + deliveryFee - discount;
@@ -45,18 +43,18 @@ const  items=isBuyNow ? [buyNowItem]:cartItems
     state: "",
     pincode: "",
   });
-const[errors,setErrors]=useState({})
+  const [errors, setErrors] = useState({})
   const [isPlacing, setIsPlacing] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
 
-    if(errors[name]){
-      setErrors({...errors,[name]:""}) //remove error when the user start type
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: "" }) //remove error when the user start type
     }
   };
-    
+
   const validateForm = () => {
     const newErrors = {};
 
@@ -94,8 +92,8 @@ const[errors,setErrors]=useState({})
       newErrors.pincode = "Enter a valid 6-digit pincode";
     }
     if (paymentMethod === "upi" && !upiId.trim()) {
-  newErrors.upiId = "Enter your UPI ID";
-}
+      newErrors.upiId = "Enter your UPI ID";
+    }
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;   // true = errors illa
@@ -109,12 +107,12 @@ const[errors,setErrors]=useState({})
       return;
     }
 
-    if (cartItems.length === 0) {
+    if (items.length === 0) {
       toast.error("Your cart is empty");
       return;
     }
 
-    if (!validateForm()) {   
+    if (!validateForm()) {
       toast.error("Please fix the errors in the form");
       return;
     }
@@ -123,17 +121,17 @@ const[errors,setErrors]=useState({})
     try {
       const orderData = {
         userId: user.id,
-        items: cartItems.map((item) => ({
+        items: items.map((item) => ({
           productId: String(item.id),
           name: item.name,
           image: item.image,
           price: item.price,
           quantity: item.quantity,
-          deleted:false
+          deleted: false
         })),
         ...formData,
         paymentMethod,
-        upiId:paymentMethod==="upi" ?upiId:null,
+        upiId: paymentMethod === "upi" ? upiId : null,
         subTotal,
         deliveryFee,
         discount,
@@ -143,25 +141,25 @@ const[errors,setErrors]=useState({})
       };
 
       await addOrder(orderData);
-      const products=await getProducts()
+      const products = await getProducts()
 
-      for(const item of cartItems){
-        const product=products.find((product)=>String(product.id)===String(item.id));
+      for (const item of items) {
+        const product = products.find((product) => String(product.id) === String(item.id));
 
-        if(product){
-          const newStock=Number(product.stock)-Number(item.quantity)
-          await updateProductStock(product.id,newStock)
+        if (product) {
+          const newStock = Number(product.stock) - Number(item.quantity)
+          await updateProductStock(product.id, newStock)
         }
       }
       queryClient.invalidateQueries({
-        queryKey:["products"]
+        queryKey: ["products"]
       })
-      if(isBuyNow){
-
-      }else
-      await Promise.all(cartItems.map((item) => deleteCart(item.cartId)));
+      if (isBuyNow) {
+          dispatch(clearCheckout())
+      } else{
+        await Promise.all(items.map((item) => deleteCart(item.cartId)));
       dispatch(setCart([]));
-
+      }
       toast.success("Order placed successfully!");
       navigate("/orders");
     } catch (error) {
@@ -172,7 +170,7 @@ const[errors,setErrors]=useState({})
     }
   };
 
-  if (cartItems.length === 0) {
+  if (items.length === 0) {
     return (
       <div className="min-h-screen bg-[#F8F5EC] flex items-center justify-center px-5">
         <div className="text-center max-w-sm">
@@ -198,7 +196,7 @@ const[errors,setErrors]=useState({})
       <div className="max-w-6xl mx-auto mb-8">
         <h1 className="text-3xl font-bold text-[#2F5D50]">Checkout</h1>
         <p className="text-gray-500 mt-1">
-          {cartItems.length} {cartItems.length === 1 ? "item" : "items"} ready for delivery
+          {items.length} {items.length === 1 ? "item" : "items"} ready for delivery
         </p>
       </div>
 
@@ -212,7 +210,7 @@ const[errors,setErrors]=useState({})
               </h2>
 
               <div className="space-y-4 max-h-72 overflow-y-auto pr-1">
-                {cartItems.map((item) => (
+                {items.map((item) => (
                   <div key={item.id} className="flex items-center gap-3">
                     <div className="relative shrink-0">
                       <img
@@ -332,11 +330,10 @@ const[errors,setErrors]=useState({})
                     onChange={handleChange}
                     rows="2"
                     placeholder="House no, street, landmark"
-                       className={`w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 transition resize-y ${
-                      errors.address
+                    className={`w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 transition resize-y ${errors.address
                         ? "border-red-400 focus:ring-red-400"
                         : "border-gray-200 focus:ring-[#2F5D50] focus:border-transparent"
-                    }`}
+                      }`}
                     required
                   />{errors.address && (
                     <p className="text-red-500 text-sm mt-1">{errors.address}</p>
@@ -344,67 +341,65 @@ const[errors,setErrors]=useState({})
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <Field label="City" name="city" value={formData.city} onChange={handleChange} placeholder="City" bare error={errors.city}/>
-                  <Field label="State" name="state" value={formData.state} onChange={handleChange} placeholder="State" bare error={errors.state}/>
+                  <Field label="City" name="city" value={formData.city} onChange={handleChange} placeholder="City" bare error={errors.city} />
+                  <Field label="State" name="state" value={formData.state} onChange={handleChange} placeholder="State" bare error={errors.state} />
                   <Field label="Pincode" name="pincode" value={formData.pincode} onChange={handleChange} placeholder="Pincode" bare error={errors.pincode} />
                 </div>
               </div>
             </div>
-             <div className="pt-2 border-t">
-  <p className="text-sm font-semibold text-gray-500 mb-4">
-    Payment method
-  </p>
+            <div className="pt-2 border-t">
+              <p className="text-sm font-semibold text-gray-500 mb-4">
+                Payment method
+              </p>
 
-  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-    {[
-      { value: "cod", label: "Cash on Delivery", icon: <Banknote size={20} /> },
-      { value: "upi", label: "UPI", icon: <Smartphone size={20} /> },
-      { value: "card", label: "Card", icon: <CreditCard size={20} /> },
-    ].map((method) => (
-      <button
-        key={method.value}
-        type="button"
-        onClick={() => setPaymentMethod(method.value)}
-        className={`flex flex-col items-center gap-2 border rounded-xl py-4 transition ${
-          paymentMethod === method.value
-            ? "border-[#2F5D50] bg-[#2F5D50]/5 text-[#2F5D50]"
-            : "border-gray-200 text-gray-500 hover:border-gray-300"
-        }`}
-      >
-        {method.icon}
-        <span className="text-sm font-medium">{method.label}</span>
-      </button>
-    ))}
-  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {[
+                  { value: "cod", label: "Cash on Delivery", icon: <Banknote size={20} /> },
+                  { value: "upi", label: "UPI", icon: <Smartphone size={20} /> },
+                  { value: "card", label: "Card", icon: <CreditCard size={20} /> },
+                ].map((method) => (
+                  <button
+                    key={method.value}
+                    type="button"
+                    onClick={() => setPaymentMethod(method.value)}
+                    className={`flex flex-col items-center gap-2 border rounded-xl py-4 transition ${paymentMethod === method.value
+                        ? "border-[#2F5D50] bg-[#2F5D50]/5 text-[#2F5D50]"
+                        : "border-gray-200 text-gray-500 hover:border-gray-300"
+                      }`}
+                  >
+                    {method.icon}
+                    <span className="text-sm font-medium">{method.label}</span>
+                  </button>
+                ))}
+              </div>
 
-  {paymentMethod === "upi" && (
-    <div className="mt-4">
-      <label className="block text-sm font-medium text-gray-600 mb-1.5">
-        UPI ID
-      </label>
-      <input
-        type="text"
-        value={upiId}
-        onChange={(e) => setUpiId(e.target.value)}
-        placeholder="yourname@upi"
-        className={`w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 transition ${
-          errors.upiId
-            ? "border-red-400 focus:ring-red-400"
-            : "border-gray-200 focus:ring-[#2F5D50] focus:border-transparent"
-        }`}
-      />
-      {errors.upiId && (
-        <p className="text-red-500 text-sm mt-1">{errors.upiId}</p>
-      )}
-    </div>
-  )}
+              {paymentMethod === "upi" && (
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-600 mb-1.5">
+                    UPI ID
+                  </label>
+                  <input
+                    type="text"
+                    value={upiId}
+                    onChange={(e) => setUpiId(e.target.value)}
+                    placeholder="yourname@upi"
+                    className={`w-full border rounded-xl px-4 py-3 outline-none focus:ring-2 transition ${errors.upiId
+                        ? "border-red-400 focus:ring-red-400"
+                        : "border-gray-200 focus:ring-[#2F5D50] focus:border-transparent"
+                      }`}
+                  />
+                  {errors.upiId && (
+                    <p className="text-red-500 text-sm mt-1">{errors.upiId}</p>
+                  )}
+                </div>
+              )}
 
-  {paymentMethod === "card" && (
-    <p className="mt-4 text-sm text-gray-500 bg-[#F8F5EC] rounded-xl px-4 py-3">
-      Card payment will be collected securely at the time of delivery.
-    </p>
-  )}
-</div>
+              {paymentMethod === "card" && (
+                <p className="mt-4 text-sm text-gray-500 bg-[#F8F5EC] rounded-xl px-4 py-3">
+                  Card payment will be collected securely at the time of delivery.
+                </p>
+              )}
+            </div>
 
             <div className="flex items-center gap-2 text-sm text-gray-500 bg-[#F8F5EC] rounded-xl px-4 py-3">
               <Truck size={18} className="text-[#2F5D50] shrink-0" />
