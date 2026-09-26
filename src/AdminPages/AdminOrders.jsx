@@ -124,16 +124,83 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
   return (
     <div className="p-6">
 
-      {/* Heading */}
-      <div className="mb-6">
+    {/* Heading + Search + Filters */}
+    <div className="mb-6 flex items-center justify-between gap-6">
+
+      {/* Left - Heading */}
+      <div>
         <h1 className="text-2xl font-bold text-gray-800">
           Orders
         </h1>
 
-        <p className="text-gray-500">
+        <p className="text-gray-500 mt-1">
           Manage customer orders
         </p>
       </div>
+
+      {/* Right - Search + Filters */}
+      <div className="flex items-center gap-3">
+
+        {/* Search */}
+        <input
+          type="text"
+          placeholder="Search orders..."
+          value={search}
+          onChange={(e) => {
+            setSearch(e.target.value);
+            setSearchParams({
+              page: "1",
+              per_page: String(perPage),
+            });
+          }}
+          className="border border-gray-300 rounded-lg px-4 py-2
+          w-72 outline-none
+          focus:border-[#006A71]"
+        />
+
+        {/* Status Filter */}
+        <select
+          value={statusFilter}
+          onChange={(e) => {
+            setStatusFilter(e.target.value);
+            setSearchParams({
+              page: "1",
+              per_page: String(perPage),
+            });
+          }}
+          className="border border-gray-300 rounded-lg px-4 py-2
+          outline-none  bg-[linear-gradient(135deg,#A8E0DE,#5FB7B5)]"
+        >
+          <option value="all">All Status</option>
+          <option value="Placed">Placed</option>
+          <option value="Processing">Processing</option>
+          <option value="Shipped">Shipped</option>
+          <option value="Delivered">Delivered</option>
+          <option value="Cancelled">Cancelled</option>
+        </select>
+
+        {/* Payment Filter */}
+        <select
+          value={paymentFilter}
+          onChange={(e) => {
+            setPaymentFilter(e.target.value);
+            setSearchParams({
+              page: "1",
+              per_page: String(perPage),
+            });
+          }}
+          className="border border-gray-300 rounded-lg px-4 py-2
+          outline-none  bg-[linear-gradient(135deg,#A8E0DE,#5FB7B5)]"
+        >
+          <option value="all" >All Payment</option>
+          <option value="cod">COD</option>
+          <option value="upi">UPI</option>
+          <option value="card">Card</option>
+        </select>
+
+      </div>
+
+    </div>
 
       {/* Empty state */}
       {order.length === 0 ? (
@@ -147,175 +214,214 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
           </p>
         </div>
       ) : (
-        <>
-       <div>
-        <div className="mb-4 flex items-center justify-between ">
-  <input
-    type="text"
-    placeholder="Search orders..."
-    value={search}
-    onChange={(e) => {
-      setSearch(e.target.value);
-      setSearchParams({
-        page: "1",
-        per_page: String(perPage),
-      });
-    }}
-    className="border rounded-lg px-4 py-2 w-full md:w-80 outline-none"
-  />
+<div className="bg-white rounded-2xl shadow-sm border border-gray-900 overflow-hidden mt-8">
+
+  <div className="overflow-x-auto">
+
+    <table className="w-full">
+
+      {/* Header */}
+      <thead className="bg-[#F2EFE7]">
+
+        <tr className="border-b border-gray-900">
+
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            ID
+          </th>
+
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Customer
+          </th>
+
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Total
+          </th>
+
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Payment
+          </th>
+
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Status
+          </th>
+
+          <th className="px-6 py-4 text-right text-sm font-semibold text-gray-800">
+            Action
+          </th>
+
+        </tr>
+
+      </thead>
 
 
-<div className="flex gap-3 mt-3">
-  <select
-  value={statusFilter}
-  onChange={(e)=>{
-    setStatusFilter(e.target.value)
-    setSearchParams({
-      page:"1",
-      per_page:String(perPage)
-    })
-  }} className="border rounded-lg px-4 py-2 outline-none">
- <option value="all">All Status</option>
- <option value="Placed">Placed</option>
- <option value="Processing">Processing</option>
- <option value="Shipped">Shipped</option>
- <option value="Delivered">Delivered</option>
- <option value="Cancelled">Cancelled</option>
-  </select>
+      {/* Body */}
+      <tbody>
 
-  <select value={paymentFilter}
-  onChange={(e)=>{
-    setPaymentFilter(e.target.value)
-    setSearchParams({
-      page:"1",
-      per_page:perPage
-    })
-  }} className="border rounded-lg px-4 py-2 outline-none">
-    <option value="all">All paymnet</option>
-   <option value="cod">COD</option>
-   <option value="upi">UPI</option>
-   <option value="card">Card</option>
-  </select>
-</div>
-</div>
-</div>
-        <div className="bg-white rounded-xl  overflow-x-auto  mt-8">
-   
-          <table className="w-full border ">
+        {currentOrders.length > 0 ? (
 
-            {/* Table Header */}
-            <thead className="bg-white ">
-              <tr>
-                <th className="px-5 py-4 text-left">
-                  ID
-                </th>
+          currentOrders.map((item) => (
 
-                <th className="px-5 py-4 text-left">
-                  Customer
-                </th>
+            <tr
+              key={item.id}
+              className="border-b border-gray-500 last:border-b-0 hover:bg-gray-50 transition"
+            >
 
-                <th className="px-5 py-4 text-left">
-                  Total
-                </th>
+              {/* ID */}
+              <td className="px-6 py-5">
 
-                <th className="px-5 py-4 text-left">
-                  Payment
-                </th>
+                <span className="font-semibold text-gray-700">
+                  #{item.id}
+                </span>
 
-                <th className="px-5 py-4 text-left">
-                  Status
-                </th>
-              <th className="px-5 py-4 text-left ">
-                actions
-              </th>
-              </tr>
-            </thead>
+              </td>
 
-            {/* Table Body */}
-            <tbody className="bg-gray-950 text-white ">
 
-                   {currentOrders.map((item) => (
-                <tr
-                  key={item.id}
-                  className="border-t hover:bg-gray-900 cursor-pointer "
+              {/* Customer */}
+              <td className="px-6 py-5">
+
+                <div>
+
+                  <p className="font-semibold text-gray-800">
+                    {item.name}
+                  </p>
+
+                  <p className="text-sm text-gray-400 mt-1">
+                    {item.email}
+                  </p>
+
+                </div>
+
+              </td>
+
+
+              {/* Total */}
+              <td className="px-6 py-5">
+
+                <span className="font-semibold text-[#006A71]">
+                  ₹{item.grandTotal}
+                </span>
+
+              </td>
+
+
+              {/* Payment */}
+              <td className="px-6 py-5">
+
+                <span
+                  className="inline-flex px-3 py-1 rounded-full
+                  text-xs font-medium
+                  bg-gray-100 text-gray-700 uppercase"
+                >
+                  {item.paymentMethod}
+                </span>
+
+              </td>
+
+
+              {/* Status */}
+              <td className="px-6 py-5">
+
+                <select
+                  onClick={(e) => e.stopPropagation()}
+                  value={item.status}
+                  onChange={(e) =>
+                    handleStatusChange(
+                      item.id,
+                      e.target.value
+                    )
+                  }
+                  className="border border-gray-300 rounded-lg
+                  px-3 py-2 text-sm outline-none
+                  focus:border-[#006A71]
+                  focus:ring-1 focus:ring-[#006A71]"
                 >
 
-                  {/* ID */}
-                  <td className="px-5 py-4 text-sm">
-                    {item.id}
-                  </td>
+                  <option value="Placed">
+                    Placed
+                  </option>
 
-                  {/* Customer */}
-                  <td className="px-5 py-4">
-                    <p className="font-medium">
-                      {item.name}
-                    </p>
+                  <option value="Processing">
+                    Processing
+                  </option>
 
-                    <p className="text-sm text-gray-500">
-                      {item.email}
-                    </p>
-                  </td>
+                  <option value="Shipped">
+                    Shipped
+                  </option>
 
-                  {/* Total */}
-                  <td className="px-5 py-4 font-medium">
-                    ₹{item.grandTotal}
-                  </td>
+                  <option value="Delivered">
+                    Delivered
+                  </option>
 
-                  {/* Payment */}
-                  <td className="px-5 py-4 uppercase text-sm">
-                    {item.paymentMethod}
-                  </td>
+                  <option value="Cancelled">
+                    Cancelled
+                  </option>
 
-                  {/* Status */}
-                  <td className="px-5 py-4">
+                </select>
 
-                    <select 
-                    onClick={(e)=>e.stopPropagation()}
-                      value={item.status}
-                      onChange={(e) =>
-                        handleStatusChange(
-                          item.id,
-                          e.target.value
-                        )
-                      }
-                      className="border rounded-lg px-3 py-2 text-sm outline-none bg-gray-800"
-                    >
+              </td>
 
-                      <option value="Placed">
-                        Placed
-                      </option>
 
-                      <option value="Processing">
-                        Processing
-                      </option>
+              {/* Action */}
+              <td className="px-6 py-5">
 
-                      <option value="Shipped">
-                        Shipped
-                      </option>
+                <div className="flex justify-end">
 
-                      <option value="Delivered">
-                        Delivered
-                      </option>
+                  <button
+                    onClick={() =>
+                      navigate(`/admin/orders/${item.id}`)
+                    }
+                    className="inline-flex items-center
+                    px-4 py-2 rounded-lg
+                    bg-gray-50 text-gray-700
+                    border border-gray-200
+                    hover:bg-gray-100
+                    transition"
+                  >
+                    View
+                  </button>
 
-                      <option value="Cancelled">
-                        Cancelled
-                      </option>
+                </div>
 
-                    </select>
-      
+              </td>
 
-                  </td>
-                  <td><button className="border px-4 py-1 rounded-lg bg-gray-800" onClick={()=>navigate(`/admin/orders/${item.id}`)} >View</button></td>
-                </tr>
-              ))}
+            </tr>
 
-            </tbody>
+          ))
 
-          </table>
-       
+        ) : (
 
-        </div>
-        </>
+          <tr>
+
+            <td
+              colSpan="6"
+              className="text-center py-16"
+            >
+
+              <div className="flex flex-col items-center">
+
+                <h3 className="text-lg font-semibold text-gray-700">
+                  No orders found
+                </h3>
+
+                <p className="text-sm text-gray-400 mt-1">
+                  Try changing your search or filters.
+                </p>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
       )}
    <div className="flex justify-center items-center gap-4 p-4">
 
@@ -326,7 +432,7 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
               page:String(page-1),
               per_page:String(perPage)
             })} 
-            className="px-4 py-2 bg-[#030712] bg-[#2F5D50] text-white rounded-lg disabled:bg-gray-300"
+            className="px-4 py-2  bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:bg-gray-300"
             >
            Previous
             </button>
@@ -336,7 +442,7 @@ const totalPages=Math.ceil(filterOrders.length/perPage)
               page:String(page+1),
               per_page:String(perPage)
             })}
-                className="px-4 py-2 bg-[#030712] text-white rounded-lg disabled:bg-gray-300"
+                className="px-4 py-2 bg-[#006A71] hover:bg-[#48A6A7] text-white rounded-lg disabled:bg-gray-300"
 
             >Next</button>
           </div>

@@ -34,7 +34,7 @@
       "price": 299,
       "description": "dog accesseries.",
       "image": "/images/products/dog-access6.jpg",
-      "stock": 15,
+      "stock": 0,
       "rating": 4.3,
       "deleted": false
     },
@@ -48,7 +48,7 @@
       "price": 799,
       "description": "dog grooming kit.",
       "image": "/images/products/dog-groom4.jpg",
-      "stock": 13,
+      "stock": 14,
       "rating": 4.6
     },
     {
@@ -386,7 +386,7 @@
       "name": "ummusalma",
       "email": "salma@gmail.com",
       "password": "123123",
-      "role": "user",
+      "role": "admin",
       "blocked": false,
       "id": "2NNLmx58E7M"
     },
@@ -587,7 +587,7 @@
       "deliveryFee": 0,
       "discount": 40,
       "grandTotal": 1358,
-      "status": "Shipped",
+      "status": "Cancelled",
       "createdAt": "2026-05-15T12:37:07.185Z",
       "id": "iZgiwIZFchY"
     },
@@ -975,9 +975,38 @@
       "deliveryFee": 40,
       "discount": 0,
       "grandTotal": 538,
-      "status": "Placed",
+      "status": "Shipped",
       "createdAt": "2026-09-25T04:40:35.172Z",
       "id": "OlENYPT-peY"
+    },
+    {
+      "userId": "OB3G0dQN2Ok",
+      "items": [
+        {
+          "productId": "12",
+          "name": "dog accesseries",
+          "image": "/images/products/dog-access6.jpg",
+          "price": 299,
+          "quantity": 15,
+          "deleted": false
+        }
+      ],
+      "name": "moluse",
+      "email": "moluse@gmail.com",
+      "phone": "1233425436",
+      "address": "asdfghjklqwertyuiopzxcvbnmsdfghjk",
+      "city": "malappuram",
+      "state": "kerala",
+      "pincode": "523614",
+      "paymentMethod": "cod",
+      "upiId": null,
+      "subTotal": 4485,
+      "deliveryFee": 0,
+      "discount": 100,
+      "grandTotal": 4385,
+      "status": "Placed",
+      "createdAt": "2026-09-26T04:29:51.642Z",
+      "id": "cgxgJwhFXmw"
     }
   ],
   "carts": [

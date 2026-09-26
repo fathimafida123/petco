@@ -157,16 +157,19 @@ function AdminUsers() {
 
 
 {/* User Count + Search + Filter */}
-<div className="bg-gray-900 border rounded-2xl px-5 py-4 shadow-sm">
+<div className=" border rounded-2xl px-5 py-4 shadow-sm" style={{
+    background:
+      "radial-gradient(circle at 80% 0%, #D4ECE8 0%, #DDE8D8 50%, #F2EFE7 100%)",
+  }}>
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 items-center">
 
     {/* Total Users */}
     <div className="text-center md:text-left">
-      <p className="text-white">
+      <p className="text-black font-bold">
         Total users
       </p>
 
-      <p className="text-2xl font-bold text-white mt-1">
+      <p className="text-2xl font-bold mt-1">
         {filteredUsers.length}
       </p>
     </div>
@@ -209,15 +212,17 @@ function AdminUsers() {
           });
         }}
         className="w-full md:w-auto border border-gray-200
-        bg-gray-700 text-white px-4 py-3 rounded-xl outline-none
+         text-white px-4 py-3 rounded-xl outline-none
         focus:ring-2 focus:ring-[#2F5D50]/30
-        focus:border-[#2F5D50]"
+          bg-[linear-gradient(135deg,#A8E0DE,#5FB7B5)]
+  hover:bg-[linear-gradient(135deg,#8DD3D1,#48A6A7)]
+  transition-all duration-300"
       >
-        <option value="all">All Users</option>
-        <option value="user">Users</option>
-        <option value="admin">Admins</option>
-        <option value="active">Active</option>
-        <option value="blocked">Blocked</option>
+        <option value="all" className=" text-black">All Users</option>
+        <option value="user" className="text-red-500">Users</option>
+        <option value="admin"className="text-blue-500">Admins</option>
+        <option value="active" className="text-green-500">Active</option>
+        <option value="blocked"className="text-purple-500">Blocked</option>
      
       </select>
     </div>
@@ -226,214 +231,220 @@ function AdminUsers() {
 </div>
 
       {/* Table */}
-      <div className="bg-gray-950 rounded-2xl shadow-sm  overflow-hidden text-white mt-8 ">
+      <div className="rounded-2xl shadow-sm overflow-hidden mt-8 bg-white border border-gray-500">
 
-        <div className="overflow-x-auto">
+  <div className="overflow-x-auto">
 
-          <table className="w-full border border-black border-collapse ">
+    <table className="w-full">
 
-            {/* Header */}
-            <thead className="bg-gray-50  ">
+      {/* Header */}
+      <thead className="bg-[#F2EFE7]">
 
-              <tr className="border-b">
+        <tr className="border-b border-gray-500">
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                  User
-                </th>
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            User
+          </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                  Email
-                </th>
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Email
+          </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                  Role
-                </th>
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Role
+          </th>
 
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600">
-                  Status
-                </th>
+          <th className="px-6 py-4 text-left text-sm font-semibold text-gray-800">
+            Status
+          </th>
 
-                <th className="px-6 py-4 text-right text-sm font-semibold text-gray-600">
-                  Action
-                </th>
+          <th className="px-6 py-4 text-right text-sm font-semibold text-gray-800">
+            Action
+          </th>
 
-              </tr>
+        </tr>
 
-            </thead>
+      </thead>
 
-            {/* Body */}
-            <tbody>
 
-              {currentUsers.length > 0 ? (
+      {/* Body */}
+      <tbody>
 
-                currentUsers.map((user) => (
+        {currentUsers.length > 0 ? (
 
-                  <tr
-                    key={user.id}
-                    className="border-b last:border-b-0
-                    hover:bg-gray-800 transition"
+          currentUsers.map((user) => (
+
+            <tr
+              key={user.id}
+              className="border-b border-gray-400 last:border-b-0 hover:bg-gray-50 transition"
+            >
+
+              {/* User */}
+              <td className="px-6 py-5">
+
+                <div className="flex items-center gap-3">
+
+                  <div
+                    className="w-10 h-10 rounded-full
+                    bg-[#006A71] text-white
+                    flex items-center justify-center
+                    font-semibold shrink-0"
                   >
+                    {user.name?.charAt(0).toUpperCase()}
+                  </div>
 
-                    {/* User */}
-                    <td className="px-6 py-4">
+                  <div>
 
-                      <div className="flex items-center gap-3">
+                    <p className="font-semibold text-gray-800">
+                      {user.name}
+                    </p>
 
-                        <div
-                          className="w-10 h-10 rounded-full
-                          bg-[#2F5D50] text-white
-                          flex items-center justify-center
-                          font-semibold"
-                        >
-                          {user.name
-                            ?.charAt(0)
-                            .toUpperCase()}
-                        </div>
+                    <p className="text-xs text-gray-400 mt-1">
+                      ID: {user.id}
+                    </p>
 
-                        <div>
+                  </div>
 
-                          <p className="font-semibold ">
-                            {user.name}
-                          </p>
+                </div>
 
-                          <p className="text-xs">
-                            ID: {user.id}
-                          </p>
+              </td>
 
-                        </div>
 
-                      </div>
+              {/* Email */}
+              <td className="px-6 py-5">
 
-                    </td>
+                <span className="text-sm text-gray-700">
+                  {user.email}
+                </span>
 
-                    {/* Email */}
-                    <td className="px-6 py-4">
+              </td>
 
-                      <span className="">
-                        {user.email}
-                      </span>
 
-                    </td>
+              {/* Role */}
+              <td className="px-6 py-5">
 
-                    {/* Role */}
-                    <td className="px-6 py-4">
+                <span
+                  className={`inline-flex px-3 py-1
+                  rounded-full text-xs font-medium
+                  ${
+                    user.role === "admin"
+                      ? "bg-purple-100 text-purple-700"
+                      : "bg-blue-100 text-blue-700"
+                  }`}
+                  onClick={() => {
+                    if (user.role === "user") {
+                      setShowMessage(true);
+                      setSelectUser(user);
+                    }
+                  }}
+                >
+                  {user.role}
+                </span>
 
-                      <span
-                        className={`inline-flex px-3 py-1
-                        rounded-full text-xs font-medium
-                        ${
-                          user.role === "admin"
-                            ? "bg-purple-100 text-purple-700"
-                            : "bg-blue-100 text-blue-700"
-                        }`} 
-                        onClick={()=>{if(user.role==="user"){
-                          setShowMessage(true);
-                        setSelectUser(user)}}}
-                      >
-                        {user.role}
-                      </span>
+              </td>
 
-                    </td>
 
-                    {/* Status */}
-                    <td className="px-6 py-4">
+              {/* Status */}
+              <td className="px-6 py-5">
 
-                      {user.blocked ? (
+                {user.blocked ? (
 
-                        <span
-                          className="inline-flex items-center gap-1
-                          px-3 py-1 rounded-full
-                          text-xs font-medium
-                          bg-red-100 text-red-600"
-                        >
-                          <ShieldOff size={14} />
-                          Blocked
-                        </span>
-
-                      ) : (
-
-                        <span
-                          className="inline-flex items-center gap-1
-                          px-3 py-1 rounded-full
-                          text-xs font-medium
-                          bg-green-100 text-green-700"
-                        >
-                          <ShieldCheck size={14} />
-                          Active
-                        </span>
-
-                      )}
-
-                    </td>
-
-                    {/* Action */}
-                    <td className="px-6 py-4">
-
-                      <div className="flex justify-end">
-
-                      {user.role !=="admin" &&( <button
-                          onClick={() => handleBlock(user)}
-                          className={`px-4 py-2 rounded-lg
-                          text-sm font-medium transition
-                          ${
-                            user.blocked
-                              ? "bg-green-50 text-green-700 hover:bg-green-100"
-                              : "bg-red-50 text-red-600 hover:bg-red-100"
-                          }`}
-                        >
-                          {user.blocked
-                            ? "Unblock"
-                            : "Block"}
-                        </button>)}
-
-                      </div>
-
-                    </td>
-
-                  </tr>
-
-                ))
-
-              ) : (
-
-                <tr>
-
-                  <td
-                    colSpan="5"
-                    className="text-center py-16"
+                  <span
+                    className="inline-flex items-center gap-1
+                    px-3 py-1 rounded-full
+                    text-xs font-medium
+                    bg-red-100 text-red-600"
                   >
+                    <ShieldOff size={14} />
+                    Blocked
+                  </span>
 
-                    <div className="flex flex-col items-center">
+                ) : (
 
-                      <Search
-                        size={40}
-                        className="text-gray-300 mb-3"
-                      />
+                  <span
+                    className="inline-flex items-center gap-1
+                    px-3 py-1 rounded-full
+                    text-xs font-medium
+                    bg-green-100 text-green-700"
+                  >
+                    <ShieldCheck size={14} />
+                    Active
+                  </span>
 
-                      <h3 className="text-lg font-semibold text-gray-700">
-                        No users found
-                      </h3>
+                )}
 
-                      <p className="text-sm text-gray-400 mt-1">
-                        Try changing your search or filter.
-                      </p>
+              </td>
 
-                    </div>
 
-                  </td>
+              {/* Action */}
+              <td className="px-6 py-5">
 
-                </tr>
+                <div className="flex justify-end">
 
-              )}
+                  {user.role !== "admin" && (
 
-            </tbody>
+                    <button
+                      onClick={() => handleBlock(user)}
+                      className={`px-4 py-2 rounded-lg
+                      text-sm font-medium transition
+                      ${
+                        user.blocked
+                          ? "bg-green-50 text-green-700 hover:bg-green-100"
+                          : "bg-red-50 text-red-600 hover:bg-red-100"
+                      }`}
+                    >
+                      {user.blocked ? "Unblock" : "Block"}
+                    </button>
 
-          </table>
+                  )}
 
-        </div>
+                </div>
 
-      </div>
+              </td>
 
+            </tr>
+
+          ))
+
+        ) : (
+
+          <tr>
+
+            <td
+              colSpan="5"
+              className="text-center py-16"
+            >
+
+              <div className="flex flex-col items-center">
+
+                <Search
+                  size={40}
+                  className="text-gray-300 mb-3"
+                />
+
+                <h3 className="text-lg font-semibold text-gray-700">
+                  No users found
+                </h3>
+
+                <p className="text-sm text-gray-400 mt-1">
+                  Try changing your search or filter.
+                </p>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        )}
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</div>
       {/* Pagination */}
       <div className="flex flex-col sm:flex-row
       items-center justify-between gap-4">
@@ -455,8 +466,8 @@ function AdminUsers() {
             onClick={handlePrevious}
             disabled={page === 1}
             className="px-4 py-2 rounded-lg border
-          bg-[#030712]  text-white
-            hover:bg-blue-950 
+       bg-[#006A71]  text-white
+            hover:bg-[#48A6A7]
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >
@@ -467,8 +478,8 @@ function AdminUsers() {
             onClick={handleNext}
             disabled={page >= totalPages}
             className="px-4 py-2 rounded-lg border
-           bg-[#030712]  text-white
-            hover:bg-blue-950
+         bg-[#006A71]  text-white
+            hover:bg-[#48A6A7]
             disabled:opacity-40
             disabled:cursor-not-allowed"
           >
