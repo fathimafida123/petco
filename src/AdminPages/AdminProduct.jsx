@@ -61,6 +61,7 @@ const handleSoftDelete=async ()=>{
     dispatch(setError("failed to delete product"))
   }
 }
+
 const permenentDeletHandler=async()=>{
   try{
      
@@ -93,7 +94,7 @@ const permenentDeletHandler=async()=>{
   const currentProduct = filteredProducts.slice(start, end);
 
   const totalPage = Math.ceil(filteredProducts.length / perPage);
-
+// trash
   const restoreProducts=async(productId)=>{
     try{
     const restoreProductApi=await restoreProduct(productId)
@@ -151,21 +152,18 @@ const permenentDeletHandler=async()=>{
 
       </div>
       <div>
-        <button onClick={()=>{setShowTrash(false); setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3  ${!showTrash ? "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>All products</button>
-        <button onClick={()=>{setShowTrash(true);setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3 ${showTrash ? "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>Trash</button>
+        <button onClick={()=>{setShowTrash(false); setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3  ${!showTrash ?
+           "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>All products</button>
+        <button onClick={()=>{setShowTrash(true);setSearchParams({page:1,per_Page:5})}} className={`px-4 py-3 ${showTrash ? 
+          "text-bg-[#030712]  border-b-2 border-[#2F5D50]":"text-gray-500"}`}>Trash</button>
       </div>
 
       {/* Search + Count */}
       <div className="rounded-bl-4xl  shadow-xl border p-4 "
-        style={{
-    background:
-      "radial-gradient(circle at 80% 0%, #D4ECE8 0%, #DDE8D8 50%, #F2EFE7 100%)",
-  }}
+  
 >
-
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 
-          {/* Search */}
           <div className="relative w-full md:w-96  rounded-2xl">
 
             <Search
@@ -330,8 +328,8 @@ const permenentDeletHandler=async()=>{
                 <div className="flex justify-end gap-2">
 
                   {showTrash ? (
-
-                    /* Restore */
+                     <>
+               
                     <button
                       onClick={() => restoreProducts(product.id)}
                       className="inline-flex items-center gap-2
@@ -343,7 +341,8 @@ const permenentDeletHandler=async()=>{
                       <RefreshCcw size={16} />
                       Restore
                     </button>
-
+                    
+                    </>
                   ) : (
 
                     <>

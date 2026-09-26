@@ -4,12 +4,12 @@ import AdminSidebar from '../adminComponents/AdminSidebar'
 function AdminLayoute() {
   return (
     <div className="min-h-screen" >
-   <AdminSidebar />
-   <div className='ml-64'> 
-   <main className='p-6'>
-      <Outlet/>
-      </main>
-    </div>
+      <AdminSidebar />
+      <div className='ml-64'>
+        <main className='p-6'>
+          <Outlet />
+        </main>
+      </div>
     </div>
   )
 }

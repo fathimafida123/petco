@@ -1,5 +1,5 @@
 import React from 'react'
-import {Routes,Route} from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import AdminProtuctedRoute from './AdminProtuctedRoute';
 
@@ -12,20 +12,20 @@ import AdminUsers from '../AdminPages/AdminUsers';
 import AdminLayoute from '../layouts/AdminLayoute';
 function AdminRoutes() {
   return (
-  <Routes>
-    <Route element={<AdminLayoute/>}>
-    <Route element={<AdminProtuctedRoute/>}>
-       <Route path="/admin" element={<AdminDashboard/>}/>
-       <Route path="/admin/products" element={<AdminProduct/>}/>
-       <Route path="/admin/products/add"element={<ProductForm/>}/>
-       <Route path="/admin/products/edit/:id" element={<ProductForm/>}/>
-       <Route path="/admin/orders" element={<AdminOrders/>}/>
-       <Route path="/admin/users" element={<AdminUsers/>}/>
-       <Route path="/admin/orders/:id" element={<AdminOrderDetails/>}/>
+    <Routes>
+      <Route element={<AdminLayoute />}>
+        <Route element={<AdminProtuctedRoute />}>
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="/admin/products" element={<AdminProduct />} />
+          <Route path="/admin/products/add" element={<ProductForm />} />
+          <Route path="/admin/products/edit/:id" element={<ProductForm />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/orders/:id" element={<AdminOrderDetails />} />
 
-</Route>
-    </Route>
-  </Routes>
+        </Route>
+      </Route>
+    </Routes>
   )
 }
 

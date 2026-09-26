@@ -157,10 +157,8 @@ function AdminUsers() {
 
 
 {/* User Count + Search + Filter */}
-<div className=" border rounded-2xl px-5 py-4 shadow-sm" style={{
-    background:
-      "radial-gradient(circle at 80% 0%, #D4ECE8 0%, #DDE8D8 50%, #F2EFE7 100%)",
-  }}>
+<div className=" border rounded-2xl px-5 py-4 shadow-sm" 
+  >
   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-0 items-center">
 
     {/* Total Users */}

@@ -5,11 +5,11 @@ import Footer from '../components/Footer'
 function UserLayoute() {
   return (
     <div>
-      <Navbar/>
-<main>
-      <Outlet/>
+      <Navbar />
+      <main>
+        <Outlet />
       </main>
-      <Footer/>
+      <Footer />
     </div>
   )
 }

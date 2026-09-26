@@ -35,10 +35,11 @@ function App() {
     restoreLoggedUser();
   }, [dispatch]);
 
-  return(
-  <><AppRoutes />
-    <AdminRoutes />
-  </>
+  return (
+    <>
+      <AppRoutes />
+      <AdminRoutes />
+    </>
   );
 }
 
